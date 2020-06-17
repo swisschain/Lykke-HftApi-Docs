@@ -143,8 +143,8 @@ accuracy | number | Maximum number of digits after the decimal point which are s
 
 Asset description:
 
-property | type | description
----------- | -------
+Property | Type | Description
+-------- | ---- | -----------
 assetId | string | Asset unique identifier.
 name | string | Asset name.
 symbol | string | Asset symbol.
@@ -153,7 +153,7 @@ accuracy | number | Maximum number of digits after the decimal point which are s
 ### Query Parameters
 
 Parameter | Type | Description
---------- | ------- | -----------
+--------- | ---- | -----------
 assetId | string | Asset qniquie ID
 
 > Response 200 (application/json) - success responce
