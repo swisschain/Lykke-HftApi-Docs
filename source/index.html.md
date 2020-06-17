@@ -100,8 +100,8 @@ Order side
 
 Asset description:
 
-property | type | description
----------- | -------
+Parameter | Default | Description
+--------- | ------- | -----------
 assetId | string | Asset unique identifier.
 name | string | Asset name.
 symbol | string | Asset symbol.
