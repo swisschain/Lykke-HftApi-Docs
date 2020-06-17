@@ -162,7 +162,6 @@ name | string | Asset name.
 symbol | string | Asset symbol.
 accuracy | number | Maximum number of digits after the decimal point which are supported by the asset.
 
-
 ```json
 {
     "payload": {
