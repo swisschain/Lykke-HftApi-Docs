@@ -37,12 +37,12 @@ Every response contains two fields - `payload` and `error`. Successful response 
 ### Successful response
 
 ```json
-    {
-        "payload": {
-            "orderId": "a0e83da9-4a69-4ce4-9a42-6443ed1b45c0"
-        },
-        "error": null
-    }
+{
+    "payload": {
+        "orderId": "a0e83da9-4a69-4ce4-9a42-6443ed1b45c0"
+    },
+    "error": null
+}
 ```
 
 ### Eror response
@@ -66,21 +66,21 @@ You can create API keys on this page https://wallet.lykke.com/wallets/hft
 
 ## Data structures
 
-### PriceVolume (object)
+### PriceVolume
 Price and volume for the level in the orderbook
 + `p` - price
 + `v` - volume
 
-### Side (enum)
+### Side
 Order side
 + buy
 + sell
 
-### Fee (object)
+### Fee
 + assetId (string) - asset ID for the fee
 + size (number) - fee size
 
-### Trade (object)
+### Trade
 + id (string) - Trade ID.
 + orderId (string) - Order ID of this trade.
 + assetPairId (string) - Trade asset pair ID.
@@ -96,9 +96,7 @@ Order side
 
 # Group Public APIs
 
-## Public - Get all assets
-
-Get all assets. 
+## Get all assets
 
 Asset description:
 
@@ -137,7 +135,7 @@ accuracy | number | Maximum number of digits after the decimal point which are s
 }
 ```
 
-### Get a asset by ID
+## Get a asset by ID
 
 ### HTTP Request
 
