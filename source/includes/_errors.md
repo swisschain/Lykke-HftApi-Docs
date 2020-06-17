@@ -1,22 +1,42 @@
-# Errors
+# Error codes
 
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
+`0` | Success
 
-The Kittn API uses the following error codes:
+## General network errors (10xx)
 
+`1001` | RuntimeError (Internal Server Error)
 
+## Validation errors(11xx)
+
+`1100` | ItemNotFound - resource not found (i.e. asset not found by privided ID)
+`1101` | InvalidField - invalid field in the request (i.e. Price must be > 0)
+
+## Logic errors(2xxx)
+
+**//TODO**: change/add description
 Error Code | Meaning
 ---------- | -------
-400 | Bad Request -- Your request is invalid.
-401 | Unauthorized -- Your API key is wrong.
-403 | Forbidden -- The kitten requested is hidden for administrators only.
-404 | Not Found -- The specified kitten could not be found.
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method.
-406 | Not Acceptable -- You requested a format that isn't json.
-410 | Gone -- The kitten requested has been removed from our servers.
-418 | I'm a teapot.
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+`2000` | MeBadRequest
+`2001` | MeLowBalance
+`2202` | MeAlreadyProcessed
+`2003` | MeDisabledAsset
+`2004` | MeUnknownAsset
+`2005` | MeNoLiquidity
+`2006` | MeNotEnoughFunds
+`2007` | MeDust
+`2008` | MeReservedVolumeHigherThanBalance
+`2009` | MeNotFound
+`2010` | MeBalanceLowerThanReserved
+`2011` | MeLeadToNegativeSpread
+`2012` | MeTooSmallVolume
+`2013` | MeInvalidFee
+`2014` | MeInvalidPrice
+`2015` | MeReplaced
+`2016` | MeNotFoundPrevious
+`2017` | MeDuplicate
+`2018` | MeInvalidVolumeAccuracy
+`2019` | MeInvalidPriceAccuracy
+`2020` | MeInvalidVolume
+`2021` | MeTooHighPriceDeviation
+`2022` | MeInvalidOrderValue
+`2023` | MeRuntime

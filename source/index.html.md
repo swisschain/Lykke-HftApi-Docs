@@ -2,14 +2,9 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  - csharp
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -17,223 +12,178 @@ includes:
 search: true
 ---
 
-# Introduction
+# Lykke trading API
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Lykke trading api.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# API usage
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+## Allowed HTTP Verbs
+- `PUT` : Updates a resource 
+- `POST` : Creates a resource
+- `GET` : Gets a resource or list of resources
+- `DELETE` : Deletes a resource
 
-# Authentication
+## Description Of Usual Server Responses
+- 200 `OK` : the request was successful.
+- 401 `Unauthorized` : authentication failed.
+- 404 `Not Found` : endpoint was not found.
+- 500 `Internal Server Error` : server error.
 
-> To authorize, use this code:
+## Response structure
 
-```ruby
-require 'kittn'
+Every response contains two fields - `payload` and `error`. Successful response will contain response data in the `payload` field and *null* in `error` field and vise versa for the error response.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+### Successful response
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+    {
+        "payload": {
+            "orderId": "a0e83da9-4a69-4ce4-9a42-6443ed1b45c0"
+        },
+        "error": null
+    }
 ```
 
-This endpoint retrieves all kittens.
+### Eror response
+
+```json
+{
+    "error": {
+        "code": 1100,
+        "message": "Asset not found",
+        "fields": {
+            "assetId": "Asset not found"
+        }
+    },
+    "payload": null
+}
+```
+
+## Authorization
+
+You can create API keys on this page https://wallet.lykke.com/wallets/hft
+
+## Data structures
+
+### PriceVolume (object)
+Price and volume for the level in the orderbook
++ `p` - price
++ `v` - volume
+
+### Side (enum)
+Order side
++ buy
++ sell
+
+### Fee (object)
++ assetId (string) - asset ID for the fee
++ size (number) - fee size
+
+### Trade (object)
++ id (string) - Trade ID.
++ orderId (string) - Order ID of this trade.
++ assetPairId (string) - Trade asset pair ID.
++ index (number) - Index of trade for this order.
++ timestamp (string) - Date time of the trade.
++ role (string) - Trade role. `Maker` or `Taker`
++ price (number) - Trade price.
++ baseVolume (number) - Trade volume in base asset.
++ quoteVolume (number) - Trade volume in quote asset.
++ baseAssetId (string) - Base asset ID.
++ quoteAssetId (string) - Quote asset ID.
++ fee (Fee) - trade Fee
+
+# Group Public APIs
+
+## Public - Get all assets
+
+Get all assets. 
+
+Asset description:
+
+property | type | description
+---------- | -------
+assetId | string | Asset unique identifier.
+name | string | Asset name.
+symbol | string | Asset symbol.
+accuracy | number | Maximum number of digits after the decimal point which are supported by the asset.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET /api/assets`
+
+> Response 200 (application/json)
+
+```json
+{
+    "payload": [
+        {
+            "assetId": "AUD",
+            "blockchainId": "AUD",
+            "name": "AUD",
+            "displayName": "AUD",
+            "accuracy": 2
+        },
+        {
+            "assetId": "BTC",
+            "blockchainId": "BTC",
+            "name": "BTC",
+            "displayName": "BTC",
+            "accuracy": 8
+        }
+    ],
+    "error": null
+}
+```
+
+### Get a asset by ID
+
+### HTTP Request
+
+`GET /api/assets/{assetId}`
+
+Asset description:
+
+property | type | description
+---------- | -------
+assetId | string | Asset unique identifier.
+name | string | Asset name.
+symbol | string | Asset symbol.
+accuracy | number | Maximum number of digits after the decimal point which are supported by the asset.
 
 ### Query Parameters
 
-Parameter | Default | Description
+Parameter | Type | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+assetId | string | Asset qniquie ID
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> Response 200 (application/json) - success responce
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "payload": {
+        "assetId": "AUD",
+        "blockchainId": "AUD",
+        "name": "AUD",
+        "displayName": "AUD",
+        "accuracy": 2
+    },
+    "error": null
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
+> Response 200 (application/json) - error code
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "Error": {
+    "Code": 1100,
+    "Message": "Asset not found",
+    "Fields": {
+      "assetId": "Asset not found"
+    }
+  }
 }
 ```
 
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
 
