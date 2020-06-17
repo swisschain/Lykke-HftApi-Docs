@@ -34,7 +34,7 @@ Lykke trading api.
 
 Every response contains two fields - `payload` and `error`. Successful response will contain response data in the `payload` field and *null* in `error` field and vise versa for the error response.
 
-### Successful response
+> Successful response
 
 ```json
 {
@@ -45,7 +45,7 @@ Every response contains two fields - `payload` and `error`. Successful response 
 }
 ```
 
-### Eror response
+> Eror response
 
 ```json
 {
