@@ -98,6 +98,12 @@ Order side
 
 ## Get all assets
 
+### HTTP Request
+
+`GET /api/assets`
+
+### Responce
+
 Asset description:
 
 Parameter | Default | Description
@@ -106,10 +112,6 @@ assetId | string | Asset unique identifier.
 name | string | Asset name.
 symbol | string | Asset symbol.
 accuracy | number | Maximum number of digits after the decimal point which are supported by the asset.
-
-### HTTP Request
-
-`GET /api/assets`
 
 > Response 200 (application/json)
 
@@ -141,6 +143,16 @@ accuracy | number | Maximum number of digits after the decimal point which are s
 
 `GET /api/assets/{assetId}`
 
+### Query Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+assetId | string | Asset qniquie ID
+
+> Response 200 (application/json) - success responce
+
+### Responce
+
 Asset description:
 
 Property | Type | Description
@@ -150,13 +162,6 @@ name | string | Asset name.
 symbol | string | Asset symbol.
 accuracy | number | Maximum number of digits after the decimal point which are supported by the asset.
 
-### Query Parameters
-
-Parameter | Type | Description
---------- | ---- | -----------
-assetId | string | Asset qniquie ID
-
-> Response 200 (application/json) - success responce
 
 ```json
 {
