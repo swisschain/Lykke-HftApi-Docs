@@ -83,9 +83,9 @@ fee | TradeFee | *(optional)* Trade Fee description
 
 **TradeFee**
 Property | Type | Description
-----|----|-----------
-assetId|string|asset ID for the fee
-size|[decimal](#decimal-type)|fee size
+-------- | ---- | -----------
+assetId | string | Asset ID for the fee
+size | [decimal](#decimal-type) | Fee size
 
 ```json
 {
