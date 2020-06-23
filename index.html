@@ -415,13 +415,23 @@
 <p>You can create API keys on this page https://wallet.lykke.com/wallets/hft</p>
 
 <p>To use API keys you should just add a header <code>Authorization: Bearer &lt;your API Key&gt;</code> with bearer token to your request.</p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="nl">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer **********************************"</span><span class="w">
-</span></code></pre></div><h2 id='decimal-type'>Decimal type</h2>
+
+<blockquote>
+<p>Request Header
+<code>json
+  &quot;Authorization&quot;: &quot;Bearer **********************************&quot;
+</code></p>
+</blockquote>
+<h2 id='decimal-type'>Decimal type</h2>
 <p>Here you can see: How manage decimal type (Price, Volume, Amount, etc) in API contract.</p>
 <h3 id='grpc-api-2'>gRPC API</h3>
 <p>In the gRPC API contract decimal type present as <code>string</code> type, with a textual representation of the number. This is done in order to avoid problems with non-strict precision &quot;double&quot; type.</p>
 <h3 id='resp-api'>Resp API</h3>
 <p>In the Rest API contact decemal type present as <code>number</code> with strict precision.</p>
+
+<blockquote>
+<p>Example</p>
+</blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">222231.33420001911</span><span class="p">,</span><span class="w">
     </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0000001</span><span class="w">
@@ -432,6 +442,10 @@
 <p><i>The timestamp is always used in the <b>time zone UTC+0</b></i></p>
 <h3 id='grpc-api-3'>gRPC API</h3>
 <p>In the gRPC API contract timestamp type present as <code>google.protobuf.Timestamp</code> type.</p>
+
+<blockquote>
+<p>Example in gRPC contract </p>
+</blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="err">import</span><span class="w"> </span><span class="s2">"google/protobuf/timestamp.proto"</span><span class="err">;</span><span class="w">
 
 </span><span class="err">google.protobuf.Timestamp</span><span class="w"> </span><span class="err">time_name</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">1</span><span class="err">;</span><span class="w">
