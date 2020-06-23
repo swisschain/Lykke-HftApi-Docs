@@ -460,7 +460,7 @@
 </tr>
 <tr>
 <td>accuracy</td>
-<td>number</td>
+<td>uint</td>
 <td>Maximum number of digits after the decimal point which are supported by the asset.</td>
 </tr>
 </tbody></table>
@@ -531,7 +531,7 @@
 </tr>
 <tr>
 <td>accuracy</td>
-<td>number</td>
+<td>uint</td>
 <td>Maximum number of digits after the decimal point which are supported by the asset.</td>
 </tr>
 </tbody></table>
@@ -599,27 +599,27 @@
 </tr>
 <tr>
 <td>priceAccuracy</td>
-<td>0</td>
+<td>uint</td>
 <td>Trading instrument price accuracy.</td>
 </tr>
 <tr>
 <td>baseAssetAccuracy</td>
-<td>0</td>
+<td>uint</td>
 <td>Base asset accuracy.</td>
 </tr>
 <tr>
 <td>quoteAssetAccuracy</td>
-<td>0</td>
+<td>uint</td>
 <td>Quote asset accuracy.</td>
 </tr>
 <tr>
 <td>minVolume</td>
-<td>0</td>
+<td><a href="#decimal-type">decimal</a></td>
 <td>Minimum order volume in base currency</td>
 </tr>
 <tr>
 <td>minOppositeVolume</td>
-<td>0</td>
+<td><a href="#decimal-type">decimal</a></td>
 <td>Minimum order volume in quote currency</td>
 </tr>
 </tbody></table>
@@ -705,27 +705,27 @@
 </tr>
 <tr>
 <td>priceAccuracy</td>
-<td>0</td>
+<td>uint</td>
 <td>Trading instrument price accuracy.</td>
 </tr>
 <tr>
 <td>baseAssetAccuracy</td>
-<td>0</td>
+<td>uint</td>
 <td>Base asset accuracy.</td>
 </tr>
 <tr>
 <td>quoteAssetAccuracy</td>
-<td>0</td>
+<td>uint</td>
 <td>Quote asset accuracy.</td>
 </tr>
 <tr>
 <td>minVolume</td>
-<td>0</td>
+<td><a href="#decimal-type">decimal</a></td>
 <td>Minimum order volume in base currency</td>
 </tr>
 <tr>
 <td>minOppositeVolume</td>
-<td>0</td>
+<td><a href="#decimal-type">decimal</a></td>
 <td>Minimum order volume in quote currency</td>
 </tr>
 </tbody></table>
@@ -792,7 +792,7 @@
 </tr>
 <tr>
 <td>timestamp</td>
-<td>uint64</td>
+<td><a href="#timestamp-type">TimeStamp</a></td>
 <td>Timestamp of last order book update.</td>
 </tr>
 <tr>
@@ -818,12 +818,12 @@
 </thead><tbody>
 <tr>
 <td>p</td>
-<td>decimal</td>
+<td><a href="#decimal-type">decimal</a></td>
 <td>Order price, indicated in quoted asset per unit of base asset.</td>
 </tr>
 <tr>
 <td>v</td>
-<td>decimal</td>
+<td><a href="#decimal-type">decimal</a></td>
 <td>Order volume, indicated in base asset.</td>
 </tr>
 </tbody></table>
@@ -898,37 +898,37 @@
 </tr>
 <tr>
 <td>volumeBase</td>
-<td>decimal</td>
+<td><a href="#decimal-type">decimal</a></td>
 <td>Trading volume for last 24h in base asset</td>
 </tr>
 <tr>
 <td>volumeQuote</td>
-<td>decimal</td>
+<td><a href="#decimal-type">decimal</a></td>
 <td>Trading volume for last 24h in quote asset</td>
 </tr>
 <tr>
 <td>priceChange</td>
-<td>decimal</td>
+<td><a href="#decimal-type">decimal</a></td>
 <td>Price changes in percentage in the last 24h</td>
 </tr>
 <tr>
 <td>lastPrice</td>
-<td>decimal</td>
+<td><a href="#decimal-type">decimal</a></td>
 <td>The last trade price</td>
 </tr>
 <tr>
 <td>high</td>
-<td>decimal</td>
+<td><a href="#decimal-type">decimal</a></td>
 <td>The max trade price from last 24h</td>
 </tr>
 <tr>
 <td>low</td>
-<td>decimal</td>
+<td><a href="#decimal-type">decimal</a></td>
 <td>The min trade price from last 24h</td>
 </tr>
 <tr>
 <td>timestamp</td>
-<td>string</td>
+<td><a href="#timestamp-type">TimeStamp</a></td>
 <td>Last update timestamp</td>
 </tr>
 </tbody></table>
