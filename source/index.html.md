@@ -102,8 +102,6 @@ To use API keys you should just add a header `Authorization: Bearer <your API Ke
   "Authorization": "Bearer **********************************"
 ```
 
-# Data types
-
 ## Decimal type
 Here you can see: How manage decimal type (Price, Volume, Amount, etc) in API contract.
 
