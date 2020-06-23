@@ -41,10 +41,12 @@ Read more about `gRPC framework`: [https://grpc.io/](https://grpc.io/)
 Usfull tool for manual call gRPC API: [BloomRPC](https://github.com/uw-labs/bloomrpc)
 
 **API Endpoint**: 
+
 - https://hft-apiv2-grpc.lykke.com - url format
 - `hft-apiv2-grpc.lykke.com:443`   - host format
 
 **Proto files**:
+
 - [common.proto](https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/common.proto) :Common data models
 - [isalive.proto](https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/isalive.proto) : Is Alive API service
 - [publicService.proto](https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/publicService.proto) : Public API service
@@ -57,6 +59,7 @@ Classical HTTP based framework that includes working with `HTTP 1.1`, and `JSON`
 Usfull tool for manual call gRPC API: [HFT API Swagger](https://hft-apiv2.lykke.com/swagger/ui/index.html)
 
 **API Endpoint**: 
+
 - https://hft-apiv2.lykke.com/api
 
 # API usage
