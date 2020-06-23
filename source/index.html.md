@@ -113,14 +113,19 @@ In several languages after auto generate client code base on proto files, you ca
 
 ### Resp API
 In the Rest API contact decemal type present as `number`.
-
-
+```json
+{
+    "price": 222231.33420001911,
+    "volume": 0.0000001
+}
+```
 ## PriceVolume
 Price and volume for the level in the orderbook
-|`p`|decimal|price|
-|`v`|decimal|volume|
-+ `p` - price
-+ `v` - volume
+
+name | type | description
+---- | ---- | -----------
+`p` | decimal | price
+`v` | decimal | volume
 
 ```json
 {
@@ -138,9 +143,6 @@ Order side enum
 {
     "side": "buy"
 }
-```
-
-```json
 {
     "side": "sell"
 }
@@ -149,25 +151,29 @@ Order side enum
 ## Trade
 Structure to describe a Trade in history.
 
-|`id`|string|Trade ID.|
-|`orderId`|string|Order ID of this trade.|
-|`assetPairId`|string|Trade asset pair ID.|
-|`index`|number|Index of trade for this order.|
-|`timestamp`|string|Date time of the trade.|
-|`role`|string|Trade role. `Maker` or `Taker`|
-|`price`|decimal|Trade price.|
-|`baseVolume`|decimal|Trade volume in base asset.|
-|`quoteVolume`|decimal|Trade volume in quote asset.|
-|`baseAssetId`|string|Base asset ID.|
-|`quoteAssetId`|string|Quote asset ID.|
-|`fee`|TradeFee|trade Fee|
+name|type|description
+----|----|-----------
+`id`|string|Trade ID.
+`orderId`|string|Order ID of this trade.
+`assetPairId`|string|Trade asset pair ID.
+`index`|number|Index of trade for this order.
+`timestamp`|string|Date time of the trade.
+`role`|string|Trade role. `Maker` or `Taker`
+`price`|decimal|Trade price.
+`baseVolume`|decimal|Trade volume in base asset.
+`quoteVolume`|decimal|Trade volume in quote asset.
+`baseAssetId`|string|Base asset ID.
+`quoteAssetId`|string|Quote asset ID.
+`fee`|TradeFee|trade Fee
 
 ### TradeFee
 
 Structure to describe fee for the trade.
 
-|`assetId`|string|asset ID for the fee|
-|`size`|decimal|fee size|
+name|type|description
+----|----|-----------
+`assetId`|string|asset ID for the fee
+`size`|decimal|fee size
 
 ```json
 {
