@@ -19,7 +19,7 @@ Property | Type | Description
 assetId | string | Asset unique identifier.
 available | decimal | Available amount
 reserved | decimal | Amount reserved in active orders
-timestamp | TimeStamp | Last update balance by current asset
+timestamp | [TimeStamp](#timestamp-type) | Last update balance by current asset
 
 
 > Response 200 (application/json) - success responce
@@ -59,8 +59,8 @@ assetPairId | string | query | *(optional)* Symbol unique identifier.
 side | string | query | *(optional)* Side of trade: `buy` or `sell`
 offset | uint | query | *(optional)* Skip the specified number of elements
 take | uint | query | *(optional)* Take the specified number of elements
-from | TimeStamp | query | *(optional)* From timestamp
-to | TimeStamp | query | *(optional)* To timestamp
+from | [TimeStamp](#timestamp-type) | query | *(optional)* From timestamp
+to | [TimeStamp](#timestamp-type) | query | *(optional)* To timestamp
 
 ### Responce
 
