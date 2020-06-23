@@ -115,6 +115,7 @@ You can create API keys on this page https://wallet.lykke.com/wallets/hft
 
 To use API keys you should just add a header `Authorization: Bearer <your API Key>` with bearer token to your request.
 
+> Request Header
 ```json
   "Authorization": "Bearer **********************************"
 ```
@@ -127,6 +128,8 @@ In the gRPC API contract decimal type present as `string` type, with a textual r
 
 ### Resp API
 In the Rest API contact decemal type present as `number` with strict precision.
+
+> Example
 
 ```json
 {
@@ -142,6 +145,8 @@ Here you can see: How manage `TimeStamp` type in API contract.
 
 ### gRPC API
 In the gRPC API contract timestamp type present as `google.protobuf.Timestamp` type.
+
+> Example in gRPC contract 
 
 ```json
 import "google/protobuf/timestamp.proto";
