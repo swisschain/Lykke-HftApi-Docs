@@ -375,13 +375,34 @@
 <p>In the gRPC API contract decemal type present as custom type <code>DecimalValue</code>. The type contains a single property - &quot;value&quot; with a textual representation of the number. This is done in order to avoid problems with non-strict precision &quot;double&quot; type.
 In several languages after auto generate client code base on proto files, you can extend <code>DecimalValue</code> type to implict convert to decimal (or other analog) type.</p>
 <h3 id='resp-api'>Resp API</h3>
-<p>In the Rest API contact decemal type present as <code>number</code>.</p>
+<p>In the Rest API contact decemal type present as <code>number</code>.
+<code>json
+{
+    &quot;price&quot;: 222231.33420001911,
+    &quot;volume&quot;: 0.0000001
+}
+</code></p>
 <h2 id='pricevolume'>PriceVolume</h2>
-<p>Price and volume for the level in the orderbook
-|<code>p</code>|decimal|price|
-|<code>v</code>|decimal|volume|
-+ <code>p</code> - price
-+ <code>v</code> - volume</p>
+<p>Price and volume for the level in the orderbook</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>p</code></td>
+<td>decimal</td>
+<td>price</td>
+</tr>
+<tr>
+<td><code>v</code></td>
+<td>decimal</td>
+<td>volume</td>
+</tr>
+</tbody></table>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"p"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3342</span><span class="p">,</span><span class="w">
     </span><span class="nl">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">40000.2213341</span><span class="w">
@@ -393,29 +414,101 @@ In several languages after auto generate client code base on proto files, you ca
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">{</span><span class="w">
     </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='trade'>Trade</h2>
 <p>Structure to describe a Trade in history.</p>
 
-<p>|<code>id</code>|string|Trade ID.|
-|<code>orderId</code>|string|Order ID of this trade.|
-|<code>assetPairId</code>|string|Trade asset pair ID.|
-|<code>index</code>|number|Index of trade for this order.|
-|<code>timestamp</code>|string|Date time of the trade.|
-|<code>role</code>|string|Trade role. <code>Maker</code> or <code>Taker</code>|
-|<code>price</code>|decimal|Trade price.|
-|<code>baseVolume</code>|decimal|Trade volume in base asset.|
-|<code>quoteVolume</code>|decimal|Trade volume in quote asset.|
-|<code>baseAssetId</code>|string|Base asset ID.|
-|<code>quoteAssetId</code>|string|Quote asset ID.|
-|<code>fee</code>|TradeFee|trade Fee|</p>
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>Trade ID.</td>
+</tr>
+<tr>
+<td><code>orderId</code></td>
+<td>string</td>
+<td>Order ID of this trade.</td>
+</tr>
+<tr>
+<td><code>assetPairId</code></td>
+<td>string</td>
+<td>Trade asset pair ID.</td>
+</tr>
+<tr>
+<td><code>index</code></td>
+<td>number</td>
+<td>Index of trade for this order.</td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td>string</td>
+<td>Date time of the trade.</td>
+</tr>
+<tr>
+<td><code>role</code></td>
+<td>string</td>
+<td>Trade role. <code>Maker</code> or <code>Taker</code></td>
+</tr>
+<tr>
+<td><code>price</code></td>
+<td>decimal</td>
+<td>Trade price.</td>
+</tr>
+<tr>
+<td><code>baseVolume</code></td>
+<td>decimal</td>
+<td>Trade volume in base asset.</td>
+</tr>
+<tr>
+<td><code>quoteVolume</code></td>
+<td>decimal</td>
+<td>Trade volume in quote asset.</td>
+</tr>
+<tr>
+<td><code>baseAssetId</code></td>
+<td>string</td>
+<td>Base asset ID.</td>
+</tr>
+<tr>
+<td><code>quoteAssetId</code></td>
+<td>string</td>
+<td>Quote asset ID.</td>
+</tr>
+<tr>
+<td><code>fee</code></td>
+<td>TradeFee</td>
+<td>trade Fee</td>
+</tr>
+</tbody></table>
 <h3 id='tradefee'>TradeFee</h3>
 <p>Structure to describe fee for the trade.</p>
 
-<p>|<code>assetId</code>|string|asset ID for the fee|
-|<code>size</code>|decimal|fee size|</p>
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>assetId</code></td>
+<td>string</td>
+<td>asset ID for the fee</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>decimal</td>
+<td>fee size</td>
+</tr>
+</tbody></table>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111a111aaaa1a"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-22T13:04:27.325Z"</span><span class="p">,</span><span class="w">
