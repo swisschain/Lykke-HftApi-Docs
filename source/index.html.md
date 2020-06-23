@@ -133,3 +133,10 @@ google.protobuf.Timestamp time_name = 1;
 
 ### Resp API
 In the Rest API contact timestamp type present as `number` with "Milliseconds since Unix Epoch" format of date-time.
+
+
+```json
+{
+   "Timestamp": 1592903724406
+}
+```
