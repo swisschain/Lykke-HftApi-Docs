@@ -971,7 +971,7 @@ In several languages after auto generate client code base on proto files, you ca
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='24hr-ticker-price-change-statistics'>24hr Ticker Price Change Statistics</h2>
-<p>24 hour rolling window price change statistics. Careful when accessing this with no symbol.</p>
+<p>24 hour rolling window price change statistics.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /api/tickers</code></p>
 
@@ -1025,17 +1025,17 @@ In several languages after auto generate client code base on proto files, you ca
 <tr>
 <td>lastPrice</td>
 <td>decimal</td>
-<td>The last price</td>
+<td>The last trade price</td>
 </tr>
 <tr>
 <td>high</td>
-<td>The max price from last 24h</td>
-<td></td>
+<td>decimal</td>
+<td>The max trade price from last 24h</td>
 </tr>
 <tr>
 <td>low</td>
-<td>The min price from last 24h</td>
-<td></td>
+<td>decimal</td>
+<td>The min trade price from last 24h</td>
 </tr>
 <tr>
 <td>timestamp</td>
