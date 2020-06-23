@@ -40,8 +40,8 @@ Read more about `gRPC framework`: [https://grpc.io/](https://grpc.io/)
 Usfull tool for manual call gRPC API: [BloomRPC](https://github.com/uw-labs/bloomrpc)
 
 **API Endpoint**: 
-- https://hft-apiv2-grpc.lykke.com - url format
-- `hft-apiv2-grpc.lykke.com:443`   - host format
+* https://hft-apiv2-grpc.lykke.com - url format
+* `hft-apiv2-grpc.lykke.com:443`   - host format
 
 ## Rest API
 
@@ -50,7 +50,7 @@ Classical HTTP based framework that includes working with `HTTP 1.1`, and `JSON`
 Usfull tool for manual call gRPC API: [HFR API Swagger](https://hft-apiv2.lykke.com/swagger/ui/index.html)
 
 **API Endpoint**: 
-- https://hft-apiv2.lykke.com/api
+* https://hft-apiv2.lykke.com/api
 
 # API usage
 
