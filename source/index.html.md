@@ -114,6 +114,7 @@ Fill list of error you can see in paragraf **Error codes** in end of document.
 You can create API keys on this page https://wallet.lykke.com/wallets/hft
 
 To use API keys you should just add a header `Authorization: Bearer <your API Key>` with bearer token to your request.
+
 ```json
   "Authorization": "Bearer **********************************"
 ```
@@ -126,6 +127,7 @@ In the gRPC API contract decimal type present as `string` type, with a textual r
 
 ### Resp API
 In the Rest API contact decemal type present as `number` with strict precision.
+
 ```json
 {
     "price": 222231.33420001911,
