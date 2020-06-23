@@ -17,7 +17,7 @@ Parameter | Default | Description
 assetId | string | Asset unique identifier.
 name | string | Asset name.
 symbol | string | Asset symbol.
-accuracy | number | Maximum number of digits after the decimal point which are supported by the asset.
+accuracy | uint | Maximum number of digits after the decimal point which are supported by the asset.
 
 > Response 200 (application/json)
 
@@ -63,7 +63,7 @@ Property | Type | Description
 assetId | string | Asset unique identifier.
 name | string | Asset name.
 symbol | string | Asset symbol.
-accuracy | number | Maximum number of digits after the decimal point which are supported by the asset.
+accuracy | uint | Maximum number of digits after the decimal point which are supported by the asset.
 
 > Response 200 (application/json) - success responce
 
@@ -110,11 +110,11 @@ assetPairId | string | Symbol unique identifier.
 baseAssetId | string | Unique identifier of base asset.
 quoteAssetId | string | Unique identifier of quote asset.
 name | string | Name of the trading instrument.
-priceAccuracy | 0 | Trading instrument price accuracy.
-baseAssetAccuracy | 0 | Base asset accuracy.
-quoteAssetAccuracy | 0 | Quote asset accuracy.
-minVolume | 0 | Minimum order volume in base currency
-minOppositeVolume | 0 | Minimum order volume in quote currency
+priceAccuracy | uint | Trading instrument price accuracy.
+baseAssetAccuracy | uint | Base asset accuracy.
+quoteAssetAccuracy | uint | Quote asset accuracy.
+minVolume | [decimal](#decimal-type) | Minimum order volume in base currency
+minOppositeVolume | [decimal](#decimal-type) | Minimum order volume in quote currency
 
 > Response 200 (application/json) - success responce
 
@@ -171,11 +171,11 @@ assetPairId | string | Symbol unique identifier.
 baseAssetId | string | Unique identifier of base asset.
 quoteAssetId | string | Unique identifier of quote asset.
 name | string | Name of the trading instrument.
-priceAccuracy | 0 | Trading instrument price accuracy.
-baseAssetAccuracy | 0 | Base asset accuracy.
-quoteAssetAccuracy | 0 | Quote asset accuracy.
-minVolume | 0 | Minimum order volume in base currency
-minOppositeVolume | 0 | Minimum order volume in quote currency
+priceAccuracy | uint | Trading instrument price accuracy.
+baseAssetAccuracy | uint | Base asset accuracy.
+quoteAssetAccuracy | uint | Quote asset accuracy.
+minVolume | [decimal](#decimal-type) | Minimum order volume in base currency
+minOppositeVolume | [decimal](#decimal-type) | Minimum order volume in quote currency
 
 > Response 200 (application/json) - success responce
 
@@ -220,7 +220,7 @@ Array of order books by instruments:
 Property | Type | Description
 -------- | ---- | -----------
 assetPairId | string | Symbol unique identifier.
-timestamp | uint64 | Timestamp of last order book update.
+timestamp | [TimeStamp](#timestamp-type) | Timestamp of last order book update.
 bids | Array of PriceLevel | List of byuing offers
 asks | Array of PriceLevel | List of selling offers
 
@@ -228,8 +228,8 @@ asks | Array of PriceLevel | List of selling offers
 
 Property | Type | Description
 -------- | ---- | -----------
-p | decimal | Order price, indicated in quoted asset per unit of base asset.
-v | decimal | Order volume, indicated in base asset.
+p | [decimal](#decimal-type) | Order price, indicated in quoted asset per unit of base asset.
+v | [decimal](#decimal-type) | Order volume, indicated in base asset.
 
 > Response 200 (application/json) - success responce
 
@@ -288,13 +288,13 @@ Asset description:
 Property | Type | Description
 -------- | ---- | -----------
 assetPairId | string | Symbol unique identifier
-volumeBase | decimal | Trading volume for last 24h in base asset
-volumeQuote | decimal | Trading volume for last 24h in quote asset
-priceChange | decimal | Price changes in percentage in the last 24h
-lastPrice | decimal | The last trade price
-high | decimal | The max trade price from last 24h
-low | decimal | The min trade price from last 24h
-timestamp | string | Last update timestamp
+volumeBase | [decimal](#decimal-type) | Trading volume for last 24h in base asset
+volumeQuote | [decimal](#decimal-type) | Trading volume for last 24h in quote asset
+priceChange | [decimal](#decimal-type) | Price changes in percentage in the last 24h
+lastPrice | [decimal](#decimal-type) | The last trade price
+high | [decimal](#decimal-type) | The max trade price from last 24h
+low | [decimal](#decimal-type) | The min trade price from last 24h
+timestamp | [TimeStamp](#timestamp-type) | Last update timestamp
 
 > Response 200 (application/json) - success responce
 
