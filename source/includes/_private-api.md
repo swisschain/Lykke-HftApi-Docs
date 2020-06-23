@@ -17,8 +17,8 @@ Array of balance by asset.
 Property | Type | Description
 -------- | ---- | -----------
 assetId | string | Asset unique identifier.
-available | decimal | Available amount
-reserved | decimal | Amount reserved in active orders
+available | [decimal](#decimal-type) | Available amount
+reserved | [decimal](#decimal-type) | Amount reserved in active orders
 timestamp | [TimeStamp](#timestamp-type) | Last update balance by current asset
 
 
@@ -72,11 +72,11 @@ id | string | Trade ID.
 orderId | string | Order ID of this trade.
 assetPairId | string | Trade asset pair ID (symbol).
 index | number | Index of trade for this order.
-timestamp | TimeStamp | Trade tamestamp.
+timestamp | [TimeStamp](#timestamp-type) | Trade tamestamp.
 role | string | Trade role. `Maker` or `Taker`
-price | decimal | Trade price.
-baseVolume | decimal | Trade volume in base asset.
-quoteVolume | decimal | Trade volume in quote asset.
+price | [decimal](#decimal-type) | Trade price.
+baseVolume | [decimal](#decimal-type) | Trade volume in base asset.
+quoteVolume | [decimal](#decimal-type) | Trade volume in quote asset.
 baseAssetId | string | Base asset ID.
 quoteAssetId | string | Quote asset ID.
 fee | TradeFee | *(optional)* Trade Fee description
@@ -85,7 +85,7 @@ fee | TradeFee | *(optional)* Trade Fee description
 Property | Type | Description
 ----|----|-----------
 assetId|string|asset ID for the fee
-size|decimal|fee size
+size|[decimal](#decimal-type)|fee size
 
 ```json
 {
