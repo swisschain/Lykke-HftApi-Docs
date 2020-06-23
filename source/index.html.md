@@ -102,94 +102,36 @@ To use API keys you should just add a header `Authorization: Bearer <your API Ke
   "Authorization": "Bearer **********************************"
 ```
 
-# Data structures
+# Data types
 
 ## Decimal type
-Here ypu can see: How manage decimal type (Price, Volume, Amount, etc) in API contract.
+Here you can see: How manage decimal type (Price, Volume, Amount, etc) in API contract.
 
 ### gRPC API
-In the gRPC API contract decemal type present as custom type `DecimalValue`. The type contains a single property - "value" with a textual representation of the number. This is done in order to avoid problems with non-strict precision "double" type.
-In several languages after auto generate client code base on proto files, you can extend `DecimalValue` type to implict convert to decimal (or other analog) type.
+In the gRPC API contract decimal type present as `string` type, with a textual representation of the number. This is done in order to avoid problems with non-strict precision "double" type.
 
 ### Resp API
-In the Rest API contact decemal type present as `number`.
+In the Rest API contact decemal type present as `number` with strict precision.
 ```json
 {
     "price": 222231.33420001911,
     "volume": 0.0000001
 }
 ```
-## PriceVolume
-Price and volume for the level in the orderbook
 
-name | type | description
----- | ---- | -----------
-`p` | decimal | price
-`v` | decimal | volume
+## Timestamp type
+Here you can see: How manage timestamp type in API contract.
 
-```json
-{
-    "p": 1.3342,
-    "v": 40000.2213341
-}
+*The timestamp is always used in the **time zone UTC+0** *
+
+### gRPC API
+In the gRPC API contract timestamp type present as `google.protobuf.Timestamp` type.
+
+```
+import "google/protobuf/timestamp.proto";
+
+google.protobuf.Timestamp time_name = 1;
 ```
 
-## Side
-Order side enum
-+ `buy` (0)
-+ `sell` (1)
-
-```json
-{
-    "side": "buy"
-}
-{
-    "side": "sell"
-}
-```
-
-## Trade
-Structure to describe a Trade in history.
-
-name|type|description
-----|----|-----------
-`id`|string|Trade ID.
-`orderId`|string|Order ID of this trade.
-`assetPairId`|string|Trade asset pair ID.
-`index`|number|Index of trade for this order.
-`timestamp`|string|Date time of the trade.
-`role`|string|Trade role. `Maker` or `Taker`
-`price`|decimal|Trade price.
-`baseVolume`|decimal|Trade volume in base asset.
-`quoteVolume`|decimal|Trade volume in quote asset.
-`baseAssetId`|string|Base asset ID.
-`quoteAssetId`|string|Quote asset ID.
-`fee`|TradeFee|trade Fee
-
-### TradeFee
-
-Structure to describe fee for the trade.
-
-name|type|description
-----|----|-----------
-`assetId`|string|asset ID for the fee
-`size`|decimal|fee size
-
-```json
-{
-    "id": "111a111aaaa1a",
-    "timestamp": "2020-06-22T13:04:27.325Z",
-    "assetPairId": "BTCUSD",
-    "orderId": "112aabaaa",
-    "role": "Taker",
-    "price": 9443.234,
-    "baseVolume": 1,
-    "quoteVolume": 9443.234,
-    "baseAssetId": "BTC",
-    "quoteAssetId": "USD",
-    "fee": {
-        "size": 0.01,
-        "assetId": "USD"
-    }
-}
-```
+### Resp API
+In the Rest API contact timestamp type present as `number` with "Milliseconds since Unix Epoch" format of date-time.
