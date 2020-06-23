@@ -1,21 +1,26 @@
 # Error codes
 
-`0` | Success
+Code | Meaning
+---- | ---- 
+`0` | Success 
 
 ## General network errors (10xx)
 
-`1001` | RuntimeError (Internal Server Error)
+Code | Meaning | Description
+---- | ---- | -----------
+`1001` | RuntimeError | Internal Server Error
 
 ## Validation errors(11xx)
 
-`1100` | ItemNotFound - resource not found (i.e. asset not found by privided ID)
-`1101` | InvalidField - invalid field in the request (i.e. Price must be > 0)
+Code | Meaning | Description
+---- | ---- | -----------
+`1100` | ItemNotFound | resource not found (i.e. asset not found by privided ID)
+`1101` | InvalidField | invalid field in the request (i.e. Price must be > 0)
 
 ## Logic errors(2xxx)
 
-**//TODO**: change/add description
-Error Code | Meaning
----------- | -------
+Code | Meaning 
+---- | ---- 
 `2000` | MeBadRequest
 `2001` | MeLowBalance
 `2202` | MeAlreadyProcessed
