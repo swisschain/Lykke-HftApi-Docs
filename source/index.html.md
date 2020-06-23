@@ -125,7 +125,7 @@ In the Rest API contact decemal type present as `number` with strict precision.
 ```
 
 ## Timestamp type
-Here you can see: How manage timestamp type in API contract.
+Here you can see: How manage `TimeStamp` type in API contract.
 
 *The timestamp is always used in the **time zone UTC+0***
 
