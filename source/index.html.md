@@ -42,11 +42,10 @@ Usfull tool for manual call gRPC API: [BloomRPC](https://github.com/uw-labs/bloo
 
 **API Endpoint**: 
 
-- https://hft-apiv2-grpc.lykke.com - url format
-- `hft-apiv2-grpc.lykke.com:443`   - host format
+* https://hft-apiv2-grpc.lykke.com - url format
+* `hft-apiv2-grpc.lykke.com:443`   - host format
 
-**Proto files**:
-
+**Proto files**
 - [common.proto](https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/common.proto) :Common data models
 - [isalive.proto](https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/isalive.proto) : Is Alive API service
 - [publicService.proto](https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/publicService.proto) : Public API service
