@@ -45,6 +45,8 @@ timestamp | TimeStamp | Last update balance by current asset
 
 ## Get trade history
 
+Return a history of trades by account.
+
 ### HTTP Request
 
 `GET /api/trades`
