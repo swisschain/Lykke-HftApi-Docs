@@ -961,40 +961,154 @@
 </thead><tbody>
 </tbody></table>
 <h1 id='error-codes'>Error codes</h1>
-<p><code>0</code> | Success</p>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>0</code></td>
+<td>Success</td>
+</tr>
+</tbody></table>
 <h2 id='general-network-errors-10xx'>General network errors (10xx)</h2>
-<p><code>1001</code> | RuntimeError (Internal Server Error)</p>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>1001</code></td>
+<td>RuntimeError</td>
+<td>Internal Server Error</td>
+</tr>
+</tbody></table>
 <h2 id='validation-errors-11xx'>Validation errors(11xx)</h2>
-<p><code>1100</code> | ItemNotFound - resource not found (i.e. asset not found by privided ID)
-<code>1101</code> | InvalidField - invalid field in the request (i.e. Price must be &gt; 0)</p>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>1100</code></td>
+<td>ItemNotFound</td>
+<td>resource not found (i.e. asset not found by privided ID)</td>
+</tr>
+<tr>
+<td><code>1101</code></td>
+<td>InvalidField</td>
+<td>invalid field in the request (i.e. Price must be &gt; 0)</td>
+</tr>
+</tbody></table>
 <h2 id='logic-errors-2xxx'>Logic errors(2xxx)</h2>
-<p><strong>//TODO</strong>: change/add description
-Error Code | Meaning
----------- | -------
-<code>2000</code> | MeBadRequest
-<code>2001</code> | MeLowBalance
-<code>2202</code> | MeAlreadyProcessed
-<code>2003</code> | MeDisabledAsset
-<code>2004</code> | MeUnknownAsset
-<code>2005</code> | MeNoLiquidity
-<code>2006</code> | MeNotEnoughFunds
-<code>2007</code> | MeDust
-<code>2008</code> | MeReservedVolumeHigherThanBalance
-<code>2009</code> | MeNotFound
-<code>2010</code> | MeBalanceLowerThanReserved
-<code>2011</code> | MeLeadToNegativeSpread
-<code>2012</code> | MeTooSmallVolume
-<code>2013</code> | MeInvalidFee
-<code>2014</code> | MeInvalidPrice
-<code>2015</code> | MeReplaced
-<code>2016</code> | MeNotFoundPrevious
-<code>2017</code> | MeDuplicate
-<code>2018</code> | MeInvalidVolumeAccuracy
-<code>2019</code> | MeInvalidPriceAccuracy
-<code>2020</code> | MeInvalidVolume
-<code>2021</code> | MeTooHighPriceDeviation
-<code>2022</code> | MeInvalidOrderValue
-<code>2023</code> | MeRuntime</p>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>2000</code></td>
+<td>MeBadRequest</td>
+</tr>
+<tr>
+<td><code>2001</code></td>
+<td>MeLowBalance</td>
+</tr>
+<tr>
+<td><code>2202</code></td>
+<td>MeAlreadyProcessed</td>
+</tr>
+<tr>
+<td><code>2003</code></td>
+<td>MeDisabledAsset</td>
+</tr>
+<tr>
+<td><code>2004</code></td>
+<td>MeUnknownAsset</td>
+</tr>
+<tr>
+<td><code>2005</code></td>
+<td>MeNoLiquidity</td>
+</tr>
+<tr>
+<td><code>2006</code></td>
+<td>MeNotEnoughFunds</td>
+</tr>
+<tr>
+<td><code>2007</code></td>
+<td>MeDust</td>
+</tr>
+<tr>
+<td><code>2008</code></td>
+<td>MeReservedVolumeHigherThanBalance</td>
+</tr>
+<tr>
+<td><code>2009</code></td>
+<td>MeNotFound</td>
+</tr>
+<tr>
+<td><code>2010</code></td>
+<td>MeBalanceLowerThanReserved</td>
+</tr>
+<tr>
+<td><code>2011</code></td>
+<td>MeLeadToNegativeSpread</td>
+</tr>
+<tr>
+<td><code>2012</code></td>
+<td>MeTooSmallVolume</td>
+</tr>
+<tr>
+<td><code>2013</code></td>
+<td>MeInvalidFee</td>
+</tr>
+<tr>
+<td><code>2014</code></td>
+<td>MeInvalidPrice</td>
+</tr>
+<tr>
+<td><code>2015</code></td>
+<td>MeReplaced</td>
+</tr>
+<tr>
+<td><code>2016</code></td>
+<td>MeNotFoundPrevious</td>
+</tr>
+<tr>
+<td><code>2017</code></td>
+<td>MeDuplicate</td>
+</tr>
+<tr>
+<td><code>2018</code></td>
+<td>MeInvalidVolumeAccuracy</td>
+</tr>
+<tr>
+<td><code>2019</code></td>
+<td>MeInvalidPriceAccuracy</td>
+</tr>
+<tr>
+<td><code>2020</code></td>
+<td>MeInvalidVolume</td>
+</tr>
+<tr>
+<td><code>2021</code></td>
+<td>MeTooHighPriceDeviation</td>
+</tr>
+<tr>
+<td><code>2022</code></td>
+<td>MeInvalidOrderValue</td>
+</tr>
+<tr>
+<td><code>2023</code></td>
+<td>MeRuntime</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
