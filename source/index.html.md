@@ -2,7 +2,7 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - csharp
+  - json
 
 toc_footers:
 
@@ -125,7 +125,7 @@ Here you can see: How manage timestamp type in API contract.
 ### gRPC API
 In the gRPC API contract timestamp type present as `google.protobuf.Timestamp` type.
 
-```
+```json
 import "google/protobuf/timestamp.proto";
 
 google.protobuf.Timestamp time_name = 1;
