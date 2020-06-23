@@ -266,7 +266,7 @@ v | decimal | Order volume, indicated in base asset.
 
 ## 24hr Ticker Price Change Statistics
 
-24 hour rolling window price change statistics. Careful when accessing this with no symbol.
+24 hour rolling window price change statistics.
 
 ### HTTP Request
 
@@ -291,9 +291,9 @@ assetPairId | string | Symbol unique identifier
 volumeBase | decimal | Trading volume for last 24h in base asset
 volumeQuote | decimal | Trading volume for last 24h in quote asset
 priceChange | decimal | Price changes in percentage in the last 24h
-lastPrice | decimal | The last price
-high | The max price from last 24h
-low | The min price from last 24h
+lastPrice | decimal | The last trade price
+high | decimal | The max trade price from last 24h
+low | decimal | The min trade price from last 24h
 timestamp | string | Last update timestamp
 
 > Response 200 (application/json) - success responce
