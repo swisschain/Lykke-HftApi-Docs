@@ -127,7 +127,7 @@ In the Rest API contact decemal type present as `number` with strict precision.
 ## Timestamp type
 Here you can see: How manage `TimeStamp` type in API contract.
 
-*The timestamp is always used in the **time zone UTC+0**.*
+<i>The timestamp is always used in the <b>time zone UTC+0</b></i>
 
 ### gRPC API
 In the gRPC API contract timestamp type present as `google.protobuf.Timestamp` type.
