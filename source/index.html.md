@@ -130,7 +130,6 @@ In the gRPC API contract decimal type present as `string` type, with a textual r
 In the Rest API contact decemal type present as `number` with strict precision.
 
 > Example
-
 ```json
 {
     "price": 222231.33420001911,
@@ -147,7 +146,6 @@ Here you can see: How manage `TimeStamp` type in API contract.
 In the gRPC API contract timestamp type present as `google.protobuf.Timestamp` type.
 
 > Example in gRPC contract 
-
 ```json
 import "google/protobuf/timestamp.proto";
 
@@ -157,7 +155,7 @@ google.protobuf.Timestamp time_name = 1;
 ### Resp API
 In the Rest API contact timestamp type present as `number` with "Milliseconds since Unix Epoch" format of date-time.
 
-
+> Example in Rest API
 ```json
 {
    "Timestamp": 1592903724406
