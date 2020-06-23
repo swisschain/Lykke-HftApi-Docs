@@ -8,7 +8,8 @@ toc_footers:
 
 includes:
   - public-api.md
-  - errors
+  - private-api.md
+  - errors  
 
 search: true
 ---
