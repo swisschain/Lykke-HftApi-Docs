@@ -46,10 +46,11 @@ Usfull tool for manual call gRPC API: [BloomRPC](https://github.com/uw-labs/bloo
 * `hft-apiv2-grpc.lykke.com:443`   - host format
 
 **Proto files**
-- [common.proto](https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/common.proto) :Common data models
-- [isalive.proto](https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/isalive.proto) : Is Alive API service
-- [publicService.proto](https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/publicService.proto) : Public API service
-- [privateService.proto](https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/privateService.proto) : Private API service
+
+* [common.proto](https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/common.proto) :Common data models
+* [isalive.proto](https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/isalive.proto) : Is Alive API service
+* [publicService.proto](https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/publicService.proto) : Public API service
+* [privateService.proto](https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/privateService.proto) : Private API service
 
 ## Rest API
 
