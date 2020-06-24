@@ -262,7 +262,7 @@
                     <a href="#get-all-assets" class="toc-h2 toc-link" data-title="Get all assets">Get all assets</a>
                   </li>
                   <li>
-                    <a href="#get-an-asset-by-id" class="toc-h2 toc-link" data-title="Get an asset by ID">Get an asset by ID</a>
+                    <a href="#get-asset-by-id" class="toc-h2 toc-link" data-title="Get Asset by ID">Get Asset by ID</a>
                   </li>
                   <li>
                     <a href="#get-all-symbols" class="toc-h2 toc-link" data-title="Get all symbols">Get all symbols</a>
@@ -549,7 +549,7 @@
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='get-an-asset-by-id'>Get an asset by ID</h2>
+</span></code></pre></div><h2 id='get-asset-by-id'>Get Asset by ID</h2>
 <p>Get info about specific asset.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /api/assets/{assetId}</code></p>
@@ -615,20 +615,18 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Response 200 (application/json) - error code
-<code>json
-{
-  &quot;Error&quot;: {
-    &quot;Code&quot;: 1100,
-    &quot;Message&quot;: &quot;Asset not found&quot;,
-    &quot;Fields&quot;: {
-      &quot;assetId&quot;: &quot;Asset not found&quot;
-    }
-  }
-}
-</code></p>
+<p>Response 200 (application/json) - error code</p>
 </blockquote>
-<h2 id='get-all-symbols'>Get all symbols</h2>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"Error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"Code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1100</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Asset not found"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"assetId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Asset not found"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='get-all-symbols'>Get all symbols</h2>
 <p>Get all supported symbols (asset pairs).</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET /api/assetpairs</code></p>
