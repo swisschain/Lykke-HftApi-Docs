@@ -164,3 +164,18 @@ In the Rest API contact timestamp type present as `number` with "Milliseconds si
    "Timestamp": 1592903724406
 }
 ```
+
+## Order statuses
+
+List of possible order states
+
+Name | Meaning
+---- | -------
+Placed | Order in order book
+PartiallyMatched | Order in order book and partially filled.
+Matched | Order is filled
+Pending | An order is pending a trigger to be placed in the order book.
+Cancelled | Order is cancelled by user
+Replaced | Order is replaced (canceled) by user
+Rejected | Order rejectd by the system
+
