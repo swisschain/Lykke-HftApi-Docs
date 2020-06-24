@@ -1220,11 +1220,26 @@
 </tr>
 </tbody></table>
 
-<p><strong>TradeFee</strong>
-Property | Type | Description
--------- | ---- | -----------
-assetId | string | Asset ID for the fee
-size | <a href="#decimal-type">decimal</a> | Fee size</p>
+<p><strong>TradeFee</strong></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>assetId</td>
+<td>string</td>
+<td>Asset ID for the fee</td>
+</tr>
+<tr>
+<td>size</td>
+<td><a href="#decimal-type">decimal</a></td>
+<td>Fee size</td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>Response 200 (application/json) - success responce</p>
@@ -1258,9 +1273,7 @@ size | <a href="#decimal-type">decimal</a> | Fee size</p>
       </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<hr>
-<h2 id='get-active-or-closed-orders'>Get active or closed orders</h2>
+</span></code></pre></div><h2 id='get-active-or-closed-orders'>Get active or closed orders</h2>
 <p>Return active orders or return closed orders fromm history.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET /api/orders/active</code></p>
