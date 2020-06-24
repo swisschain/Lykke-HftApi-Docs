@@ -95,6 +95,8 @@ Property | Type | Description
 assetId | string | Asset ID for the fee
 size | [decimal](#decimal-type) | Fee size
 
+> Response 200 (application/json) - success responce
+
 ```json
 {
   "payload": [
@@ -129,13 +131,15 @@ size | [decimal](#decimal-type) | Fee size
 
 ----------
 
-## Get active orders
+## Get active or closed orders
 
-Return active orders
+Return active orders or return closed orders fromm history.
 
 ### HTTP Request
 
 `GET /api/orders/active`
+
+`GET /api/orders/closed`
 
 ### Query Parameters
 
@@ -156,15 +160,16 @@ Property | Type | Description
 id | strin | Unique Order ID
 timestamp |  [TimeStamp](#timestamp-type) | Timestamp for creating an order
 lastTradeTimestamp | [TimeStamp](#timestamp-type) | Timestamp for last trade by order
-status | string | order status 
-assetPairId
-type
-side
-price
-volume
-filledVolume
-remainingVolume
-cost
+status | string | Order status. List of statuses: [here](#order-statuses).
+assetPairId | string | Symbol unique identifier.
+type | string | Order type: `Market` or `Limit`
+side | string | Order side: `Sell` or `Buy`
+price | [decimal](#decimal-type) | Order price (in quote asset for one unit of base asset)
+volume | [decimal](#decimal-type) | Order volume (in base asset)
+filledVolume | [decimal](#decimal-type) | Order filled volume (in base asset)
+remainingVolume | [decimal](#decimal-type) | Order remaining volume (in base asset)
+
+> Response 200 (application/json) - success responce
 
 ```json
 {
@@ -180,85 +185,164 @@ cost
       "price": 4000,
       "volume": 0.0001,
       "filledVolume": 0,
-      "remainingVolume": 0.0001,
-      "cost": 0
+      "remainingVolume": 0.0001
     }
   ]
 }
 ```
 
-## METHOD-NAME
+## Make a limit order
+
+Make a new limit order.
 
 ### HTTP Request
 
-`GET /api/assets/{assetId}`
+`POST /api/orders/limit`
+
+### Request
+
+Parameter | Type | Place | Description
+--------- | ---- | ----- | -----------
+assetPairId | string | body | Symbol unique identifier.
+side | string | body | Order side: `Sell` or `Buy`
+volume | [decimal](#decimal-type) | body | Order volume (in base asset)
+price | [decimal](#decimal-type) | body | Order price, in quote asset for one unit of base asset)
+  
+> Request to create limit order
+
+```json
+{
+  "assetPairId": "BTCUSD",
+  "side": "buy",
+  "volume": 0.0001,
+  "price": 4000
+}
+```
+
+### Responce
+
+Operation result description:
+
+Property | Type | Description
+-------- | ---- | -----------
+orderId | string | Unique order ID
+
+> Response 200 (application/json) - success responce
+
+```json
+{
+  "payload": {
+    "orderId": "0c336213-0a64-44a8-9599-e88bf6aa1b69"
+  },
+  "error": null
+}
+```
+
+## Make a market order 
+
+Request to create Fill-Or-Kill market order.
+
+### HTTP Request
+
+`POST /api/orders/market`
+
+### Request
+
+Parameter | Type | Place | Description
+--------- | ---- | ----- | -----------
+assetPairId | string | body | Symbol unique identifier.
+side | string | body | Order side: `Sell` or `Buy`
+volume | [decimal](#decimal-type) | body | Order volume (in base asset)
+
+> Request to create market order
+
+```json
+{
+  "assetPairId": "BTCUSD",
+  "side": "Buy",
+  "volume": 1.554
+}
+```
+
+### Responce
+
+Operation result description:
+
+Property | Type | Description
+-------- | ---- | -----------
+orderId | string | Unique order ID
+price | [decimal](#decimal-type) | Market order result price
+
+> Response 200 (application/json) - success responce
+
+```json
+{
+  "payload": {
+    "orderId": "string",
+    "price": 6445.222311
+  }
+}
+```
+
+
+
+
+## Mass cancel orders
+
+Cancel all active order or filter order to cancel by AssetPair or Side.
+
+### HTTP Request
+
+`DELETE /api/orders`
+
+### Query Parameters
+
+Parameter | Type | Place | Description
+--------- | ---- | ----- | -----------
+assetPairId | string | query | *(Optional)* Symbol unique identifier. By defaul all asset pairs.
+side | string | query | *(Optional)* Order side `Buy` or `Sell`. By default both side.
+
+
+### Responce
+
+No content
+
+> Response 200 (application/json) - success responce
+
+```json
+{
+  "payload": null
+}
+```
+
+## Cancel orders by ID
+
+Cancel a specific order by order ID
+
+### HTTP Request
+
+`DELETE /api/orders/{orderId}`
 
 ### Query Parameters
 
 
 Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
-
-
-### Responce
-
-Asset description:
-
-Property | Type | Description
--------- | ---- | -----------
-
-
-
-## METHOD-NAME
-
-### HTTP Request
-
-`GET /api/assets/{assetId}`
-
-### Query Parameters
-
-
-Parameter | Type | Place | Description
---------- | ---- | ----- | -----------
-
+orderId | string | path | Unique Order ID
 
 ### Responce
 
-Asset description:
+No content
 
-Property | Type | Description
--------- | ---- | -----------
+> Response 200 (application/json) - success responce
 
-
-
-## METHOD-NAME
-
-### HTTP Request
-
-`GET /api/assets/{assetId}`
-
-### Query Parameters
+```json
+{
+  "payload": null
+}
+```
 
 
-Parameter | Type | Place | Description
---------- | ---- | ----- | -----------
-
-
-### Responce
-
-Asset description:
-
-Property | Type | Description
--------- | ---- | -----------
-
-
-Placed,
-PartiallyMatched,
-Matched,
-Pending,
-Cancelled,
-Replaced,
-Rejected
 
 
 
