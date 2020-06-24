@@ -45,13 +45,15 @@ timestamp | [TimeStamp](#timestamp-type) | Last update balance by current asset
 
 ## Get trade history
 
-Return a history of trades by account.
+Return a history of trades by an account or by a single order.
 
 ### HTTP Request
 
 `GET /api/trades`
 
-### Query Parameters
+`GET /api/trades/order/{orderId}`
+
+### Query Parameters for get trades by account
 
 Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
@@ -61,6 +63,12 @@ offset | uint | query | *(optional)* Skip the specified number of elements
 take | uint | query | *(optional)* Take the specified number of elements
 from | [TimeStamp](#timestamp-type) | query | *(optional)* From timestamp
 to | [TimeStamp](#timestamp-type) | query | *(optional)* To timestamp
+
+### Query Parameters for get trades by single order
+
+Parameter | Type | Place | Description
+--------- | ---- | ----- | -----------
+orderId | string | path | Unique Order ID
 
 ### Responce
 
@@ -121,6 +129,64 @@ size | [decimal](#decimal-type) | Fee size
 
 ----------
 
+## Get active orders
+
+Return active orders
+
+### HTTP Request
+
+`GET /api/orders/active`
+
+### Query Parameters
+
+
+Parameter | Type | Place | Description
+--------- | ---- | ----- | -----------
+assetPairId | string | query | *(optional)* Symbol unique identifier.
+offset | uint | query | *(optional)* Skip the specified number of elements
+take | uint | query | *(optional)* Take the specified number of elements
+
+
+### Responce
+
+Asset description:
+
+Property | Type | Description
+-------- | ---- | -----------
+id | strin | Unique Order ID
+timestamp |  [TimeStamp](#timestamp-type) | Timestamp for creating an order
+lastTradeTimestamp | [TimeStamp](#timestamp-type) | Timestamp for last trade by order
+status | string | order status 
+assetPairId
+type
+side
+price
+volume
+filledVolume
+remainingVolume
+cost
+
+```json
+{
+  "payload": [
+    {
+      "id": "0c336213-0a64-44a8-9599-e88bf6aa1b69",
+      "timestamp": 1592928606187,
+      "lastTradeTimestamp": null,
+      "status": "Placed",
+      "assetPairId": "BTCUSD",
+      "type": "Limit",
+      "side": "Buy",
+      "price": 4000,
+      "volume": 0.0001,
+      "filledVolume": 0,
+      "remainingVolume": 0.0001,
+      "cost": 0
+    }
+  ]
+}
+```
+
 ## METHOD-NAME
 
 ### HTTP Request
@@ -186,48 +252,13 @@ Property | Type | Description
 -------- | ---- | -----------
 
 
-
-## METHOD-NAME
-
-### HTTP Request
-
-`GET /api/assets/{assetId}`
-
-### Query Parameters
-
-
-Parameter | Type | Place | Description
---------- | ---- | ----- | -----------
-
-
-### Responce
-
-Asset description:
-
-Property | Type | Description
--------- | ---- | -----------
-
-
-
-## METHOD-NAME
-
-### HTTP Request
-
-`GET /api/assets/{assetId}`
-
-### Query Parameters
-
-
-Parameter | Type | Place | Description
---------- | ---- | ----- | -----------
-
-
-### Responce
-
-Asset description:
-
-Property | Type | Description
--------- | ---- | -----------
+Placed,
+PartiallyMatched,
+Matched,
+Pending,
+Cancelled,
+Replaced,
+Rejected
 
 
 
