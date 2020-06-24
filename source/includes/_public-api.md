@@ -2,7 +2,7 @@
 
 ## Get all assets
 
-Get list of supporter asset with parameters.
+Get list of supported assets with parameters.
 
 ### HTTP Request
 
@@ -160,7 +160,7 @@ Get a specific symbol (asset pair).
 
 Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
-assetPairId | string | path | Sumbol uniquie ID
+assetPairId | string | path | Symbol uniquie ID
 
 ### Responce
 
@@ -222,7 +222,7 @@ Property | Type | Description
 -------- | ---- | -----------
 assetPairId | string | Symbol unique identifier.
 timestamp | [TimeStamp](#timestamp-type) | Timestamp of last order book update.
-bids | Array of PriceLevel | List of byuing offers
+bids | Array of PriceLevel | List of buying offers
 asks | Array of PriceLevel | List of selling offers
 
 **PriceLevel**:

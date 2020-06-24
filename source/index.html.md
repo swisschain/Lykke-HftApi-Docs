@@ -55,7 +55,7 @@ Usfull tool for manual call gRPC API: [BloomRPC](https://github.com/uw-labs/bloo
 
 Classical HTTP based framework that includes working with `HTTP 1.1`, and `JSON`. Rest API allows users just call RPC methods without streaming data from the server.
 
-Usfull tool for manual call gRPC API: [HFT API Swagger](https://hft-apiv2.lykke.com/swagger/ui/index.html)
+Usfull tool for manual call Rest API: [HFT API Swagger](https://hft-apiv2.lykke.com/swagger/ui/index.html)
 
 **API Endpoint**: 
 
@@ -80,7 +80,7 @@ Usfull tool for manual call gRPC API: [HFT API Swagger](https://hft-apiv2.lykke.
 
 Every response contains two fields - `payload` and `error`. Successful response will contain response data in the `payload` field and *null* in `error` field and vise versa for the error response.
 
-Fill list of error you can see in paragraf **Error codes** in end of document.
+Full list of error you can see in paragraf **Error codes** in end of document.
 
 > Successful response
 
@@ -126,8 +126,8 @@ Here you can see: How manage decimal type (Price, Volume, Amount, etc) in API co
 ### gRPC API
 In the gRPC API contract decimal type present as `string` type, with a textual representation of the number. This is done in order to avoid problems with non-strict precision "double" type.
 
-### Resp API
-In the Rest API contact decemal type present as `number` with strict precision.
+### Rest API
+In the Rest API contact decimal type present as `number` with strict precision.
 
 > Example in Rest API
 
@@ -154,7 +154,7 @@ import "google/protobuf/timestamp.proto";
 google.protobuf.Timestamp time_name = 1;
 ```
 
-### Resp API
+### Rest API
 In the Rest API contact timestamp type present as `number` with "Milliseconds since Unix Epoch" format of date-time.
 
 > Example in Rest API

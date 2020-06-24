@@ -61,8 +61,8 @@ assetPairId | string | query | *(optional)* Symbol unique identifier.
 side | string | query | *(optional)* Side of trade: `buy` or `sell`
 offset | uint | query | *(optional)* Skip the specified number of elements
 take | uint | query | *(optional)* Take the specified number of elements
-from | [TimeStamp](#timestamp-type) | query | *(optional)* From timestamp
-to | [TimeStamp](#timestamp-type) | query | *(optional)* To timestamp
+from | string | query | *(optional)* From timestamp, i.e '2020-02-20' or '2020-02-20T07:10:00' 
+to | string | query | *(optional)* To timestamp, i.e '2020-02-20' or '2020-02-20T07:10:00' 
 
 ### Query Parameters for get trades by single order
 
@@ -79,7 +79,6 @@ Property | Type | Description
 id | string | Trade ID.
 orderId | string | Order ID of this trade.
 assetPairId | string | Trade asset pair ID (symbol).
-index | number | Index of trade for this order.
 timestamp | [TimeStamp](#timestamp-type) | Trade tamestamp.
 role | string | Trade role. `Maker` or `Taker`
 price | [decimal](#decimal-type) | Trade price.
@@ -288,7 +287,7 @@ price | [decimal](#decimal-type) | Market order result price
 
 ## Mass cancel orders
 
-Cancel all active order or filter order to cancel by AssetPair or Side.
+Cancel all active orders or filter order to cancel by AssetPair or Side.
 
 ### HTTP Request
 

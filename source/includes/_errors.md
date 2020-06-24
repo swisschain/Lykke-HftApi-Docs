@@ -14,7 +14,7 @@ Code | Meaning | Description
 
 Code | Meaning | Description
 ---- | ---- | -----------
-`1100` | ItemNotFound | resource not found (i.e. asset not found by privided ID)
+`1100` | ItemNotFound | resource not found (i.e. asset not found by provided ID)
 `1101` | InvalidField | invalid field in the request (i.e. Price must be > 0)
 
 ## Logic errors(2xxx)
