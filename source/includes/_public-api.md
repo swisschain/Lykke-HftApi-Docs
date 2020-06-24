@@ -40,7 +40,7 @@ accuracy | uint | Maximum number of digits after the decimal point which are sup
 }
 ```
 
-## Get an asset by ID
+## Get Asset by ID
 
 Get info about specific asset.
 
@@ -80,6 +80,7 @@ accuracy | uint | Maximum number of digits after the decimal point which are sup
 ```
 
 > Response 200 (application/json) - error code
+
 ```json
 {
   "Error": {
