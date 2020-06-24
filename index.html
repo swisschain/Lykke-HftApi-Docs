@@ -250,6 +250,9 @@
                   <li>
                     <a href="#timestamp-type" class="toc-h2 toc-link" data-title="Timestamp type">Timestamp type</a>
                   </li>
+                  <li>
+                    <a href="#order-statuses" class="toc-h2 toc-link" data-title="Order statuses">Order statuses</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -453,7 +456,45 @@
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="nl">"Timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1592903724406</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='group-public-apis'>Group Public APIs</h1><h2 id='get-all-assets'>Get all assets</h2>
+</span></code></pre></div><h2 id='order-statuses'>Order statuses</h2>
+<p>List of possible order states</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Placed</td>
+<td>Order in order book</td>
+</tr>
+<tr>
+<td>PartiallyMatched</td>
+<td>Order in order book and partially filled.</td>
+</tr>
+<tr>
+<td>Matched</td>
+<td>Order is filled</td>
+</tr>
+<tr>
+<td>Pending</td>
+<td>An order is pending a trigger to be placed in the order book.</td>
+</tr>
+<tr>
+<td>Cancelled</td>
+<td>Order is cancelled by user</td>
+</tr>
+<tr>
+<td>Replaced</td>
+<td>Order is replaced (canceled) by user</td>
+</tr>
+<tr>
+<td>Rejected</td>
+<td>Order rejectd by the system</td>
+</tr>
+</tbody></table>
+<h1 id='group-public-apis'>Group Public APIs</h1><h2 id='get-all-assets'>Get all assets</h2>
 <p>Get list of supporter asset with parameters.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /api/assets</code></p>
