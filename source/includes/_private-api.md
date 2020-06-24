@@ -90,6 +90,7 @@ quoteAssetId | string | Quote asset ID.
 fee | TradeFee | *(optional)* Trade Fee description
 
 **TradeFee**
+
 Property | Type | Description
 -------- | ---- | -----------
 assetId | string | Asset ID for the fee
@@ -128,8 +129,6 @@ size | [decimal](#decimal-type) | Fee size
     }]
 }
 ```
-
-----------
 
 ## Get active or closed orders
 
