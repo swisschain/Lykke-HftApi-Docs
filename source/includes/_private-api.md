@@ -61,8 +61,8 @@ assetPairId | string | query | *(optional)* Symbol unique identifier.
 side | string | query | *(optional)* Side of trade: `buy` or `sell`
 offset | uint | query | *(optional)* Skip the specified number of elements
 take | uint | query | *(optional)* Take the specified number of elements
-from | string | query | *(optional)* From timestamp, i.e '2020-02-20' or '2020-02-20T07:10:00' 
-to | string | query | *(optional)* To timestamp, i.e '2020-02-20' or '2020-02-20T07:10:00' 
+from | [TimeStamp](#timestamp-type) | query | *(optional)* From timestamp
+to | [TimeStamp](#timestamp-type) | query | *(optional)* To timestamp
 
 ### Query Parameters for get trades by single order
 
