@@ -197,7 +197,7 @@ minOppositeVolume | [decimal](#decimal-type) | Minimum order volume in quote cur
 }
 ```
 
-## Symbol Order Book Tiker
+## Symbol Order Book Ticker
 
 Get order books by symbols. Order books contain a list of offers on buying and selling with price and volume.
 
