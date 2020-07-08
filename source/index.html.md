@@ -53,7 +53,7 @@ Usfull tool for manual call gRPC API: [BloomRPC](https://github.com/uw-labs/bloo
 
 ## Rest API
 
-Rest API is the classic HTTP based framework that includes working with `HTTP 1.1`, and `JSON`. Rest API allows users to just call RPC methods without streaming data from the server.
+Rest API uses the classic HTTP based framework that includes working with `HTTP 1.1`, and `JSON`. Rest API allows users to just call RPC methods without streaming data from the server.
 
 Usfull tool for manual call Rest API: [HFT API Swagger](https://hft-apiv2.lykke.com/swagger/ui/index.html)
 
