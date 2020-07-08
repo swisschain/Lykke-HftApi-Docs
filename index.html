@@ -326,19 +326,19 @@
         <h1 id='lykke-trading-api'>Lykke trading API</h1>
 <p>Lykke high-frequency trading API.</p>
 
-<p>This API allows Lykke clients to carry out automated trading on special sub-accounts. Also, the API allows you to get public data about the Lykke market, such as current prices, books of orders, and other parameters of trading instruments.</p>
+<p>This API allows Lykke clients to carry out automated trading on special sub-accounts. Also, the API allows you to get public data about the Lykke market, such as current prices, books of orders, and other parameters for trading instruments.</p>
 
 <p><a href="https://www.lykke.com/">www.lykke.com</a></p>
 
 <p><a href="https://wallet.lykke.com/">Lykke Web Wallet</a></p>
 <h1 id='protocol-description'>Protocol description</h1>
-<p>Lykke HFT API allow user to use 2 kind of protocol <code>gRPC API</code> and <code>Rest API</code>. </p>
+<p>Lykke HFT API allows users to use 2 kinds of protocol <code>gRPC API</code> and <code>Rest API</code>. </p>
 
-<p>Both kind of API support same methos with same data format. But only gRPC API supported receive striming data from platform.</p>
+<p>Both kinds of APIs support the same methods with the same data format. But only gRPC API supports receiving streaming data from the platform.</p>
 <h2 id='grpc-api'>gRPC API</h2>
-<p>A new generation RPC framework that includes working with <code>HTTP 2</code>, <code>ProtoBuf</code>, and <code>WebSocket</code> for faster and more efficient interaction with the platform. The <code>gRPC framework</code> uses the declarative description of the contract in <code>.proto</code> files. On the basis of which you can easily generate a client library in many <a href="https://grpc.io/docs/languages/">programming languages</a>. Also, the <code>gRPC framework</code> supports working with <code>stream</code>, which makes it easy to receive events from the server.</p>
+<p>The gRCP API utilizes a new generation of RPC framework that includes working with <code>HTTP 2</code>, <code>ProtoBuf</code>, and <code>WebSocket</code> for faster and more efficient interaction with the platform. The <code>gRPC framework</code> uses the declarative description of the contract in the <code>.proto</code> files. On the basis of which you can easily generate a client library in many <a href="https://grpc.io/docs/languages/">programming languages</a>. Also, the <code>gRPC framework</code> supports working with <code>stream</code>, which makes it easy to receive events from the server.</p>
 
-<p><strong>Lykke team strongly recommend using gRPC API protocol to communicate with a platform</strong></p>
+<p><strong>Lykke team strongly recommend using gRPC API protocol to communicate with the platform</strong></p>
 
 <p>Read more about <code>gRPC framework</code>: <a href="https://grpc.io/">https://grpc.io/</a></p>
 
@@ -360,7 +360,7 @@
 <li><a href="https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/privateService.proto">privateService.proto</a> : Private API service</li>
 </ul>
 <h2 id='rest-api'>Rest API</h2>
-<p>Classical HTTP based framework that includes working with <code>HTTP 1.1</code>, and <code>JSON</code>. Rest API allows users just call RPC methods without streaming data from the server.</p>
+<p>Rest API is the classic HTTP based framework that includes working with <code>HTTP 1.1</code>, and <code>JSON</code>. Rest API allows users to just call RPC methods without streaming data from the server.</p>
 
 <p>Usfull tool for manual call Rest API: <a href="https://hft-apiv2.lykke.com/swagger/ui/index.html">HFT API Swagger</a></p>
 
@@ -384,9 +384,9 @@
 <li>500 <code>Internal Server Error</code> : server error.</li>
 </ul>
 <h2 id='response-structure'>Response structure</h2>
-<p>Every response contains two fields - <code>payload</code> and <code>error</code>. Successful response will contain response data in the <code>payload</code> field and <em>null</em> in <code>error</code> field and vise versa for the error response.</p>
+<p>Every response contains two fields - <code>payload</code> and <code>error</code>. A successful response will contain the response data in the <code>payload</code> field and the <em>null</em> in the <code>error</code> field, and vise versa for the error response.</p>
 
-<p>Full list of error you can see in paragraf <strong>Error codes</strong> in end of document.</p>
+<p>Here you have a list of errors you might encounter in the paragraph <strong>Error codes</strong> at the end of the document.</p>
 
 <blockquote>
 <p>Successful response</p>
@@ -414,18 +414,18 @@
 </span></code></pre></div><h2 id='authorization'>Authorization</h2>
 <p>You can create API keys on this page https://wallet.lykke.com/wallets/hft</p>
 
-<p>To use API keys you should just add a header <code>Authorization: Bearer &lt;your API Key&gt;</code> with bearer token to your request.</p>
+<p>To use the API keys you should just add a header <code>Authorization: Bearer &lt;your API Key&gt;</code> with the bearer token on your request.</p>
 
 <blockquote>
 <p>Request Header</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="nl">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer **********************************"</span><span class="w">
 </span></code></pre></div><h2 id='decimal-type'>Decimal type</h2>
-<p>Here you can see: How manage decimal type (Price, Volume, Amount, etc) in API contract.</p>
+<p>Here you can see: How to manage decimal types (Price, Volume, Amount, etc) in API contract.</p>
 <h3 id='grpc-api-2'>gRPC API</h3>
-<p>In the gRPC API contract decimal type present as <code>string</code> type, with a textual representation of the number. This is done in order to avoid problems with non-strict precision &quot;double&quot; type.</p>
+<p>In the gRPC API contract, the decimal type is presented as a string type, with a textual representation of the number. This is done in order to avoid problems with the non-strict precision &quot;double&quot; type.</p>
 <h3 id='rest-api-2'>Rest API</h3>
-<p>In the Rest API contact decimal type present as <code>number</code> with strict precision.</p>
+<p>In the Rest API contact, the decimal type is presented as <code>number</code> with strict precision.</p>
 
 <blockquote>
 <p>Example in Rest API</p>
@@ -435,11 +435,11 @@
     </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0000001</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='timestamp-type'>Timestamp type</h2>
-<p>Here you can see: How manage <code>TimeStamp</code> type in API contract.</p>
+<p>Here you can see: How to manage the <code>TimeStamp</code> type in the API contract.</p>
 
 <p><i>The timestamp is always used in the <b>time zone UTC+0</b></i></p>
 <h3 id='grpc-api-3'>gRPC API</h3>
-<p>In the gRPC API contract timestamp type present as <code>google.protobuf.Timestamp</code> type.</p>
+<p>In the gRPC API contract, the <code>TimeStamp</code> type is presented as a <code>google.protobuf.Timestamp</code> type.</p>
 
 <blockquote>
 <p>Example in gRPC contract </p>
@@ -448,7 +448,7 @@
 
 </span><span class="err">google.protobuf.Timestamp</span><span class="w"> </span><span class="err">time_name</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">1</span><span class="err">;</span><span class="w">
 </span></code></pre></div><h3 id='rest-api-3'>Rest API</h3>
-<p>In the Rest API contact timestamp type present as <code>number</code> with &quot;Milliseconds since Unix Epoch&quot; format of date-time.</p>
+<p>In the Rest API contact, the <code>TimeStamp</code> type is presented as a <code>number</code> with &quot;Milliseconds in Unix Epoch&quot; format of date-time.</p>
 
 <blockquote>
 <p>Example in Rest API</p>
@@ -467,7 +467,7 @@
 </thead><tbody>
 <tr>
 <td>Placed</td>
-<td>Order in order book</td>
+<td>Order in order book.</td>
 </tr>
 <tr>
 <td>PartiallyMatched</td>
@@ -475,7 +475,7 @@
 </tr>
 <tr>
 <td>Matched</td>
-<td>Order is filled</td>
+<td>Order is filled.</td>
 </tr>
 <tr>
 <td>Pending</td>
@@ -483,15 +483,15 @@
 </tr>
 <tr>
 <td>Cancelled</td>
-<td>Order is cancelled by user</td>
+<td>Order is cancelled by user.</td>
 </tr>
 <tr>
 <td>Replaced</td>
-<td>Order is replaced (canceled) by user</td>
+<td>Order is replaced (canceled) by the user.</td>
 </tr>
 <tr>
 <td>Rejected</td>
-<td>Order rejectd by the system</td>
+<td>Order rejectd by the system.</td>
 </tr>
 </tbody></table>
 <h1 id='group-public-apis'>Group Public APIs</h1><h2 id='get-all-assets'>Get all assets</h2>
