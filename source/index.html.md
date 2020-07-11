@@ -17,7 +17,7 @@ search: true
 
 Lykke high-frequency trading API.
 
-This API allows Lykke clients to carry out automated trading on special sub-accounts. Also, the API allows you to get public data about the Lykke market, such as current prices, books of orders, and other parameters for trading instruments.
+This API allows Lykke clients to carry out automated trading on special sub-accounts. Also, the API allows you to get public data about the Lykke market, such as current prices, order books, and other parameters for trading instruments.
 
 [www.lykke.com](https://www.lykke.com/)
 
@@ -37,7 +37,7 @@ The gRCP API utilizes a new generation of RPC framework that includes working wi
 
 Read more about `gRPC framework`: [https://grpc.io/](https://grpc.io/)
 
-Usfull tool for manual call gRPC API: [BloomRPC](https://github.com/uw-labs/bloomrpc)
+A useful tool for manual gRPC API requests: [BloomRPC](https://github.com/uw-labs/bloomrpc)
 
 **API Endpoint**: 
 
@@ -53,9 +53,9 @@ Usfull tool for manual call gRPC API: [BloomRPC](https://github.com/uw-labs/bloo
 
 ## Rest API
 
-Rest API uses the classic HTTP based framework that includes working with `HTTP 1.1`, and `JSON`. Rest API allows users to just call RPC methods without streaming data from the server.
+The rest API uses the classic HTTP based framework that includes working with `HTTP 1.1`, and `JSON`. Rest API allows users to just call RPC methods without streaming data from the server.
 
-Usfull tool for manual call Rest API: [HFT API Swagger](https://hft-apiv2.lykke.com/swagger/ui/index.html)
+A useful tool for manual rest API requests: [HFT API Swagger](https://hft-apiv2.lykke.com/swagger/ui/index.html)
 
 **API Endpoint**: 
 
@@ -65,16 +65,16 @@ Usfull tool for manual call Rest API: [HFT API Swagger](https://hft-apiv2.lykke.
 
 
 ## Allowed HTTP Verbs
-- `PUT` : Updates a resource 
-- `POST` : Creates a resource
-- `GET` : Gets a resource or list of resources
-- `DELETE` : Deletes a resource
+- `PUT` : Updates a resource.
+- `POST` : Creates a resource.
+- `GET` : Gets a resource or a list of resources.
+- `DELETE` : Deletes a resource.
 
 ## Description Of Usual HTTP Server Responses
-- 200 `OK` : the request was successful.
-- 401 `Unauthorized` : authentication failed.
-- 404 `Not Found` : endpoint was not found.
-- 500 `Internal Server Error` : server error.
+- 200 `OK` : The request was successful.
+- 401 `Unauthorized` : Authentication failed.
+- 404 `Not Found` : Endpoint was not found.
+- 500 `Internal Server Error` : Server error.
 
 ## Response structure
 
@@ -93,7 +93,7 @@ Here you have a list of errors you might encounter in the paragraph **Error code
 }
 ```
 
-> Eror response
+> Error response
 
 ```json
 {
@@ -110,7 +110,7 @@ Here you have a list of errors you might encounter in the paragraph **Error code
 
 ## Authorization
 
-You can create API keys on this page https://wallet.lykke.com/wallets/hft
+You can create your API keys on this page https://wallet.lykke.com/wallets/hft. You can also check our step by step guide [here](https://support.lykke.com/hc/en-us/articles/360000552605-How-do-I-create-an-API-Wallet-).
 
 To use the API keys you should just add a header `Authorization: Bearer <your API Key>` with the bearer token on your request.
 
