@@ -2,13 +2,13 @@
 
 ## Get all assets
 
-Get list of supported assets with parameters.
+Get a list of supported assets with parameters.
 
 ### HTTP Request
 
 `GET /api/assets`
 
-### Responce
+### Response
 
 Array of assets:
 
@@ -19,7 +19,7 @@ name | string | Asset name.
 symbol | string | Asset symbol.
 accuracy | uint | Maximum number of digits after the decimal point which are supported by the asset.
 
-> Response 200 (application/json)
+> Response 200 (application/json) - success response
 
 ```json
 {
@@ -42,7 +42,7 @@ accuracy | uint | Maximum number of digits after the decimal point which are sup
 
 ## Get Asset by ID
 
-Get info about specific asset.
+Get inforomation about specific asset.
 
 ### HTTP Request
 
@@ -54,7 +54,7 @@ Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
 assetId | string | path | Asset uniquie ID
 
-### Responce
+### Response
 
 Asset description:
 
@@ -65,7 +65,7 @@ name | string | Asset name.
 symbol | string | Asset symbol.
 accuracy | uint | Maximum number of digits after the decimal point which are supported by the asset.
 
-> Response 200 (application/json) - success responce
+> Response 200 (application/json) - success response
 
 ```json
 {
@@ -93,31 +93,31 @@ accuracy | uint | Maximum number of digits after the decimal point which are sup
 }
 ```
 
-## Get all symbols
+## Get all asset pairs
 
-Get all supported symbols (asset pairs).
+Get all supported asset pairs (symbols).
 
 ### HTTP Request
 
 `GET /api/assetpairs`
 
-### Responce
+### Response
 
 Array of trading instruments.
 
 Property | Type | Description
 -------- | ---- | -----------
 assetPairId | string | Symbol unique identifier.
-baseAssetId | string | Unique identifier of base asset.
-quoteAssetId | string | Unique identifier of quote asset.
-name | string | Name of the trading instrument.
+baseAssetId | string | Base asset unique identifier.
+quoteAssetId | string | Quote asset unique identifier.
+name | string | Trading instrument name.
 priceAccuracy | uint | Trading instrument price accuracy.
 baseAssetAccuracy | uint | Base asset accuracy.
 quoteAssetAccuracy | uint | Quote asset accuracy.
-minVolume | [decimal](#decimal-type) | Minimum order volume in base currency
-minOppositeVolume | [decimal](#decimal-type) | Minimum order volume in quote currency
+minVolume | [decimal](#decimal-type) | Minimum order volume in base currency.
+minOppositeVolume | [decimal](#decimal-type) | Minimum order volume in quote currency.
 
-> Response 200 (application/json) - success responce
+> Response 200 (application/json) - success response
 
 ```json
 {
@@ -148,9 +148,9 @@ minOppositeVolume | [decimal](#decimal-type) | Minimum order volume in quote cur
 }
 ```
 
-## Get a specific symbol
+## Get a specific asset pair.
 
-Get a specific symbol (asset pair).
+Get a specific asset pair(symbol).
 
 ### HTTP Request
 
@@ -160,7 +160,7 @@ Get a specific symbol (asset pair).
 
 Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
-assetPairId | string | path | Symbol uniquie ID
+assetPairId | string | path | Symbol unique ID
 
 ### Responce
 
@@ -169,16 +169,16 @@ Trading instrument:
 Property | Type | Description
 -------- | ---- | -----------
 assetPairId | string | Symbol unique identifier.
-baseAssetId | string | Unique identifier of base asset.
-quoteAssetId | string | Unique identifier of quote asset.
-name | string | Name of the trading instrument.
+baseAssetId | string | Base asset unique identifier.
+quoteAssetId | string | Quote asset unique identifier.
+name | string | Trading instrument name.
 priceAccuracy | uint | Trading instrument price accuracy.
 baseAssetAccuracy | uint | Base asset accuracy.
 quoteAssetAccuracy | uint | Quote asset accuracy.
-minVolume | [decimal](#decimal-type) | Minimum order volume in base currency
-minOppositeVolume | [decimal](#decimal-type) | Minimum order volume in quote currency
+minVolume | [decimal](#decimal-type) | Minimum order volume in base currency.
+minOppositeVolume | [decimal](#decimal-type) | Minimum order volume in quote currency.
 
-> Response 200 (application/json) - success responce
+> Response 200 (application/json) - success response
 
 ```json
 {
@@ -197,9 +197,9 @@ minOppositeVolume | [decimal](#decimal-type) | Minimum order volume in quote cur
 }
 ```
 
-## Symbol Order Book Tiker
+## Asset Pair Order Book Ticker
 
-Get order books by symbols. Order books contain a list of offers on buying and selling with price and volume.
+Get the order book by asset pair. The order books contain a list of Buy(Bid) and Sell(Ask) orders with their corresponding price and volume.
 
 ### HTTP Request
 
@@ -214,7 +214,7 @@ Parameter | Type | Place | Description
 assetPairId | string | query | *(Optional)* Identificator of specific symbol. By default return all sumbols.
 depth | uint | query | *(Optional)* How many best levels need to include in order books. By default include all levels.
 
-### Responce
+### Response
 
 Array of order books by instruments:
 
@@ -222,17 +222,17 @@ Property | Type | Description
 -------- | ---- | -----------
 assetPairId | string | Symbol unique identifier.
 timestamp | [TimeStamp](#timestamp-type) | Timestamp of last order book update.
-bids | Array of PriceLevel | List of buying offers
-asks | Array of PriceLevel | List of selling offers
+bids | Array of PriceLevel | List of buy orders.
+asks | Array of PriceLevel | List of sell orders.
 
 **PriceLevel**:
 
 Property | Type | Description
 -------- | ---- | -----------
-p | [decimal](#decimal-type) | Order price, indicated in quoted asset per unit of base asset.
-v | [decimal](#decimal-type) | Order volume, indicated in base asset.
+p | [decimal](#decimal-type) | Order price indicated in quoted asset per unit of base asset.
+v | [decimal](#decimal-type) | Order volume indicated in base asset.
 
-> Response 200 (application/json) - success responce
+> Response 200 (application/json) - success response
 
 ```json
 {
@@ -267,7 +267,7 @@ v | [decimal](#decimal-type) | Order volume, indicated in base asset.
 
 ## 24hr Ticker Price Change Statistics
 
-24 hour rolling window price change statistics.
+24 hour rolling-window price change statistics.
 
 ### HTTP Request
 
@@ -280,24 +280,24 @@ v | [decimal](#decimal-type) | Order volume, indicated in base asset.
 
 Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
-assetPairIds | array of strings | query | *(Optional)* Filter by symbols. By default return information by all symbols.
+assetPairIds | array of strings | query | *(Optional)* Filter by symbols(returns all asset pair information by default).
 
-### Responce
+### Response
 
 Asset description:
 
 Property | Type | Description
 -------- | ---- | -----------
-assetPairId | string | Symbol unique identifier
-volumeBase | [decimal](#decimal-type) | Trading volume for last 24h in base asset
-volumeQuote | [decimal](#decimal-type) | Trading volume for last 24h in quote asset
-priceChange | [decimal](#decimal-type) | Price changes in percentage in the last 24h
-lastPrice | [decimal](#decimal-type) | The last trade price
-high | [decimal](#decimal-type) | The max trade price from last 24h
-low | [decimal](#decimal-type) | The min trade price from last 24h
-timestamp | [TimeStamp](#timestamp-type) | Last update timestamp
+assetPairId | string | Symbol unique identifier.
+volumeBase | [decimal](#decimal-type) | Trading volume for last 24h in base asset.
+volumeQuote | [decimal](#decimal-type) | Trading volume for last 24h in quote asset.
+priceChange | [decimal](#decimal-type) | Price changes(in %) in the last 24h.
+lastPrice | [decimal](#decimal-type) | The last trade price.
+high | [decimal](#decimal-type) | The maximum trade price from last 24h.
+low | [decimal](#decimal-type) | The minimum trade price from last 24h.
+timestamp | [TimeStamp](#timestamp-type) | Last update timestamp.
 
-> Response 200 (application/json) - success responce
+> Response 200 (application/json) - success response
 
 ```json
 {
