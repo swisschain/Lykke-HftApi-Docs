@@ -209,7 +209,7 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo-1e815a84.png" class="logo" alt="" />
+      <img src="images/logo-185796e2.png" class="logo" alt="" />
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
@@ -326,7 +326,7 @@
         <h1 id='lykke-trading-api'>Lykke trading API</h1>
 <p>Lykke high-frequency trading API.</p>
 
-<p>This API allows Lykke clients to carry out automated trading on special sub-accounts. Also, the API allows you to get public data about the Lykke market, such as current prices, books of orders, and other parameters for trading instruments.</p>
+<p>This API allows Lykke clients to carry out automated trading on special sub-accounts. Also, the API allows you to get public data about the Lykke market, such as current prices, order books, and other parameters for trading instruments.</p>
 
 <p><a href="https://www.lykke.com/">www.lykke.com</a></p>
 
@@ -342,7 +342,7 @@
 
 <p>Read more about <code>gRPC framework</code>: <a href="https://grpc.io/">https://grpc.io/</a></p>
 
-<p>Usfull tool for manual call gRPC API: <a href="https://github.com/uw-labs/bloomrpc">BloomRPC</a></p>
+<p>A useful tool for manual gRPC API requests: <a href="https://github.com/uw-labs/bloomrpc">BloomRPC</a></p>
 
 <p><strong>API Endpoint</strong>: </p>
 
@@ -360,9 +360,9 @@
 <li><a href="https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/privateService.proto">privateService.proto</a> : Private API service</li>
 </ul>
 <h2 id='rest-api'>Rest API</h2>
-<p>Rest API uses the classic HTTP based framework that includes working with <code>HTTP 1.1</code>, and <code>JSON</code>. Rest API allows users to just call RPC methods without streaming data from the server.</p>
+<p>The rest API uses the classic HTTP based framework that includes working with <code>HTTP 1.1</code>, and <code>JSON</code>. Rest API allows users to just call RPC methods without streaming data from the server.</p>
 
-<p>Usfull tool for manual call Rest API: <a href="https://hft-apiv2.lykke.com/swagger/ui/index.html">HFT API Swagger</a></p>
+<p>A useful tool for manual rest API requests: <a href="https://hft-apiv2.lykke.com/swagger/ui/index.html">HFT API Swagger</a></p>
 
 <p><strong>API Endpoint</strong>: </p>
 
@@ -371,17 +371,17 @@
 </ul>
 <h1 id='api-usage'>API usage</h1><h2 id='allowed-http-verbs'>Allowed HTTP Verbs</h2>
 <ul>
-<li><code>PUT</code> : Updates a resource </li>
-<li><code>POST</code> : Creates a resource</li>
-<li><code>GET</code> : Gets a resource or list of resources</li>
-<li><code>DELETE</code> : Deletes a resource</li>
+<li><code>PUT</code> : Updates a resource.</li>
+<li><code>POST</code> : Creates a resource.</li>
+<li><code>GET</code> : Gets a resource or a list of resources.</li>
+<li><code>DELETE</code> : Deletes a resource.</li>
 </ul>
 <h2 id='description-of-usual-http-server-responses'>Description Of Usual HTTP Server Responses</h2>
 <ul>
-<li>200 <code>OK</code> : the request was successful.</li>
-<li>401 <code>Unauthorized</code> : authentication failed.</li>
-<li>404 <code>Not Found</code> : endpoint was not found.</li>
-<li>500 <code>Internal Server Error</code> : server error.</li>
+<li>200 <code>OK</code> : The request was successful.</li>
+<li>401 <code>Unauthorized</code> : Authentication failed.</li>
+<li>404 <code>Not Found</code> : Endpoint was not found.</li>
+<li>500 <code>Internal Server Error</code> : Server error.</li>
 </ul>
 <h2 id='response-structure'>Response structure</h2>
 <p>Every response contains two fields - <code>payload</code> and <code>error</code>. A successful response will contain the response data in the <code>payload</code> field and the <em>null</em> in the <code>error</code> field, and vise versa for the error response.</p>
@@ -399,7 +399,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Eror response</p>
+<p>Error response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -412,7 +412,7 @@
     </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='authorization'>Authorization</h2>
-<p>You can create API keys on this page https://wallet.lykke.com/wallets/hft</p>
+<p>You can create your API keys on this page https://wallet.lykke.com/wallets/hft. You can also check our step by step guide <a href="https://support.lykke.com/hc/en-us/articles/360000552605-How-do-I-create-an-API-Wallet-">here</a>.</p>
 
 <p>To use the API keys you should just add a header <code>Authorization: Bearer &lt;your API Key&gt;</code> with the bearer token on your request.</p>
 
