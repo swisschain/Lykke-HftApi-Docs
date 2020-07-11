@@ -1,28 +1,28 @@
 # Group Private APIs
 
-This method group requires API Key Authentication.
+This group method requires API Key Authentication.
 
-## Get current balance
+## Get the current balance
 
-Get current balance from current account.
+Get the current balance from the API Key account.
 
 ### HTTP Request
 
 `GET /api/balance`
 
-### Responce
+### Response
 
-Array of balance by asset.
+The array of balance by assets.
 
 Property | Type | Description
 -------- | ---- | -----------
 assetId | string | Asset unique identifier.
-available | [decimal](#decimal-type) | Available amount
-reserved | [decimal](#decimal-type) | Amount reserved in active orders
-timestamp | [TimeStamp](#timestamp-type) | Last update balance by current asset
+available | [decimal](#decimal-type) | Available amount.
+reserved | [decimal](#decimal-type) | Amount reserved in active orders.
+timestamp | [TimeStamp](#timestamp-type) | Last balance update on current asset.
 
 
-> Response 200 (application/json) - success responce
+> Response 200 (application/json) - success response
 
 ```json
 {
@@ -45,7 +45,7 @@ timestamp | [TimeStamp](#timestamp-type) | Last update balance by current asset
 
 ## Get trade history
 
-Return a history of trades by an account or by a single order.
+Gets the trading history of an account. Also, with the use of parameters, it can returns a single order.
 
 ### HTTP Request
 
@@ -53,26 +53,26 @@ Return a history of trades by an account or by a single order.
 
 `GET /api/trades/order/{orderId}`
 
-### Query Parameters for get trades by account
+### Query Parameters
 
 Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
 assetPairId | string | query | *(optional)* Symbol unique identifier.
-side | string | query | *(optional)* Side of trade: `buy` or `sell`
-offset | uint | query | *(optional)* Skip the specified number of elements
-take | uint | query | *(optional)* Take the specified number of elements
-from | [TimeStamp](#timestamp-type) | query | *(optional)* From timestamp
-to | [TimeStamp](#timestamp-type) | query | *(optional)* To timestamp
+side | string | query | *(optional)* Side of trade: `buy` or `sell`.
+offset | uint | query | *(optional)* Skip the specified number of elements.
+take | uint | query | *(optional)* Take the specified number of elements.
+from | [TimeStamp](#timestamp-type) | query | *(optional)* From timestamp.
+to | [TimeStamp](#timestamp-type) | query | *(optional)* To timestamp.
 
-### Query Parameters for get trades by single order
+### Query Parameters
 
 Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
 orderId | string | path | Unique Order ID
 
-### Responce
+### Response
 
-Arry of trades:
+Array of trades:
 
 Property | Type | Description
 -------- | ---- | -----------
@@ -80,22 +80,22 @@ id | string | Trade ID.
 orderId | string | Order ID of this trade.
 assetPairId | string | Trade asset pair ID (symbol).
 timestamp | [TimeStamp](#timestamp-type) | Trade tamestamp.
-role | string | Trade role. `Maker` or `Taker`
+role | string | Trade role. `Maker` or `Taker`.
 price | [decimal](#decimal-type) | Trade price.
 baseVolume | [decimal](#decimal-type) | Trade volume in base asset.
 quoteVolume | [decimal](#decimal-type) | Trade volume in quote asset.
 baseAssetId | string | Base asset ID.
 quoteAssetId | string | Quote asset ID.
-fee | TradeFee | *(optional)* Trade Fee description
+fee | TradeFee | *(optional)* Trade Fee description.
 
 **TradeFee**
 
 Property | Type | Description
 -------- | ---- | -----------
-assetId | string | Asset ID for the fee
+assetId | string | Asset ID
 size | [decimal](#decimal-type) | Fee size
 
-> Response 200 (application/json) - success responce
+> Response 200 (application/json) - success response
 
 ```json
 {
@@ -131,7 +131,7 @@ size | [decimal](#decimal-type) | Fee size
 
 ## Get active or closed orders
 
-Return active orders or return closed orders fromm history.
+Get active orders or closed orders from history.
 
 ### HTTP Request
 
@@ -145,29 +145,29 @@ Return active orders or return closed orders fromm history.
 Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
 assetPairId | string | query | *(optional)* Symbol unique identifier.
-offset | uint | query | *(optional)* Skip the specified number of elements
-take | uint | query | *(optional)* Take the specified number of elements
+offset | uint | query | *(optional)* Skip the specified number of elements.
+take | uint | query | *(optional)* Take the specified number of elements.
 
 
-### Responce
+### Response
 
 Asset description:
 
 Property | Type | Description
 -------- | ---- | -----------
-id | strin | Unique Order ID
-timestamp |  [TimeStamp](#timestamp-type) | Timestamp for creating an order
-lastTradeTimestamp | [TimeStamp](#timestamp-type) | Timestamp for last trade by order
-status | string | Order status. List of statuses: [here](#order-statuses).
+id | string | Unique Order ID
+timestamp |  [TimeStamp](#timestamp-type) | Timestamp for order creation.
+lastTradeTimestamp | [TimeStamp](#timestamp-type) | Timestamp for last trade by order.
+status | string | Order status. List of statuses [here](#order-statuses).
 assetPairId | string | Symbol unique identifier.
-type | string | Order type: `Market` or `Limit`
-side | string | Order side: `Sell` or `Buy`
-price | [decimal](#decimal-type) | Order price (in quote asset for one unit of base asset)
-volume | [decimal](#decimal-type) | Order volume (in base asset)
-filledVolume | [decimal](#decimal-type) | Order filled volume (in base asset)
-remainingVolume | [decimal](#decimal-type) | Order remaining volume (in base asset)
+type | string | Order type: `Market` or `Limit`.
+side | string | Order side: `Sell` or `Buy`.
+price | [decimal](#decimal-type) | Order price (in quote asset for one unit of base asset).
+volume | [decimal](#decimal-type) | Order volume (in base asset).
+filledVolume | [decimal](#decimal-type) | Order filled volume (in base asset).
+remainingVolume | [decimal](#decimal-type) | Order remaining volume to be filled (in base asset).
 
-> Response 200 (application/json) - success responce
+> Response 200 (application/json) - success response
 
 ```json
 {
@@ -189,9 +189,9 @@ remainingVolume | [decimal](#decimal-type) | Order remaining volume (in base ass
 }
 ```
 
-## Make a limit order
+## Place a limit order
 
-Make a new limit order.
+Place a limit order.
 
 ### HTTP Request
 
@@ -202,11 +202,11 @@ Make a new limit order.
 Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
 assetPairId | string | body | Symbol unique identifier.
-side | string | body | Order side: `Sell` or `Buy`
-volume | [decimal](#decimal-type) | body | Order volume (in base asset)
-price | [decimal](#decimal-type) | body | Order price, in quote asset for one unit of base asset)
+side | string | body | Order side: `Sell` or `Buy`.
+volume | [decimal](#decimal-type) | body | Order volume (in base asset).
+price | [decimal](#decimal-type) | body | Order price(in quote asset for one unit of base asset).
   
-> Request to create limit order
+> Request to create a limit order
 
 ```json
 {
@@ -217,15 +217,15 @@ price | [decimal](#decimal-type) | body | Order price, in quote asset for one un
 }
 ```
 
-### Responce
+### Response
 
-Operation result description:
+Response description:
 
 Property | Type | Description
 -------- | ---- | -----------
 orderId | string | Unique order ID
 
-> Response 200 (application/json) - success responce
+> Response 200 (application/json) - success response
 
 ```json
 {
@@ -236,9 +236,9 @@ orderId | string | Unique order ID
 }
 ```
 
-## Make a market order 
+## Place a market order 
 
-Request to create Fill-Or-Kill market order.
+Place a [Fill-Or-Kill](https://en.wikipedia.org/wiki/Fill_or_kill) market order.
 
 ### HTTP Request
 
@@ -249,10 +249,10 @@ Request to create Fill-Or-Kill market order.
 Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
 assetPairId | string | body | Symbol unique identifier.
-side | string | body | Order side: `Sell` or `Buy`
-volume | [decimal](#decimal-type) | body | Order volume (in base asset)
+side | string | body | Order side: `Sell` or `Buy`.
+volume | [decimal](#decimal-type) | body | Order volume (in base asset).
 
-> Request to create market order
+> Request to create a market order
 
 ```json
 {
@@ -262,16 +262,16 @@ volume | [decimal](#decimal-type) | body | Order volume (in base asset)
 }
 ```
 
-### Responce
+### Response
 
-Operation result description:
+Response description:
 
 Property | Type | Description
 -------- | ---- | -----------
-orderId | string | Unique order ID
-price | [decimal](#decimal-type) | Market order result price
+orderId | string | Unique order ID.
+price | [decimal](#decimal-type) | Market order result price.
 
-> Response 200 (application/json) - success responce
+> Response 200 (application/json) - success response
 
 ```json
 {
@@ -297,15 +297,15 @@ Cancel all active orders or filter order to cancel by AssetPair or Side.
 
 Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
-assetPairId | string | query | *(Optional)* Symbol unique identifier. By defaul all asset pairs.
-side | string | query | *(Optional)* Order side `Buy` or `Sell`. By default both side.
+assetPairId | string | query | *(Optional)* Symbol unique identifier (All asset pairs by default).
+side | string | query | *(Optional)* Order side `Buy` or `Sell` (both sides by default).
 
 
-### Responce
+### Response
 
 No content
 
-> Response 200 (application/json) - success responce
+> Response 200 (application/json) - success response
 
 ```json
 {
@@ -315,7 +315,7 @@ No content
 
 ## Cancel orders by ID
 
-Cancel a specific order by order ID
+Cancel a specific order by order ID.
 
 ### HTTP Request
 
@@ -328,11 +328,11 @@ Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
 orderId | string | path | Unique Order ID
 
-### Responce
+### Response
 
 No content
 
-> Response 200 (application/json) - success responce
+> Response 200 (application/json) - success response
 
 ```json
 {
