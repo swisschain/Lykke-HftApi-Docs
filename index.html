@@ -282,7 +282,7 @@
             <a href="#group-private-apis" class="toc-h1 toc-link" data-title="Group Private APIs">Group Private APIs</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-current-balance" class="toc-h2 toc-link" data-title="Get current balance">Get current balance</a>
+                    <a href="#get-the-current-balance" class="toc-h2 toc-link" data-title="Get the current balance">Get the current balance</a>
                   </li>
                   <li>
                     <a href="#get-trade-history" class="toc-h2 toc-link" data-title="Get trade history">Get trade history</a>
@@ -291,10 +291,10 @@
                     <a href="#get-active-or-closed-orders" class="toc-h2 toc-link" data-title="Get active or closed orders">Get active or closed orders</a>
                   </li>
                   <li>
-                    <a href="#make-a-limit-order" class="toc-h2 toc-link" data-title="Make a limit order">Make a limit order</a>
+                    <a href="#place-a-limit-order" class="toc-h2 toc-link" data-title="Place a limit order">Place a limit order</a>
                   </li>
                   <li>
-                    <a href="#make-a-market-order" class="toc-h2 toc-link" data-title="Make a market order">Make a market order</a>
+                    <a href="#place-a-market-order" class="toc-h2 toc-link" data-title="Place a market order">Place a market order</a>
                   </li>
                   <li>
                     <a href="#mass-cancel-orders" class="toc-h2 toc-link" data-title="Mass cancel orders">Mass cancel orders</a>
@@ -1024,13 +1024,13 @@
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='group-private-apis'>Group Private APIs</h1>
-<p>This method group requires API Key Authentication.</p>
-<h2 id='get-current-balance'>Get current balance</h2>
-<p>Get current balance from current account.</p>
+<p>This group method requires API Key Authentication.</p>
+<h2 id='get-the-current-balance'>Get the current balance</h2>
+<p>Get the current balance from the API Key account.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /api/balance</code></p>
-<h3 id='responce'>Responce</h3>
-<p>Array of balance by asset.</p>
+<h3 id='response'>Response</h3>
+<p>The array of balance by assets.</p>
 
 <table><thead>
 <tr>
@@ -1047,22 +1047,22 @@
 <tr>
 <td>available</td>
 <td><a href="#decimal-type">decimal</a></td>
-<td>Available amount</td>
+<td>Available amount.</td>
 </tr>
 <tr>
 <td>reserved</td>
 <td><a href="#decimal-type">decimal</a></td>
-<td>Amount reserved in active orders</td>
+<td>Amount reserved in active orders.</td>
 </tr>
 <tr>
 <td>timestamp</td>
 <td><a href="#timestamp-type">TimeStamp</a></td>
-<td>Last update balance by current asset</td>
+<td>Last balance update on current asset.</td>
 </tr>
 </tbody></table>
 
 <blockquote>
-<p>Response 200 (application/json) - success responce</p>
+<p>Response 200 (application/json) - success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -1081,12 +1081,12 @@
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='get-trade-history'>Get trade history</h2>
-<p>Return a history of trades by an account or by a single order.</p>
+<p>Gets the trading history of an account. Also, with the use of parameters, it can returns a single order.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /api/trades</code></p>
 
 <p><code>GET /api/trades/order/{orderId}</code></p>
-<h3 id='query-parameters-for-get-trades-by-account'>Query Parameters for get trades by account</h3>
+<h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1105,34 +1105,34 @@
 <td>side</td>
 <td>string</td>
 <td>query</td>
-<td><em>(optional)</em> Side of trade: <code>buy</code> or <code>sell</code></td>
+<td><em>(optional)</em> Side of trade: <code>buy</code> or <code>sell</code>.</td>
 </tr>
 <tr>
 <td>offset</td>
 <td>uint</td>
 <td>query</td>
-<td><em>(optional)</em> Skip the specified number of elements</td>
+<td><em>(optional)</em> Skip the specified number of elements.</td>
 </tr>
 <tr>
 <td>take</td>
 <td>uint</td>
 <td>query</td>
-<td><em>(optional)</em> Take the specified number of elements</td>
+<td><em>(optional)</em> Take the specified number of elements.</td>
 </tr>
 <tr>
 <td>from</td>
 <td><a href="#timestamp-type">TimeStamp</a></td>
 <td>query</td>
-<td><em>(optional)</em> From timestamp</td>
+<td><em>(optional)</em> From timestamp.</td>
 </tr>
 <tr>
 <td>to</td>
 <td><a href="#timestamp-type">TimeStamp</a></td>
 <td>query</td>
-<td><em>(optional)</em> To timestamp</td>
+<td><em>(optional)</em> To timestamp.</td>
 </tr>
 </tbody></table>
-<h3 id='query-parameters-for-get-trades-by-single-order'>Query Parameters for get trades by single order</h3>
+<h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1148,8 +1148,8 @@
 <td>Unique Order ID</td>
 </tr>
 </tbody></table>
-<h3 id='responce-2'>Responce</h3>
-<p>Arry of trades:</p>
+<h3 id='response-2'>Response</h3>
+<p>Array of trades:</p>
 
 <table><thead>
 <tr>
@@ -1181,7 +1181,7 @@
 <tr>
 <td>role</td>
 <td>string</td>
-<td>Trade role. <code>Maker</code> or <code>Taker</code></td>
+<td>Trade role. <code>Maker</code> or <code>Taker</code>.</td>
 </tr>
 <tr>
 <td>price</td>
@@ -1211,7 +1211,7 @@
 <tr>
 <td>fee</td>
 <td>TradeFee</td>
-<td><em>(optional)</em> Trade Fee description</td>
+<td><em>(optional)</em> Trade Fee description.</td>
 </tr>
 </tbody></table>
 
@@ -1227,7 +1227,7 @@
 <tr>
 <td>assetId</td>
 <td>string</td>
-<td>Asset ID for the fee</td>
+<td>Asset ID</td>
 </tr>
 <tr>
 <td>size</td>
@@ -1237,7 +1237,7 @@
 </tbody></table>
 
 <blockquote>
-<p>Response 200 (application/json) - success responce</p>
+<p>Response 200 (application/json) - success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -1269,12 +1269,12 @@
     </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='get-active-or-closed-orders'>Get active or closed orders</h2>
-<p>Return active orders or return closed orders fromm history.</p>
+<p>Get active orders or closed orders from history.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET /api/orders/active</code></p>
 
 <p><code>GET /api/orders/closed</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='query-parameters-3'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1293,16 +1293,16 @@
 <td>offset</td>
 <td>uint</td>
 <td>query</td>
-<td><em>(optional)</em> Skip the specified number of elements</td>
+<td><em>(optional)</em> Skip the specified number of elements.</td>
 </tr>
 <tr>
 <td>take</td>
 <td>uint</td>
 <td>query</td>
-<td><em>(optional)</em> Take the specified number of elements</td>
+<td><em>(optional)</em> Take the specified number of elements.</td>
 </tr>
 </tbody></table>
-<h3 id='responce-3'>Responce</h3>
+<h3 id='response-3'>Response</h3>
 <p>Asset description:</p>
 
 <table><thead>
@@ -1314,23 +1314,23 @@
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>strin</td>
+<td>string</td>
 <td>Unique Order ID</td>
 </tr>
 <tr>
 <td>timestamp</td>
 <td><a href="#timestamp-type">TimeStamp</a></td>
-<td>Timestamp for creating an order</td>
+<td>Timestamp for order creation.</td>
 </tr>
 <tr>
 <td>lastTradeTimestamp</td>
 <td><a href="#timestamp-type">TimeStamp</a></td>
-<td>Timestamp for last trade by order</td>
+<td>Timestamp for last trade by order.</td>
 </tr>
 <tr>
 <td>status</td>
 <td>string</td>
-<td>Order status. List of statuses: <a href="#order-statuses">here</a>.</td>
+<td>Order status. List of statuses <a href="#order-statuses">here</a>.</td>
 </tr>
 <tr>
 <td>assetPairId</td>
@@ -1340,37 +1340,37 @@
 <tr>
 <td>type</td>
 <td>string</td>
-<td>Order type: <code>Market</code> or <code>Limit</code></td>
+<td>Order type: <code>Market</code> or <code>Limit</code>.</td>
 </tr>
 <tr>
 <td>side</td>
 <td>string</td>
-<td>Order side: <code>Sell</code> or <code>Buy</code></td>
+<td>Order side: <code>Sell</code> or <code>Buy</code>.</td>
 </tr>
 <tr>
 <td>price</td>
 <td><a href="#decimal-type">decimal</a></td>
-<td>Order price (in quote asset for one unit of base asset)</td>
+<td>Order price (in quote asset for one unit of base asset).</td>
 </tr>
 <tr>
 <td>volume</td>
 <td><a href="#decimal-type">decimal</a></td>
-<td>Order volume (in base asset)</td>
+<td>Order volume (in base asset).</td>
 </tr>
 <tr>
 <td>filledVolume</td>
 <td><a href="#decimal-type">decimal</a></td>
-<td>Order filled volume (in base asset)</td>
+<td>Order filled volume (in base asset).</td>
 </tr>
 <tr>
 <td>remainingVolume</td>
 <td><a href="#decimal-type">decimal</a></td>
-<td>Order remaining volume (in base asset)</td>
+<td>Order remaining volume to be filled (in base asset).</td>
 </tr>
 </tbody></table>
 
 <blockquote>
-<p>Response 200 (application/json) - success responce</p>
+<p>Response 200 (application/json) - success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -1389,8 +1389,8 @@
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='make-a-limit-order'>Make a limit order</h2>
-<p>Make a new limit order.</p>
+</span></code></pre></div><h2 id='place-a-limit-order'>Place a limit order</h2>
+<p>Place a limit order.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST /api/orders/limit</code></p>
 <h3 id='request'>Request</h3>
@@ -1412,24 +1412,24 @@
 <td>side</td>
 <td>string</td>
 <td>body</td>
-<td>Order side: <code>Sell</code> or <code>Buy</code></td>
+<td>Order side: <code>Sell</code> or <code>Buy</code>.</td>
 </tr>
 <tr>
 <td>volume</td>
 <td><a href="#decimal-type">decimal</a></td>
 <td>body</td>
-<td>Order volume (in base asset)</td>
+<td>Order volume (in base asset).</td>
 </tr>
 <tr>
 <td>price</td>
 <td><a href="#decimal-type">decimal</a></td>
 <td>body</td>
-<td>Order price, in quote asset for one unit of base asset)</td>
+<td>Order price(in quote asset for one unit of base asset).</td>
 </tr>
 </tbody></table>
 
 <blockquote>
-<p>Request to create limit order</p>
+<p>Request to create a limit order</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"assetPairId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
@@ -1437,8 +1437,8 @@
   </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
   </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='responce-4'>Responce</h3>
-<p>Operation result description:</p>
+</span></code></pre></div><h3 id='response-4'>Response</h3>
+<p>Response description:</p>
 
 <table><thead>
 <tr>
@@ -1455,7 +1455,7 @@
 </tbody></table>
 
 <blockquote>
-<p>Response 200 (application/json) - success responce</p>
+<p>Response 200 (application/json) - success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1463,8 +1463,8 @@
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='make-a-market-order'>Make a market order</h2>
-<p>Request to create Fill-Or-Kill market order.</p>
+</span></code></pre></div><h2 id='place-a-market-order'>Place a market order</h2>
+<p>Place a <a href="https://en.wikipedia.org/wiki/Fill_or_kill">Fill-Or-Kill</a> market order.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST /api/orders/market</code></p>
 <h3 id='request-2'>Request</h3>
@@ -1486,26 +1486,26 @@
 <td>side</td>
 <td>string</td>
 <td>body</td>
-<td>Order side: <code>Sell</code> or <code>Buy</code></td>
+<td>Order side: <code>Sell</code> or <code>Buy</code>.</td>
 </tr>
 <tr>
 <td>volume</td>
 <td><a href="#decimal-type">decimal</a></td>
 <td>body</td>
-<td>Order volume (in base asset)</td>
+<td>Order volume (in base asset).</td>
 </tr>
 </tbody></table>
 
 <blockquote>
-<p>Request to create market order</p>
+<p>Request to create a market order</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"assetPairId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Buy"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.554</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='responce-5'>Responce</h3>
-<p>Operation result description:</p>
+</span></code></pre></div><h3 id='response-5'>Response</h3>
+<p>Response description:</p>
 
 <table><thead>
 <tr>
@@ -1517,17 +1517,17 @@
 <tr>
 <td>orderId</td>
 <td>string</td>
-<td>Unique order ID</td>
+<td>Unique order ID.</td>
 </tr>
 <tr>
 <td>price</td>
 <td><a href="#decimal-type">decimal</a></td>
-<td>Market order result price</td>
+<td>Market order result price.</td>
 </tr>
 </tbody></table>
 
 <blockquote>
-<p>Response 200 (application/json) - success responce</p>
+<p>Response 200 (application/json) - success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1539,7 +1539,7 @@
 <p>Cancel all active orders or filter order to cancel by AssetPair or Side.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>DELETE /api/orders</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<h3 id='query-parameters-4'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1552,29 +1552,29 @@
 <td>assetPairId</td>
 <td>string</td>
 <td>query</td>
-<td><em>(Optional)</em> Symbol unique identifier. By defaul all asset pairs.</td>
+<td><em>(Optional)</em> Symbol unique identifier (All asset pairs by default).</td>
 </tr>
 <tr>
 <td>side</td>
 <td>string</td>
 <td>query</td>
-<td><em>(Optional)</em> Order side <code>Buy</code> or <code>Sell</code>. By default both side.</td>
+<td><em>(Optional)</em> Order side <code>Buy</code> or <code>Sell</code> (both sides by default).</td>
 </tr>
 </tbody></table>
-<h3 id='responce-6'>Responce</h3>
+<h3 id='response-6'>Response</h3>
 <p>No content</p>
 
 <blockquote>
-<p>Response 200 (application/json) - success responce</p>
+<p>Response 200 (application/json) - success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='cancel-orders-by-id'>Cancel orders by ID</h2>
-<p>Cancel a specific order by order ID</p>
+<p>Cancel a specific order by order ID.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
 <p><code>DELETE /api/orders/{orderId}</code></p>
-<h3 id='query-parameters-3'>Query Parameters</h3>
+<h3 id='query-parameters-5'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1590,11 +1590,11 @@
 <td>Unique Order ID</td>
 </tr>
 </tbody></table>
-<h3 id='responce-7'>Responce</h3>
+<h3 id='response-7'>Response</h3>
 <p>No content</p>
 
 <blockquote>
-<p>Response 200 (application/json) - success responce</p>
+<p>Response 200 (application/json) - success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
