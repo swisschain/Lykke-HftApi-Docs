@@ -533,11 +533,11 @@
 <td>Maximum number of digits after the decimal point which are supported by the asset.</td>
 </tr>
 </tbody></table>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="err">GET /api/assets
 
-<blockquote>
-<p>Response 200 (application/json) - success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>{
+&gt; Response 200 (application/json) - success response
+
+{
     "payload": [
         {
             "assetId": "AUD",
@@ -553,16 +553,16 @@
         }
     ]
 }
-</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>{
-    "payload": [
-        {
-            "assetId": "AUD",
-            "name": "AUD",
-            "displayName": "AUD",
-            "accuracy": 2
-        }
-    ]
-}
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code>
+<span class="kn">package</span> <span class="nn">hft</span><span class="p">;</span>
+<span class="kd">service</span> <span class="n">PublicService</span> <span class="p">{</span>
+  <span class="k">rpc</span> <span class="n">GetAssets</span> <span class="p">(</span><span class="n">google.protobuf.Empty</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">AssetsResponse</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">AssetsResponse</span> <span class="p">{</span>
+    <span class="k">repeated</span> <span class="n">Asset</span> <span class="na">payload</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">hft.common.Error</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div><h2 id='get-asset-by-id'>Get Asset by ID</h2>
 <p>Get inforomation about specific asset.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
