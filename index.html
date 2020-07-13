@@ -415,7 +415,7 @@
 
 <span class="kd">message</span> <span class="nc">Response</span> <span class="p">{</span>
     <span class="n">PayloadType</span> <span class="na">payload</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="n">hft.common.Error</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// error is NULL</span>
+    <span class="n">hft.common.Error</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>  <span class="c1">// error is NULL</span>
 <span class="p">}</span>
 </code></pre></div>
 <blockquote>
@@ -434,16 +434,16 @@
 </span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kn">package</span> <span class="nn">hft</span><span class="o">.</span><span class="n">common</span><span class="p">;</span>
 
 <span class="kd">message</span> <span class="nc">Error</span> <span class="p">{</span>
-    <span class="kt">int32</span> <span class="na">code</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="kt">string</span> <span class="kd">message</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="n">map</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="err">&gt;</span> <span class="na">fields</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="kt">int32</span> <span class="na">code</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                  <span class="c1">// 1100</span>
+    <span class="kt">string</span> <span class="kd">message</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>              <span class="c1">// "Asset not found"</span>
+    <span class="n">map</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="err">&gt;</span> <span class="na">fields</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>  <span class="c1">// "assetId" : "Asset not found"</span>
 <span class="p">}</span>
 
 <span class="kn">package</span> <span class="nn">hft</span><span class="p">;</span>
 
 <span class="kd">message</span> <span class="nc">Response</span> <span class="p">{</span>
     <span class="n">PayloadType</span> <span class="na">payload</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="n">hft.common.Error</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// error is NOT NULL</span>
+    <span class="n">hft.common.Error</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>      <span class="c1">// error is NOT NULL</span>
 <span class="p">}</span>
 </code></pre></div><h2 id='authorization'>Authorization</h2>
 <p>You can create your API keys on this page https://wallet.lykke.com/wallets/hft. You can also check our step by step guide <a href="https://support.lykke.com/hc/en-us/articles/360000552605-How-do-I-create-an-API-Wallet-">here</a>.</p>
@@ -470,8 +470,8 @@
     </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0000001</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kd">message</span> <span class="nc">Body</span> <span class="p">{</span>
-    <span class="kt">string</span> <span class="na">price</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// "222231.33420001911"</span>
-    <span class="kt">string</span> <span class="na">volume</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// "0.0000001"</span>
+    <span class="kt">string</span> <span class="na">price</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>   <span class="c1">// "222231.33420001911"</span>
+    <span class="kt">string</span> <span class="na">volume</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>  <span class="c1">// "0.0000001"</span>
 <span class="p">}</span>
 </code></pre></div><h2 id='timestamp-type'>Timestamp type</h2>
 <p>Here you can see: How to manage the <code>TimeStamp</code> type in the API contract.</p>
@@ -490,7 +490,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="k">import</span> <span class="s">"google/protobuf/timestamp.proto"</span><span class="p">;</span>
 
-<span class="n">google.protobuf.Timestamp</span> <span class="na">time_name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 1592903724406</span>
+<span class="n">google.protobuf.Timestamp</span> <span class="na">time_name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">// 1592903724406</span>
 </code></pre></div><h2 id='order-statuses'>Order statuses</h2>
 <p>List of possible order states</p>
 
