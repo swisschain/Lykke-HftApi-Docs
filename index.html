@@ -223,17 +223,6 @@
             <a href="#lykke-trading-api" class="toc-h1 toc-link" data-title="Lykke trading API">Lykke trading API</a>
           </li>
           <li>
-            <a href="#protocol-description" class="toc-h1 toc-link" data-title="Protocol description">Protocol description</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#grpc-api" class="toc-h2 toc-link" data-title="gRPC API">gRPC API</a>
-                  </li>
-                  <li>
-                    <a href="#rest-api" class="toc-h2 toc-link" data-title="Rest API">Rest API</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
             <a href="#api-usage" class="toc-h1 toc-link" data-title="API usage">API usage</a>
               <ul class="toc-list-h2">
                   <li>
@@ -338,44 +327,6 @@
 <p><a href="https://www.lykke.com/">www.lykke.com</a></p>
 
 <p><a href="https://wallet.lykke.com/">Lykke Web Wallet</a></p>
-<h1 id='protocol-description'>Protocol description</h1>
-<p>Lykke HFT API allows users to use 2 kinds of protocol <code>gRPC API</code> and <code>Rest API</code>. </p>
-
-<p>Both kinds of APIs support the same methods with the same data format. But only gRPC API supports receiving streaming data from the platform.</p>
-<h2 id='grpc-api'>gRPC API</h2>
-<p>The gRCP API utilizes a new generation of RPC framework that includes working with <code>HTTP 2</code>, <code>ProtoBuf</code>, and <code>WebSocket</code> for faster and more efficient interaction with the platform. The <code>gRPC framework</code> uses the declarative description of the contract in the <code>.proto</code> files. On the basis of which you can easily generate a client library in many <a href="https://grpc.io/docs/languages/">programming languages</a>. Also, the <code>gRPC framework</code> supports working with <code>stream</code>, which makes it easy to receive events from the server.</p>
-
-<p><strong>Lykke team strongly recommend using gRPC API protocol to communicate with the platform</strong></p>
-
-<p>Read more about <code>gRPC framework</code>: <a href="https://grpc.io/">https://grpc.io/</a></p>
-
-<p>A useful tool for manual gRPC API requests: <a href="https://github.com/uw-labs/bloomrpc">BloomRPC</a></p>
-
-<p><strong>API Endpoint</strong>: </p>
-
-<ul>
-<li>https://hft-apiv2-grpc.lykke.com - url format</li>
-<li><code>hft-apiv2-grpc.lykke.com:443</code>   - host format</li>
-</ul>
-
-<p><strong>Proto files</strong></p>
-
-<ul>
-<li><a href="https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/common.proto">common.proto</a> :Common data models</li>
-<li><a href="https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/isalive.proto">isalive.proto</a> : Is Alive API service</li>
-<li><a href="https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/publicService.proto">publicService.proto</a> : Public API service</li>
-<li><a href="https://github.com/swisschain/Lykke-HftApi-Docs/blob/master/grpc_proto_contracts/privateService.proto">privateService.proto</a> : Private API service</li>
-</ul>
-<h2 id='rest-api'>Rest API</h2>
-<p>The rest API uses the classic HTTP based framework that includes working with <code>HTTP 1.1</code>, and <code>JSON</code>. Rest API allows users to just call RPC methods without streaming data from the server.</p>
-
-<p>A useful tool for manual rest API requests: <a href="https://hft-apiv2.lykke.com/swagger/ui/index.html">HFT API Swagger</a></p>
-
-<p><strong>API Endpoint</strong>: </p>
-
-<ul>
-<li>https://hft-apiv2.lykke.com/api</li>
-</ul>
 <h1 id='api-usage'>API usage</h1><h2 id='allowed-http-verbs'>Allowed HTTP Verbs</h2>
 <ul>
 <li><code>PUT</code> : Updates a resource.</li>
