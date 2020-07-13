@@ -57,18 +57,27 @@ Every response contains two fields - `payload` and `error`. A successful respons
 
 Here you have a list of errors you might encounter in the paragraph **Error codes** at the end of the document.
 
-> Successful response
+> Successful response. Property `error` is null.
 
 ```json
 {
     "payload": {
-        "orderId": "a0e83da9-4a69-4ce4-9a42-6443ed1b45c0"
+        ...
     },
     "error": null
 }
 ```
 
-> Error response
+```protobuf
+package hft;
+
+message Response {
+    PayloadType payload = 1;
+    hft.common.Error error = 2; // error is NULL
+}
+```
+
+> Error response. Property `error` is not null.
 
 ```json
 {
@@ -80,6 +89,23 @@ Here you have a list of errors you might encounter in the paragraph **Error code
         }
     },
     "payload": null
+}
+```
+
+```protobuf
+package hft.common;
+
+message Error {
+    int32 code = 1;
+    string message = 2;
+    map<string, string> fields = 3;
+}
+
+package hft;
+
+message Response {
+    PayloadType payload = 1;
+    hft.common.Error error = 2; // error is NOT NULL
 }
 ```
 
@@ -95,16 +121,18 @@ To use the API keys you should just add a header `Authorization: Bearer <your AP
   "Authorization": "Bearer **********************************"
 ```
 
+```protobub
+  "Authorization": "Bearer **********************************"
+```
+
 ## Decimal type
 Here you can see: How to manage decimal types (Price, Volume, Amount, etc) in API contract.
 
-### gRPC API
 In the gRPC API contract, the decimal type is presented as a string type, with a textual representation of the number. This is done in order to avoid problems with the non-strict precision "double" type.
 
-### Rest API
 In the Rest API contact, the decimal type is presented as `number` with strict precision.
 
-> Example in Rest API
+> Example with decimal type
 
 ```json
 {
@@ -113,32 +141,36 @@ In the Rest API contact, the decimal type is presented as `number` with strict p
 }
 ```
 
+```protobuf
+message Body {
+    string price = 1; // "222231.33420001911"
+    string volume = 2; // "0.0000001"
+}
+```
+
 ## Timestamp type
 Here you can see: How to manage the `TimeStamp` type in the API contract.
 
 <i>The timestamp is always used in the <b>time zone UTC+0</b></i>
 
-### gRPC API
-In the gRPC API contract, the `TimeStamp` type is presented as a `google.protobuf.Timestamp` type.
-
-> Example in gRPC contract 
-
-```json
-import "google/protobuf/timestamp.proto";
-
-google.protobuf.Timestamp time_name = 1;
-```
-
-### Rest API
 In the Rest API contact, the `TimeStamp` type is presented as a `number` with "Milliseconds in Unix Epoch" format of date-time.
 
-> Example in Rest API
+In the gRPC API contract, the `TimeStamp` type is presented as a `google.protobuf.Timestamp` type.
+
+> Example with timestamp
 
 ```json
 {
    "Timestamp": 1592903724406
 }
 ```
+
+```protobuf
+import "google/protobuf/timestamp.proto";
+
+google.protobuf.Timestamp time_name = 1; // 1592903724406
+```
+
 
 ## Order statuses
 
