@@ -19,7 +19,7 @@ name | string | Asset name.
 symbol | string | Asset symbol.
 accuracy | uint | Maximum number of digits after the decimal point which are supported by the asset.
 
-```http
+```json
 GET /api/assets
 
 > Response 200 (application/json) - success response
@@ -82,7 +82,7 @@ accuracy | uint | Maximum number of digits after the decimal point which are sup
 
 > Response 200 (application/json) - success response
 
-```RestAPI
+```json
 {
     "payload": {
         "assetId": "AUD",
@@ -134,7 +134,7 @@ minOppositeVolume | [decimal](#decimal-type) | Minimum order volume in quote cur
 
 > Response 200 (application/json) - success response
 
-```RestAPI
+```json
 {
   "payload": [
     {
@@ -195,7 +195,7 @@ minOppositeVolume | [decimal](#decimal-type) | Minimum order volume in quote cur
 
 > Response 200 (application/json) - success response
 
-```RestAPI
+```json
 {
   "payload":
     {
@@ -249,7 +249,7 @@ v | [decimal](#decimal-type) | Order volume indicated in base asset.
 
 > Response 200 (application/json) - success response
 
-```RestAPI
+```json
 {
   "payload": [
     {
@@ -314,7 +314,7 @@ timestamp | [TimeStamp](#timestamp-type) | Last update timestamp.
 
 > Response 200 (application/json) - success response
 
-```RestAPI
+```json
 {
   "payload": [
     {
