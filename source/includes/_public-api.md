@@ -21,7 +21,7 @@ accuracy | uint | Maximum number of digits after the decimal point which are sup
 
 > Response 200 (application/json) - success response
 
-```json
+```RestAPI
 {
     "payload": [
         {
@@ -67,7 +67,7 @@ accuracy | uint | Maximum number of digits after the decimal point which are sup
 
 > Response 200 (application/json) - success response
 
-```json
+```RestAPI
 {
     "payload": {
         "assetId": "AUD",
@@ -81,7 +81,7 @@ accuracy | uint | Maximum number of digits after the decimal point which are sup
 
 > Response 200 (application/json) - error code
 
-```json
+```RestAPI
 {
   "Error": {
     "Code": 1100,
@@ -119,7 +119,7 @@ minOppositeVolume | [decimal](#decimal-type) | Minimum order volume in quote cur
 
 > Response 200 (application/json) - success response
 
-```json
+```RestAPI
 {
   "payload": [
     {
@@ -180,7 +180,7 @@ minOppositeVolume | [decimal](#decimal-type) | Minimum order volume in quote cur
 
 > Response 200 (application/json) - success response
 
-```json
+```RestAPI
 {
   "payload":
     {
@@ -234,7 +234,7 @@ v | [decimal](#decimal-type) | Order volume indicated in base asset.
 
 > Response 200 (application/json) - success response
 
-```json
+```RestAPI
 {
   "payload": [
     {
@@ -299,7 +299,7 @@ timestamp | [TimeStamp](#timestamp-type) | Last update timestamp.
 
 > Response 200 (application/json) - success response
 
-```json
+```RestAPI
 {
   "payload": [
     {
