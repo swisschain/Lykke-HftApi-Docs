@@ -1,6 +1,6 @@
 # Change Log
 
-## 2020-07-01 - HFT API V2 Release.
+## 2020-07-01 - Release a new HFT API.
 
 Support **gRPC** protocol.
 Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to reduce latency and more efficiently use CPU and network resources on the client-side. It also makes it easy to integrate APIs in many programming languages uses proto-files to generate a client library. [Proto files with contracts](https://github.com/swisschain/Lykke-HftApi-Docs/tree/master/grpc_proto_contracts).
