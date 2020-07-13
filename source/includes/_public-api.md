@@ -19,9 +19,11 @@ name | string | Asset name.
 symbol | string | Asset symbol.
 accuracy | uint | Maximum number of digits after the decimal point which are supported by the asset.
 
+```http
+GET /api/assets
+
 > Response 200 (application/json) - success response
 
-```RestAPI
 {
     "payload": [
         {
@@ -40,16 +42,16 @@ accuracy | uint | Maximum number of digits after the decimal point which are sup
 }
 ```
 
-```gRPC
-{
-    "payload": [
-        {
-            "assetId": "AUD",
-            "name": "AUD",
-            "displayName": "AUD",
-            "accuracy": 2
-        }
-    ]
+```protobuf
+
+package hft;
+service PublicService {
+  rpc GetAssets (google.protobuf.Empty) returns (AssetsResponse);
+}
+
+message AssetsResponse {
+    repeated Asset payload = 1;
+    hft.common.Error error = 2;
 }
 ```
 
