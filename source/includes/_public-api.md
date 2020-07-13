@@ -40,6 +40,19 @@ accuracy | uint | Maximum number of digits after the decimal point which are sup
 }
 ```
 
+```gRPC
+{
+    "payload": [
+        {
+            "assetId": "AUD",
+            "name": "AUD",
+            "displayName": "AUD",
+            "accuracy": 2
+        }
+    ]
+}
+```
+
 ## Get Asset by ID
 
 Get inforomation about specific asset.
