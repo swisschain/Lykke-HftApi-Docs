@@ -8,8 +8,8 @@ language_tabs: # must be one of https://git.io/vQNgJ
 toc_footers:
 
 includes:
-  - api_usage.md
   - change-log.md
+  - api_usage.md
   - public-api.md
   - private-api.md
   - errors  
