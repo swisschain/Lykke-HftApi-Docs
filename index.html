@@ -536,26 +536,26 @@
 <td>Maximum number of digits after the decimal point which are supported by the asset.</td>
 </tr>
 </tbody></table>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="err">GET /api/assets
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/assets</span><span class="w">
 
-&gt; Response 200 (application/json) - success response
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
-{
-    "payload": [
-        {
-            "assetId": "AUD",
-            "name": "AUD",
-            "displayName": "AUD",
-            "accuracy": 2
-        },
-        {
-            "assetId": "BTC",
-            "name": "BTC",
-            "displayName": "BTC",
-            "accuracy": 8
-        }
-    ]
-}
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"assetId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUD"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUD"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUD"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"accuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"assetId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"accuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code>
 <span class="kn">package</span> <span class="nn">hft</span><span class="p">;</span>
 <span class="kd">service</span> <span class="n">PublicService</span> <span class="p">{</span>
@@ -621,16 +621,16 @@
 <blockquote>
 <p>Response 200 (application/json) - success response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>{
-    "payload": {
-        "assetId": "AUD",
-        "blockchainId": "AUD",
-        "name": "AUD",
-        "displayName": "AUD",
-        "accuracy": 2
-    }
-}
-</code></pre></div>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"assetId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"blockchainId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"accuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <blockquote>
 <p>Response 200 (application/json) - error code</p>
 </blockquote>
@@ -707,33 +707,33 @@
 <blockquote>
 <p>Response 200 (application/json) - success response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>{
-  "payload": [
-    {
-      "assetPairId": "BTCUSD",
-      "baseAssetId": "BTC",
-      "quoteAssetId": "91960f78-7ea1-49f7-be27-34221a763b02",
-      "name": "BTC/USD",
-      "priceAccuracy": 3,
-      "baseAssetAccuracy": 8,
-      "quoteAssetAccuracy": 2,
-      "minVolume": 0.0001,
-      "minOppositeVolume": 1
-    },
-    {
-      "assetPairId": "BTCLKK1Y",
-      "baseAssetId": "BTC",
-      "quoteAssetId": "LKK1Y",
-      "name": "BTC/LKK1Y",
-      "priceAccuracy": 2,
-      "baseAssetAccuracy": 8,
-      "quoteAssetAccuracy": 2,
-      "minVolume": 0.0001,
-      "minOppositeVolume": 4
-    }
-  ]
-}
-</code></pre></div><h2 id='get-a-specific-asset-pair'>Get a specific asset pair.</h2>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"assetPairId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"baseAssetId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"quoteAssetId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91960f78-7ea1-49f7-be27-34221a763b02"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"priceAccuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"baseAssetAccuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"quoteAssetAccuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"minVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"minOppositeVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"assetPairId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCLKK1Y"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"baseAssetId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"quoteAssetId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LKK1Y"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/LKK1Y"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"priceAccuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"baseAssetAccuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"quoteAssetAccuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"minVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"minOppositeVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='get-a-specific-asset-pair'>Get a specific asset pair.</h2>
 <p>Get a specific asset pair(symbol).</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /api/assetpairs/{assetPairId}</code></p>
@@ -813,21 +813,21 @@
 <blockquote>
 <p>Response 200 (application/json) - success response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>{
-  "payload":
-    {
-      "assetPairId": "BTCUSD",
-      "baseAssetId": "BTC",
-      "quoteAssetId": "91960f78-7ea1-49f7-be27-34221a763b02",
-      "name": "BTC/USD",
-      "priceAccuracy": 3,
-      "baseAssetAccuracy": 8,
-      "quoteAssetAccuracy": 2,
-      "minVolume": 0.0001,
-      "minOppositeVolume": 1
-    }
-}
-</code></pre></div><h2 id='asset-pair-order-book-ticker'>Asset Pair Order Book Ticker</h2>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"payload"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"assetPairId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"baseAssetId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"quoteAssetId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91960f78-7ea1-49f7-be27-34221a763b02"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"priceAccuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"baseAssetAccuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"quoteAssetAccuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"minVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"minOppositeVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='asset-pair-order-book-ticker'>Asset Pair Order Book Ticker</h2>
 <p>Get the order book by asset pair. The order books contain a list of Buy(Bid) and Sell(Ask) orders with their corresponding price and volume.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET /api/orderbooks</code></p>
@@ -911,35 +911,35 @@
 <blockquote>
 <p>Response 200 (application/json) - success response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>{
-  "payload": [
-    {
-      "assetPairId": "BTCUSD",
-      "timestamp": "2020-06-23T07:11:48.299Z",
-      "bids": [
-        {
-          "v": 0.06771538,
-          "p": 9599
-        },
-        {
-          "v": 0.05210805,
-          "p": 9599
-        }
-      ],
-      "asks": [
-        {
-          "v": -1.67230494,
-          "p": 9633.613
-        },
-        {
-          "v": -0.1,
-          "p": 9641.42
-        }
-      ]
-    }
-  ]
-}
-</code></pre></div><h2 id='24hr-ticker-price-change-statistics'>24hr Ticker Price Change Statistics</h2>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"assetPairId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-23T07:11:48.299Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.06771538</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">9599</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05210805</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">9599</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">-1.67230494</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"p"</span><span class="p">:</span><span class="w"> </span><span class="mf">9633.613</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"p"</span><span class="p">:</span><span class="w"> </span><span class="mf">9641.42</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='24hr-ticker-price-change-statistics'>24hr Ticker Price Change Statistics</h2>
 <p>24 hour rolling-window price change statistics.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /api/tickers</code></p>
@@ -1016,31 +1016,31 @@
 <blockquote>
 <p>Response 200 (application/json) - success response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>{
-  "payload": [
-    {
-      "assetPairId": "BTCEUR",
-      "volumeBase": 0.98657285,
-      "volumeQuote": 8350.5868,
-      "priceChange": 0.036057567781542336,
-      "lastPrice": 8620,
-      "high": 8620,
-      "low": 8320,
-      "timestamp": "2020-06-22T21:10:06.5623911Z"
-    },
-    {
-      "assetPairId": "BTCUSD",
-      "volumeBase": 2.15139075,
-      "volumeQuote": 20649.0296,
-      "priceChange": 0.023048622404312356,
-      "lastPrice": 9637.117,
-      "high": 9700,
-      "low": 9397.999,
-      "timestamp": "2020-06-23T07:08:07.3753293Z"
-    }
-  ]
-}
-</code></pre></div><h1 id='group-private-apis'>Group Private APIs</h1>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"assetPairId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCEUR"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"volumeBase"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.98657285</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"volumeQuote"</span><span class="p">:</span><span class="w"> </span><span class="mf">8350.5868</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"priceChange"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.036057567781542336</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"lastPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">8620</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"high"</span><span class="p">:</span><span class="w"> </span><span class="mi">8620</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"low"</span><span class="p">:</span><span class="w"> </span><span class="mi">8320</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-22T21:10:06.5623911Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"assetPairId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"volumeBase"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.15139075</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"volumeQuote"</span><span class="p">:</span><span class="w"> </span><span class="mf">20649.0296</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"priceChange"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.023048622404312356</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"lastPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">9637.117</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"high"</span><span class="p">:</span><span class="w"> </span><span class="mi">9700</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">9397.999</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-23T07:08:07.3753293Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='group-private-apis'>Group Private APIs</h1>
 <p>This group method requires API Key Authentication.</p>
 <h2 id='get-the-current-balance'>Get the current balance</h2>
 <p>Get the current balance from the API Key account.</p>
