@@ -73,7 +73,7 @@ package hft;
 
 message Response {
     PayloadType payload = 1;
-    hft.common.Error error = 2; // error is NULL
+    hft.common.Error error = 2;  // error is NULL
 }
 ```
 
@@ -96,16 +96,16 @@ message Response {
 package hft.common;
 
 message Error {
-    int32 code = 1;
-    string message = 2;
-    map<string, string> fields = 3;
+    int32 code = 1;                  // 1100
+    string message = 2;              // "Asset not found"
+    map<string, string> fields = 3;  // "assetId" : "Asset not found"
 }
 
 package hft;
 
 message Response {
     PayloadType payload = 1;
-    hft.common.Error error = 2; // error is NOT NULL
+    hft.common.Error error = 2;      // error is NOT NULL
 }
 ```
 
@@ -143,8 +143,8 @@ In the Rest API contact, the decimal type is presented as `number` with strict p
 
 ```protobuf
 message Body {
-    string price = 1; // "222231.33420001911"
-    string volume = 2; // "0.0000001"
+    string price = 1;   // "222231.33420001911"
+    string volume = 2;  // "0.0000001"
 }
 ```
 
@@ -168,7 +168,7 @@ In the gRPC API contract, the `TimeStamp` type is presented as a `google.protobu
 ```protobuf
 import "google/protobuf/timestamp.proto";
 
-google.protobuf.Timestamp time_name = 1; // 1592903724406
+google.protobuf.Timestamp time_name = 1;  // 1592903724406
 ```
 
 
