@@ -502,6 +502,7 @@ Get current prices by symbols.
 **RestAPI:** 
 
 `GET /api/prices`
+
 `GET /api/prices?assetPairIds={AssetPairID-1}&assetPairIds={AssetPairID-2}&...`
 
 ### Query Parameters
