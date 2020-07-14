@@ -1,4 +1,4 @@
-# Group Private APIs
+# Private APIs
 
 This group method requires API Key Authentication.
 
@@ -208,10 +208,16 @@ message TradeFee {
 
 Get active orders or closed orders from history.
 
-### HTTP Request
+### Request
+
+**gRPC:** 
+
+`hft.PrivateService.GetActiveOrders`
+`hft.PrivateService.GetClosedOrders`
+
+**RestAPI:**
 
 `GET /api/orders/active`
-
 `GET /api/orders/closed`
 
 ### Query Parameters
@@ -242,9 +248,12 @@ volume | [decimal](#decimal-type) | Order volume (in base asset).
 filledVolume | [decimal](#decimal-type) | Order filled volume (in base asset).
 remainingVolume | [decimal](#decimal-type) | Order remaining volume to be filled (in base asset).
 
+```json
+GET /api/orders/active
+GET /api/orders/closed
+
 > Response 200 (application/json) - success response
 
-```json
 {
   "payload": [
     {
@@ -264,13 +273,52 @@ remainingVolume | [decimal](#decimal-type) | Order remaining volume to be filled
 }
 ```
 
+```protobuf
+package hft;
+
+service PrivateService {
+  rpc GetActiveOrders (OrdersRequest) returns (OrdersResponse);
+	rpc GetClosedOrders (OrdersRequest) returns (OrdersResponse);
+}
+
+message OrdersRequest {
+    string assetPairId = 1;
+    int32 offset = 2;
+    int32 take = 3;
+}
+
+message OrdersResponse {
+    repeated Order payload = 1;
+    hft.common.Error error = 2;
+}
+
+message Order {
+    string id = 1;
+    google.protobuf.Timestamp timestamp = 2;
+    oneof optional_lastTradeTimestamp {
+        google.protobuf.Timestamp lastTradeTimestamp = 3;
+    }
+    string status = 4;
+    string assetPairId = 5;
+    string type = 6;
+    Side side = 7;
+    string price = 8;
+    string volume = 9;
+    string filledVolume = 10;
+    string remainingVolume = 11;
+    string cost = 12;
+}
+```
+
 ## Place a limit order
 
 Place a limit order.
 
-### HTTP Request
+### Request
 
-`POST /api/orders/limit`
+**gRPC:** `hft.PrivateService.PlaceLimitOrder`
+
+**RestAPI:** `POST /api/orders/limit`
 
 ### Request
 
@@ -281,9 +329,9 @@ side | string | body | Order side: `Sell` or `Buy`.
 volume | [decimal](#decimal-type) | body | Order volume (in base asset).
 price | [decimal](#decimal-type) | body | Order price(in quote asset for one unit of base asset).
   
+```json
 > Request to create a limit order
 
-```json
 {
   "assetPairId": "BTCUSD",
   "side": "buy",
@@ -300,9 +348,11 @@ Property | Type | Description
 -------- | ---- | -----------
 orderId | string | Unique order ID
 
+```json
+POST /api/orders/limit
+
 > Response 200 (application/json) - success response
 
-```json
 {
   "payload": {
     "orderId": "0c336213-0a64-44a8-9599-e88bf6aa1b69"
@@ -311,13 +361,40 @@ orderId | string | Unique order ID
 }
 ```
 
+
+```protobuf
+package hft;
+
+service PrivateService {
+  rpc PlaceLimitOrder (LimitOrderRequest) returns (LimitOrderResponse);
+}
+
+message LimitOrderRequest {
+    string assetPairId = 1;
+    Side side = 2;
+    string volume = 3;
+    string price = 4;
+}
+
+message LimitOrderResponse {
+    LimitOrderPayload payload = 1;
+    hft.common.Error error = 2;
+
+    message LimitOrderPayload {
+        string orderId = 1;
+    }
+}
+```
+
 ## Place a market order 
 
 Place a [Fill-Or-Kill](https://en.wikipedia.org/wiki/Fill_or_kill) market order.
 
-### HTTP Request
+### Request
 
-`POST /api/orders/market`
+**gRPC:** `hft.PrivateService.PlaceLimitOrder`
+
+**RestAPI:** `POST /api/orders/market`
 
 ### Request
 
@@ -327,9 +404,9 @@ assetPairId | string | body | Symbol unique identifier.
 side | string | body | Order side: `Sell` or `Buy`.
 volume | [decimal](#decimal-type) | body | Order volume (in base asset).
 
+```json
 > Request to create a market order
 
-```json
 {
   "assetPairId": "BTCUSD",
   "side": "Buy",
@@ -346,9 +423,11 @@ Property | Type | Description
 orderId | string | Unique order ID.
 price | [decimal](#decimal-type) | Market order result price.
 
+```json
+POST /api/orders/market
+
 > Response 200 (application/json) - success response
 
-```json
 {
   "payload": {
     "orderId": "string",
@@ -357,16 +436,40 @@ price | [decimal](#decimal-type) | Market order result price.
 }
 ```
 
+```protobuf
+package hft;
 
+service PrivateService {
+  rpc PlaceMarketOrder (MarketOrderRequest) returns (MarketOrderResponse);
+}
+
+message MarketOrderRequest {
+    string assetPairId = 1;
+    Side side = 2;
+    string volume = 3;
+}
+
+message MarketOrderResponse {
+    MarketOrderPayload payload = 1;
+    hft.common.Error error = 2;
+
+    message MarketOrderPayload {
+        string orderId = 1;
+        string price = 2;
+    }
+}
+```
 
 
 ## Mass cancel orders
 
 Cancel all active orders or filter order to cancel by AssetPair or Side.
 
-### HTTP Request
+### Request
 
-`DELETE /api/orders`
+**gRPC:** `hft.PrivateService.CancelAllOrders`
+
+**RestAPI:** `DELETE /api/orders`
 
 ### Query Parameters
 
@@ -380,11 +483,31 @@ side | string | query | *(Optional)* Order side `Buy` or `Sell` (both sides by d
 
 No content
 
+```json
+DELETE /api/orders
+
 > Response 200 (application/json) - success response
 
-```json
 {
   "payload": null
+}
+```
+
+```protobuf
+package hft;
+
+service PrivateService {
+  rpc CancelAllOrders (CancelOrdersRequest) returns (CancelOrderResponse);
+}
+
+message CancelOrdersRequest {
+    string assetPairId = 1;
+    Side side = 2;
+}
+
+message CancelOrderResponse {
+    bool payload = 1;
+    hft.common.Error error = 2;
 }
 ```
 
@@ -392,9 +515,11 @@ No content
 
 Cancel a specific order by order ID.
 
-### HTTP Request
+### Request
 
-`DELETE /api/orders/{orderId}`
+**gRPC:** `hft.PrivateService.CancelAllOrders`
+
+**RestAPI:** `DELETE /api/orders/{orderId}`
 
 ### Query Parameters
 
@@ -407,15 +532,32 @@ orderId | string | path | Unique Order ID
 
 No content
 
+```json
+DELETE /api/orders/{orderId}
+
 > Response 200 (application/json) - success response
 
-```json
 {
   "payload": null
 }
 ```
 
+```protobuf
+package hft;
 
+service PrivateService {
+  rpc CancelOrder (CancelOrderRequest) returns (CancelOrderResponse);
+}
+
+message CancelOrderRequest {
+    string orderId = 1;
+}
+
+message CancelOrderResponse {
+    bool payload = 1;
+    hft.common.Error error = 2;
+}
+```
 
 
 
