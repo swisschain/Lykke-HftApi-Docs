@@ -460,6 +460,129 @@ message MarketOrderResponse {
 }
 ```
 
+## Place multiple limit orders
+
+Place multiple limit orders in one package.
+The method also allows you to replace orders in the order book. You can replace all orders completely, or each separately.
+
+### Request
+
+**gRPC:** `hft.PrivateService.PlaceBulkLimitOrder`
+
+**RestAPI:** `POST /api/orders/bulk`
+
+### Request
+
+Parameter | Type | Place | Description
+--------- | ---- | ----- | -----------
+assetPairId | string | body | Symbol unique identifier.
+cancelPreviousOrders | bool | body | Cancel existing orders by AssetPair before placing new orders. Default: False.
+cancelMode | string | body | Strategy for canceling orders if the "cancelPreviousOrders" parameter is activated. `bothSides`, `sellSide`, `buySide`
+orders | array of BulkOrder | body | List of new orders to place
+
+**BulkOrder:**
+
+Parameter | Type | Place | Description
+--------- | ---- | ----- | -----------
+orderAction | string | body | Order side: `Sell` or `Buy`.
+volume | [decimal](#decimal-type) | body | Order volume (in base asset).
+price | [decimal](#decimal-type) | body | Order price(in quote asset for one unit of base asset).
+oldId | string | body | Identifier of the replaced order. If the parameter is specified, the new order will replace the existing order with the specified ID. If there is no order with the specified ID, then a new order will not be placed.
+
+  
+```json
+> Request to create a limit order
+
+{
+  "assetPairId": "BTCUSD",
+  "cancelPreviousOrders": true,
+  "cancelMode": "bothSides",
+  "orders": [
+    {
+      "orderAction": "buy",
+      "volume": 1,
+      "price": 9600,
+      "oldId": "0c336213-0a64-44a8-9599-e88bf6aa1b69"
+    }
+  ]
+}
+```
+
+### Response
+
+Response description:
+
+Property | Type | Description
+-------- | ---- | -----------
+assetPairId | string | Symbol unique identifier
+statuses | array of BulkOrderItemStatus | Array with report about each new order
+
+**BulkOrderItemStatus:**
+
+Property | Type | Description
+-------- | ---- | -----------
+id | string| Order ID
+error | string | Order result
+volume | [decimal](#decimal-type) | Order volume (in base asset).
+price | [decimal](#decimal-type) | body | Order price(in quote asset for one unit of base asset).
+
+
+```json
+POST /api/orders/bulk
+
+> Response 200 (application/json) - success response
+
+{
+  "payload": {
+    "assetPairId": "BTCUSD",
+    "statuses": [
+      {
+        "id": "0c113553-0a64-35a1-3221-a12bf6ba1564",
+        "error": "success",
+        "volume": 1,
+        "price": 9600
+      }
+    ]
+  },
+  "error": null
+}
+```
+
+```protobuf
+package hft;
+
+service PrivateService {
+  rpc PlaceBulkLimitOrder (BulkLimitOrderRequest) returns (BulkLimitOrderResponse);
+}
+
+message BulkLimitOrderRequest {
+    string assetPairId = 1;
+    bool cancelPreviousOrders = 2;
+    oneof optional_cancelMode {
+        CancelMode cancelMode = 3;
+    }
+    repeated BulkOrder orders = 4;
+}
+
+message BulkLimitOrderResponse {
+    BulkLimitOrderPayload payload = 1;
+    hft.common.Error error = 2;
+
+    message BulkLimitOrderPayload {
+        string assetPairId = 1;
+        repeated BulkOrderItemStatus statuses = 3;
+    }
+}
+
+message BulkOrderItemStatus {
+    string id = 1;
+    oneof optional_error {
+        int32 error = 2;
+    }
+    string volume = 3;
+    string price = 4;
+}
+```
 
 ## Mass cancel orders
 
