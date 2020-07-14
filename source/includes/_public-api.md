@@ -44,8 +44,8 @@ GET /api/assets
 ```
 
 ```protobuf
-
 package hft;
+
 service PublicService {
   rpc GetAssets (google.protobuf.Empty) returns (AssetsResponse);
 }
@@ -99,6 +99,7 @@ GET /api/assets/{assetId}
 
 ```protobuf
 package hft;
+
 service PublicService {
   rpc GetAsset (AssetRequest) returns (AssetResponse);
 }
@@ -179,6 +180,7 @@ GET /api/assetpairs
 
 ```protobuf
 package hft;
+
 service PublicService {
   rpc GetAssetPairs (google.protobuf.Empty) returns (AssetPairsResponse);
 }
@@ -232,9 +234,11 @@ quoteAssetAccuracy | uint | Quote asset accuracy.
 minVolume | [decimal](#decimal-type) | Minimum order volume in base currency.
 minOppositeVolume | [decimal](#decimal-type) | Minimum order volume in quote currency.
 
+```json
+GET /api/assetpairs/{assetPairId}
+
 > Response 200 (application/json) - success response
 
-```json
 {
   "payload":
     {
@@ -251,15 +255,41 @@ minOppositeVolume | [decimal](#decimal-type) | Minimum order volume in quote cur
 }
 ```
 
+```protobuf
+package hft;
+
+service PublicService {
+  rpc GetAssetPair (AssetPairRequest) returns (AssetPairResponse);
+}
+
+message AssetPairResponse {
+    AssetPair payload = 1;
+    hft.common.Error error = 2;      // NULL
+}
+
+message AssetPair {
+    string assetPairId = 1;          // "BTCLKK1Y"
+    string baseAssetId = 2;          // "BTC"
+    string quoteAssetId = 3;         // "LKK1Y"
+    string name = 4;                 // "BTC/LKK1Y"
+    int32 priceAccuracy = 5;         // 2
+    int32 baseAssetAccuracy = 6;     // 8
+    int32 quoteAssetAccuracy = 7;    // 2
+    string minVolume = 8;            // 0.0001
+    string minOppositeVolume = 9;    // 4
+}
+```
+
 ## Asset Pair Order Book Ticker
 
 Get the order book by asset pair. The order books contain a list of Buy(Bid) and Sell(Ask) orders with their corresponding price and volume.
 
-### HTTP Request
+### Request
 
+**gRPC:** `hft.PublicService.GetOrderbooks`
+**RestAPI:** 
 `GET /api/orderbooks`
-
-`GET /api/orderbooks?assetPairId={assetPairId}&depth={4}`
+`GET /api/orderbooks?assetPairId={assetPairId}&depth={depth}`
 
 ### Query Parameters
 
@@ -286,14 +316,17 @@ Property | Type | Description
 p | [decimal](#decimal-type) | Order price indicated in quoted asset per unit of base asset.
 v | [decimal](#decimal-type) | Order volume indicated in base asset.
 
+```json
+GET /api/orderbooks
+GET /api/orderbooks?assetPairId={assetPairId}&depth={depth}
+
 > Response 200 (application/json) - success response
 
-```json
 {
   "payload": [
     {
       "assetPairId": "BTCUSD",
-      "timestamp": "2020-06-23T07:11:48.299Z",
+      "timestamp": 1594725117313
       "bids": [
         {
           "v": 0.06771538,
@@ -319,14 +352,45 @@ v | [decimal](#decimal-type) | Order volume indicated in base asset.
 }
 ```
 
+```protobuf
+package hft;
+
+service PublicService {
+  rpc GetOrderbooks (OrderbookRequest) returns (OrderbookResponse);
+}
+
+message OrderbookRequest {
+    string assetPairId = 1;
+    int32 depth = 2;
+}
+
+message OrderbookResponse {
+    repeated Orderbook payload = 1;
+    hft.common.Error error = 2;       // NULL
+}
+
+message Orderbook {
+    string assetPairId = 1;           // "BTCUSD"
+    google.protobuf.Timestamp timestamp = 2;  // "seconds": "1594742656", "nanos": 167000000
+    repeated PriceVolume bids = 3;    // {p="9010", v="0.01"}, {p="9000", v="1.0"}
+    repeated PriceVolume asks = 4;    // {p="9020", v="0.12"}, {p="9030", v="0.71001"}
+
+    message PriceVolume {
+        string p = 1;
+        string v = 2;
+    }
+}
+```
+
 ## 24hr Ticker Price Change Statistics
 
 24 hour rolling-window price change statistics.
 
-### HTTP Request
+### Request
 
+**gRPC:** `hft.PublicService.GetTickers`
+**RestAPI:** 
 `GET /api/tickers`
-
 `GET /api/tickers?assetPairIds=BTCUSD&assetPairIds=BTCEUR`
 
 ### Query Parameters
@@ -351,9 +415,14 @@ high | [decimal](#decimal-type) | The maximum trade price from last 24h.
 low | [decimal](#decimal-type) | The minimum trade price from last 24h.
 timestamp | [TimeStamp](#timestamp-type) | Last update timestamp.
 
-> Response 200 (application/json) - success response
+
 
 ```json
+`GET /api/tickers`
+`GET /api/tickers?assetPairIds=BTCUSD&assetPairIds=BTCEUR`
+
+> Response 200 (application/json) - success response
+
 {
   "payload": [
     {
@@ -364,7 +433,7 @@ timestamp | [TimeStamp](#timestamp-type) | Last update timestamp.
       "lastPrice": 8620,
       "high": 8620,
       "low": 8320,
-      "timestamp": "2020-06-22T21:10:06.5623911Z"
+      "timestamp": 1594725117313
     },
     {
       "assetPairId": "BTCUSD",
@@ -374,11 +443,38 @@ timestamp | [TimeStamp](#timestamp-type) | Last update timestamp.
       "lastPrice": 9637.117,
       "high": 9700,
       "low": 9397.999,
-      "timestamp": "2020-06-23T07:08:07.3753293Z"
+      "timestamp": 1594725117313
     }
   ]
 }
 ```
+```protobuf
+package hft;
 
+service PublicService {
+  rpc GetTickers (TickersRequest) returns (TickersResponse);
+}
+
+message TickersRequest {
+    repeated string assetPairIds = 1;
+}
+
+message TickersResponse {
+    repeated Ticker payload = 1;
+    hft.common.Error error = 2;    // NULL
+}
+
+message Ticker {
+    string assetPairId = 1;        // "BTCUSD"
+    string volumeBase = 2;         // "2.15139075"
+    string volumeQuote = 3;        // "20649.0296"
+    string priceChange = 4;        // "0.023048622404312356"
+    string lastPrice = 5;          // "8620"
+    string bid = 6;                // "9669.12"
+    string ask = 7;                // "9673.61012"
+    string high = 8;               // "9700"
+    string low = 9;                // "9397.999"
+}
+```
 
 
