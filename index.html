@@ -1341,12 +1341,14 @@ The contracts in the Rest API protocol have been updated as well. A new set of f
 <span class="p">}</span>
 </code></pre></div><h1 id='private-apis'>Private APIs</h1>
 <p>This group method requires API Key Authentication.</p>
+
+<p>If you would like to create your API key, please sign up in <a href="https://wallet.lykke.com/?utm_source=github&amp;utm_medium=api_doc&amp;utm_campaign=api_documentation">here</a> and start trading with Lykke!. If you need a step by step guide you may check our Help Center in <a href="https://support.lykke.com/hc/en-us/articles/360000552605-How-do-I-create-an-API-Wallet-">here</a>.</p>
 <h2 id='get-the-current-balance'>Get the current balance</h2>
 <p>Get the current balance from the API Key account.</p>
 <h3 id='request'>Request</h3>
 <p><strong>gRPC:</strong> <code>hft.PrivateService.GetBalances</code></p>
 
-<p><strong>RestAPI:</strong> <code>GET /api/balance</code></p>
+<p><strong>Rest API:</strong> <code>GET /api/balance</code></p>
 <h3 id='response'>Response</h3>
 <p>The array of balance by assets.</p>
 
@@ -1420,7 +1422,7 @@ The contracts in the Rest API protocol have been updated as well. A new set of f
 <h3 id='request-2'>Request</h3>
 <p><strong>gRPC:</strong> <code>hft.PrivateService.GetTrades</code></p>
 
-<p><strong>RestAPI:</strong></p>
+<p><strong>Rest API:</strong></p>
 
 <p><code>GET /api/trades</code>
 <code>GET /api/trades/order/{orderId}</code></p>
@@ -1655,7 +1657,7 @@ The contracts in the Rest API protocol have been updated as well. A new set of f
 <p><code>hft.PrivateService.GetActiveOrders</code>
 <code>hft.PrivateService.GetClosedOrders</code></p>
 
-<p><strong>RestAPI:</strong></p>
+<p><strong>Rest API:</strong></p>
 
 <p><code>GET /api/orders/active</code>
 <code>GET /api/orders/closed</code></p>
@@ -1700,7 +1702,7 @@ The contracts in the Rest API protocol have been updated as well. A new set of f
 <tr>
 <td>id</td>
 <td>string</td>
-<td>Unique Order ID</td>
+<td>Unique Order ID.</td>
 </tr>
 <tr>
 <td>timestamp</td>
@@ -1814,7 +1816,7 @@ The contracts in the Rest API protocol have been updated as well. A new set of f
 <h3 id='request-4'>Request</h3>
 <p><strong>gRPC:</strong> <code>hft.PrivateService.PlaceLimitOrder</code></p>
 
-<p><strong>RestAPI:</strong> <code>POST /api/orders/limit</code></p>
+<p><strong>Rest API:</strong> <code>POST /api/orders/limit</code></p>
 <h3 id='request-5'>Request</h3>
 <table><thead>
 <tr>
@@ -1909,7 +1911,7 @@ The contracts in the Rest API protocol have been updated as well. A new set of f
 <h3 id='request-6'>Request</h3>
 <p><strong>gRPC:</strong> <code>hft.PrivateService.PlaceLimitOrder</code></p>
 
-<p><strong>RestAPI:</strong> <code>POST /api/orders/market</code></p>
+<p><strong>Rest API:</strong> <code>POST /api/orders/market</code></p>
 <h3 id='request-7'>Request</h3>
 <table><thead>
 <tr>
@@ -2003,7 +2005,7 @@ The method also allows you to replace orders in the order book. You can replace 
 <h3 id='request-8'>Request</h3>
 <p><strong>gRPC:</strong> <code>hft.PrivateService.PlaceBulkLimitOrder</code></p>
 
-<p><strong>RestAPI:</strong> <code>POST /api/orders/bulk</code></p>
+<p><strong>Rest API:</strong> <code>POST /api/orders/bulk</code></p>
 <h3 id='request-9'>Request</h3>
 <table><thead>
 <tr>
@@ -2029,13 +2031,13 @@ The method also allows you to replace orders in the order book. You can replace 
 <td>cancelMode</td>
 <td>string</td>
 <td>body</td>
-<td>Strategy for canceling orders if the &quot;cancelPreviousOrders&quot; parameter is activated. <code>bothSides</code>, <code>sellSide</code>, <code>buySide</code></td>
+<td>Strategy for canceling orders if the &quot;cancelPreviousOrders&quot; parameter is activated. <code>bothSides</code>, <code>sellSide</code>, <code>buySide</code>.</td>
 </tr>
 <tr>
 <td>orders</td>
 <td>array of BulkOrder</td>
 <td>body</td>
-<td>List of new orders to place</td>
+<td>List of new orders to place.</td>
 </tr>
 </tbody></table>
 
@@ -2071,7 +2073,7 @@ The method also allows you to replace orders in the order book. You can replace 
 <td>oldId</td>
 <td>string</td>
 <td>body</td>
-<td>Identifier of the replaced order. If the parameter is specified, the new order will replace the existing order with the specified ID. If there is no order with the specified ID, then a new order will not be placed.</td>
+<td>Identifier of the order to be replaced. If the parameter is specified, the new order will replace the existing order with the specified ID. If there is no order with the specified ID, then the new order will not be placed.</td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="err">&gt;</span><span class="w"> </span><span class="err">Request</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">create</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">limit</span><span class="w"> </span><span class="err">order</span><span class="w">
@@ -2102,12 +2104,12 @@ The method also allows you to replace orders in the order book. You can replace 
 <tr>
 <td>assetPairId</td>
 <td>string</td>
-<td>Symbol unique identifier</td>
+<td>Symbol unique identifier.</td>
 </tr>
 <tr>
 <td>statuses</td>
 <td>array of BulkOrderItemStatus</td>
-<td>Array with report about each new order</td>
+<td>Array with report about each new order.</td>
 </tr>
 </tbody></table>
 
@@ -2128,7 +2130,7 @@ The method also allows you to replace orders in the order book. You can replace 
 <tr>
 <td>error</td>
 <td><a href="#error-codes">ErrorCode</a></td>
-<td>Order result</td>
+<td>Order result.</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -2195,7 +2197,7 @@ The method also allows you to replace orders in the order book. You can replace 
 <h3 id='request-10'>Request</h3>
 <p><strong>gRPC:</strong> <code>hft.PrivateService.CancelAllOrders</code></p>
 
-<p><strong>RestAPI:</strong> <code>DELETE /api/orders</code></p>
+<p><strong>Rest API:</strong> <code>DELETE /api/orders</code></p>
 <h3 id='query-parameters-4'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -2247,7 +2249,7 @@ The method also allows you to replace orders in the order book. You can replace 
 <h3 id='request-11'>Request</h3>
 <p><strong>gRPC:</strong> <code>hft.PrivateService.CancelAllOrders</code></p>
 
-<p><strong>RestAPI:</strong> <code>DELETE /api/orders/{orderId}</code></p>
+<p><strong>Rest API:</strong> <code>DELETE /api/orders/{orderId}</code></p>
 <h3 id='query-parameters-5'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -2261,7 +2263,7 @@ The method also allows you to replace orders in the order book. You can replace 
 <td>orderId</td>
 <td>string</td>
 <td>path</td>
-<td>Unique Order ID</td>
+<td>Unique Order ID.</td>
 </tr>
 </tbody></table>
 <h3 id='response-8'>Response</h3>
