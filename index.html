@@ -462,7 +462,7 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1100</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"itemNotFound"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Asset not found"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="nl">"assetId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Asset not found"</span><span class="w">
@@ -473,9 +473,18 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 </span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kn">package</span> <span class="nn">hft</span><span class="o">.</span><span class="n">common</span><span class="p">;</span>
 
 <span class="kd">message</span> <span class="nc">Error</span> <span class="p">{</span>
-    <span class="kt">int32</span> <span class="na">code</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                  <span class="c1">// 1100</span>
+    <span class="n">ErrorCode</span> <span class="na">code</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                  <span class="c1">// 1100</span>
     <span class="kt">string</span> <span class="kd">message</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>              <span class="c1">// "Asset not found"</span>
     <span class="n">map</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="err">&gt;</span> <span class="na">fields</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>  <span class="c1">// "assetId" : "Asset not found"</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span> <span class="n">ErrorCode</span> <span class="p">{</span>
+    <span class="na">success</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="na">runtimeError</span> <span class="o">=</span> <span class="mi">1001</span><span class="p">;</span>
+    <span class="na">itemNotFound</span> <span class="o">=</span> <span class="mi">1100</span><span class="p">;</span>
+
+<span class="cm">/* Full list in the paragraph **Error codes** at the end of the document */</span>
+
 <span class="p">}</span>
 
 <span class="kn">package</span> <span class="nn">hft</span><span class="p">;</span>
