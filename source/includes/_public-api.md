@@ -4,9 +4,10 @@
 
 Get a list of supported assets with parameters.
 
-### HTTP Request
+### Request
 
-`GET /api/assets`
+**gRPC:** `hft.PublicService.GetAssets`
+**RestAPI:** `GET /api/assets`
 
 ### Response
 
@@ -59,9 +60,10 @@ message AssetsResponse {
 
 Get inforomation about specific asset.
 
-### HTTP Request
+### Request
 
-`GET /api/assets/{assetId}`
+**gRPC:** `hft.PublicService.GetAsset`
+**RestAPI:** `GET /api/assets/{assetId}`
 
 ### Query Parameters
 
@@ -80,41 +82,51 @@ name | string | Asset name.
 symbol | string | Asset symbol.
 accuracy | uint | Maximum number of digits after the decimal point which are supported by the asset.
 
+```json
+GET /api/assets/{assetId}
+
 > Response 200 (application/json) - success response
 
-```json
 {
     "payload": {
-        "assetId": "AUD",
-        "blockchainId": "AUD",
-        "name": "AUD",
-        "displayName": "AUD",
-        "accuracy": 2
+        "assetId": "BTC",
+        "name": "Bitcoin",
+        "displayName": "BTC",
+        "accuracy": 8
     }
 }
 ```
 
-> Response 200 (application/json) - error code
+```protobuf
+package hft;
+service PublicService {
+  rpc GetAsset (AssetRequest) returns (AssetResponse);
+}
 
-```RestAPI
-{
-  "Error": {
-    "Code": 1100,
-    "Message": "Asset not found",
-    "Fields": {
-      "assetId": "Asset not found"
-    }
-  }
+message AssetRequest {
+    string assetId = 1;   // BTC
+}
+
+message AssetResponse {
+    Asset payload = 1;
+    hft.common.Error error = 2;  // NULL
+}
+
+message Asset {
+    string assetId = 1;  // BTC
+    string name = 2;     // Bitcoin
+    string symbol = 3;   // BTC
+    int32 accuracy = 4;  // 8
 }
 ```
-
 ## Get all asset pairs
 
 Get all supported asset pairs (symbols).
 
-### HTTP Request
+### Request
 
-`GET /api/assetpairs`
+**gRPC:** `hft.PublicService.GetAssetPairs`
+**RestAPI:** `GET /api/assetpairs`
 
 ### Response
 
@@ -132,9 +144,11 @@ quoteAssetAccuracy | uint | Quote asset accuracy.
 minVolume | [decimal](#decimal-type) | Minimum order volume in base currency.
 minOppositeVolume | [decimal](#decimal-type) | Minimum order volume in quote currency.
 
+```json
+GET /api/assetpairs
+
 > Response 200 (application/json) - success response
 
-```json
 {
   "payload": [
     {
@@ -163,13 +177,38 @@ minOppositeVolume | [decimal](#decimal-type) | Minimum order volume in quote cur
 }
 ```
 
+```protobuf
+package hft;
+service PublicService {
+  rpc GetAssetPairs (google.protobuf.Empty) returns (AssetPairsResponse);
+}
+
+message AssetPairsResponse {
+    repeated AssetPair payload = 1;
+    hft.common.Error error = 2;      // NULL
+}
+
+message AssetPair {
+    string assetPairId = 1;          // "BTCLKK1Y"
+    string baseAssetId = 2;          // "BTC"
+    string quoteAssetId = 3;         // "LKK1Y"
+    string name = 4;                 // "BTC/LKK1Y"
+    int32 priceAccuracy = 5;         // 2
+    int32 baseAssetAccuracy = 6;     // 8
+    int32 quoteAssetAccuracy = 7;    // 2
+    string minVolume = 8;            // 0.0001
+    string minOppositeVolume = 9;    // 4
+}
+```
+
 ## Get a specific asset pair.
 
 Get a specific asset pair(symbol).
 
-### HTTP Request
+### Request
 
-`GET /api/assetpairs/{assetPairId}`
+**gRPC:** `hft.PublicService.GetAssetPair`
+**RestAPI:** `GET /api/assetpairs/{assetPairId}`
 
 ### Query Parameters
 
