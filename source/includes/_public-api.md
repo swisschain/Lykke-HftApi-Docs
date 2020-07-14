@@ -7,6 +7,7 @@ Get a list of supported assets with parameters.
 ### Request
 
 **gRPC:** `hft.PublicService.GetAssets`
+
 **RestAPI:** `GET /api/assets`
 
 ### Response
@@ -52,7 +53,14 @@ service PublicService {
 
 message AssetsResponse {
     repeated Asset payload = 1;
-    hft.common.Error error = 2;
+    hft.common.Error error = 2;  // NULL
+}
+
+message Asset {
+    string assetId = 1;  // BTC
+    string name = 2;     // Bitcoin
+    string symbol = 3;   // BTC
+    int32 accuracy = 4;  // 8
 }
 ```
 
@@ -63,6 +71,7 @@ Get inforomation about specific asset.
 ### Request
 
 **gRPC:** `hft.PublicService.GetAsset`
+
 **RestAPI:** `GET /api/assets/{assetId}`
 
 ### Query Parameters
@@ -127,6 +136,7 @@ Get all supported asset pairs (symbols).
 ### Request
 
 **gRPC:** `hft.PublicService.GetAssetPairs`
+
 **RestAPI:** `GET /api/assetpairs`
 
 ### Response
@@ -210,6 +220,7 @@ Get a specific asset pair(symbol).
 ### Request
 
 **gRPC:** `hft.PublicService.GetAssetPair`
+
 **RestAPI:** `GET /api/assetpairs/{assetPairId}`
 
 ### Query Parameters
@@ -287,7 +298,9 @@ Get the order book by asset pair. The order books contain a list of Buy(Bid) and
 ### Request
 
 **gRPC:** `hft.PublicService.GetOrderbooks`
+
 **RestAPI:** 
+
 `GET /api/orderbooks`
 `GET /api/orderbooks?assetPairId={assetPairId}&depth={depth}`
 
@@ -389,7 +402,9 @@ message Orderbook {
 ### Request
 
 **gRPC:** `hft.PublicService.GetTickers`
+
 **RestAPI:** 
+
 `GET /api/tickers`
 `GET /api/tickers?assetPairIds=BTCUSD&assetPairIds=BTCEUR`
 
