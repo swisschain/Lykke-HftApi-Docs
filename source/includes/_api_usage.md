@@ -82,7 +82,7 @@ message Response {
 ```json
 {
     "error": {
-        "code": 1100,
+        "code": "itemNotFound",
         "message": "Asset not found",
         "fields": {
             "assetId": "Asset not found"
@@ -96,9 +96,18 @@ message Response {
 package hft.common;
 
 message Error {
-    int32 code = 1;                  // 1100
+    ErrorCode code = 1;                  // 1100
     string message = 2;              // "Asset not found"
     map<string, string> fields = 3;  // "assetId" : "Asset not found"
+}
+
+enum ErrorCode {
+    success = 0;
+    runtimeError = 1001;
+    itemNotFound = 1100;
+    
+/* Full list in the paragraph **Error codes** at the end of the document */
+
 }
 
 package hft;
