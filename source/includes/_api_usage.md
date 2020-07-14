@@ -121,7 +121,7 @@ To use the API keys you should just add a header `Authorization: Bearer <your AP
   "Authorization": "Bearer **********************************"
 ```
 
-```protobub
+```protobuf
   "Authorization": "Bearer **********************************"
 ```
 
