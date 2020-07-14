@@ -1,4 +1,4 @@
-# Group Public APIs
+# Public APIs
 
 ## Get all assets
 
