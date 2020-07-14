@@ -291,7 +291,7 @@
               </ul>
           </li>
           <li>
-            <a href="#group-private-apis" class="toc-h1 toc-link" data-title="Group Private APIs">Group Private APIs</a>
+            <a href="#private-apis" class="toc-h1 toc-link" data-title="Private APIs">Private APIs</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#get-the-current-balance" class="toc-h2 toc-link" data-title="Get the current balance">Get the current balance</a>
@@ -1228,7 +1228,7 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
     <span class="kt">string</span> <span class="na">high</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>               <span class="c1">// "9700"</span>
     <span class="kt">string</span> <span class="na">low</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>                <span class="c1">// "9397.999"</span>
 <span class="p">}</span>
-</code></pre></div><h1 id='group-private-apis'>Group Private APIs</h1>
+</code></pre></div><h1 id='private-apis'>Private APIs</h1>
 <p>This group method requires API Key Authentication.</p>
 <h2 id='get-the-current-balance'>Get the current balance</h2>
 <p>Get the current balance from the API Key account.</p>
@@ -1538,10 +1538,16 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 <span class="p">}</span>
 </code></pre></div><h2 id='get-active-or-closed-orders'>Get active or closed orders</h2>
 <p>Get active orders or closed orders from history.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /api/orders/active</code></p>
+<h3 id='request-3'>Request</h3>
+<p><strong>gRPC:</strong> </p>
 
-<p><code>GET /api/orders/closed</code></p>
+<p><code>hft.PrivateService.GetActiveOrders</code>
+<code>hft.PrivateService.GetClosedOrders</code></p>
+
+<p><strong>RestAPI:</strong></p>
+
+<p><code>GET /api/orders/active</code>
+<code>GET /api/orders/closed</code></p>
 <h3 id='query-parameters-3'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -1636,11 +1642,12 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 <td>Order remaining volume to be filled (in base asset).</td>
 </tr>
 </tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/orders/active</span><span class="w">
+</span><span class="err">GET</span><span class="w"> </span><span class="err">/api/orders/closed</span><span class="w">
 
-<blockquote>
-<p>Response 200 (application/json) - success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
   </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0c336213-0a64-44a8-9599-e88bf6aa1b69"</span><span class="p">,</span><span class="w">
@@ -1657,11 +1664,47 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='place-a-limit-order'>Place a limit order</h2>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kn">package</span> <span class="nn">hft</span><span class="p">;</span>
+
+<span class="kd">service</span> <span class="n">PrivateService</span> <span class="p">{</span>
+  <span class="k">rpc</span> <span class="n">GetActiveOrders</span> <span class="p">(</span><span class="n">OrdersRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">OrdersResponse</span><span class="p">);</span>
+    <span class="k">rpc</span> <span class="n">GetClosedOrders</span> <span class="p">(</span><span class="n">OrdersRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">OrdersResponse</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">OrdersRequest</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">assetPairId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">int32</span> <span class="na">offset</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kt">int32</span> <span class="na">take</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">OrdersResponse</span> <span class="p">{</span>
+    <span class="k">repeated</span> <span class="n">Order</span> <span class="na">payload</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">hft.common.Error</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">Order</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">google.protobuf.Timestamp</span> <span class="na">timestamp</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">oneof</span> <span class="n">optional_lastTradeTimestamp</span> <span class="p">{</span>
+        <span class="n">google.protobuf.Timestamp</span> <span class="na">lastTradeTimestamp</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">string</span> <span class="na">status</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">assetPairId</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+    <span class="n">Side</span> <span class="na">side</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">price</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">volume</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">filledVolume</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">remainingVolume</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">cost</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h2 id='place-a-limit-order'>Place a limit order</h2>
 <p>Place a limit order.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST /api/orders/limit</code></p>
-<h3 id='request-3'>Request</h3>
+<h3 id='request-4'>Request</h3>
+<p><strong>gRPC:</strong> <code>hft.PrivateService.PlaceLimitOrder</code></p>
+
+<p><strong>RestAPI:</strong> <code>POST /api/orders/limit</code></p>
+<h3 id='request-5'>Request</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1695,11 +1738,9 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 <td>Order price(in quote asset for one unit of base asset).</td>
 </tr>
 </tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">&gt;</span><span class="w"> </span><span class="err">Request</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">create</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">limit</span><span class="w"> </span><span class="err">order</span><span class="w">
 
-<blockquote>
-<p>Request to create a limit order</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nl">"assetPairId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
@@ -1721,21 +1762,44 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 <td>Unique order ID</td>
 </tr>
 </tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/orders/limit</span><span class="w">
 
-<blockquote>
-<p>Response 200 (application/json) - success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
   </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0c336213-0a64-44a8-9599-e88bf6aa1b69"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='place-a-market-order'>Place a market order</h2>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kn">package</span> <span class="nn">hft</span><span class="p">;</span>
+
+<span class="kd">service</span> <span class="n">PrivateService</span> <span class="p">{</span>
+  <span class="k">rpc</span> <span class="n">PlaceLimitOrder</span> <span class="p">(</span><span class="n">LimitOrderRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">LimitOrderResponse</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">LimitOrderRequest</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">assetPairId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">Side</span> <span class="na">side</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">volume</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">price</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">LimitOrderResponse</span> <span class="p">{</span>
+    <span class="n">LimitOrderPayload</span> <span class="na">payload</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">hft.common.Error</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="kd">message</span> <span class="nc">LimitOrderPayload</span> <span class="p">{</span>
+        <span class="kt">string</span> <span class="na">orderId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h2 id='place-a-market-order'>Place a market order</h2>
 <p>Place a <a href="https://en.wikipedia.org/wiki/Fill_or_kill">Fill-Or-Kill</a> market order.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST /api/orders/market</code></p>
-<h3 id='request-4'>Request</h3>
+<h3 id='request-6'>Request</h3>
+<p><strong>gRPC:</strong> <code>hft.PrivateService.PlaceLimitOrder</code></p>
+
+<p><strong>RestAPI:</strong> <code>POST /api/orders/market</code></p>
+<h3 id='request-7'>Request</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1763,11 +1827,9 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 <td>Order volume (in base asset).</td>
 </tr>
 </tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">&gt;</span><span class="w"> </span><span class="err">Request</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">create</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">market</span><span class="w"> </span><span class="err">order</span><span class="w">
 
-<blockquote>
-<p>Request to create a market order</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nl">"assetPairId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Buy"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.554</span><span class="w">
@@ -1793,20 +1855,43 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 <td>Market order result price.</td>
 </tr>
 </tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/orders/market</span><span class="w">
 
-<blockquote>
-<p>Response 200 (application/json) - success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
   </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6445.222311</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='mass-cancel-orders'>Mass cancel orders</h2>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kn">package</span> <span class="nn">hft</span><span class="p">;</span>
+
+<span class="kd">service</span> <span class="n">PrivateService</span> <span class="p">{</span>
+  <span class="k">rpc</span> <span class="n">PlaceMarketOrder</span> <span class="p">(</span><span class="n">MarketOrderRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">MarketOrderResponse</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">MarketOrderRequest</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">assetPairId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">Side</span> <span class="na">side</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">volume</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">MarketOrderResponse</span> <span class="p">{</span>
+    <span class="n">MarketOrderPayload</span> <span class="na">payload</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">hft.common.Error</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="kd">message</span> <span class="nc">MarketOrderPayload</span> <span class="p">{</span>
+        <span class="kt">string</span> <span class="na">orderId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="kt">string</span> <span class="na">price</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h2 id='mass-cancel-orders'>Mass cancel orders</h2>
 <p>Cancel all active orders or filter order to cancel by AssetPair or Side.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
-<p><code>DELETE /api/orders</code></p>
+<h3 id='request-8'>Request</h3>
+<p><strong>gRPC:</strong> <code>hft.PrivateService.CancelAllOrders</code></p>
+
+<p><strong>RestAPI:</strong> <code>DELETE /api/orders</code></p>
 <h3 id='query-parameters-4'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -1831,17 +1916,34 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 </tbody></table>
 <h3 id='response-6'>Response</h3>
 <p>No content</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">DELETE</span><span class="w"> </span><span class="err">/api/orders</span><span class="w">
 
-<blockquote>
-<p>Response 200 (application/json) - success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
   </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='cancel-orders-by-id'>Cancel orders by ID</h2>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kn">package</span> <span class="nn">hft</span><span class="p">;</span>
+
+<span class="kd">service</span> <span class="n">PrivateService</span> <span class="p">{</span>
+  <span class="k">rpc</span> <span class="n">CancelAllOrders</span> <span class="p">(</span><span class="n">CancelOrdersRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">CancelOrderResponse</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">CancelOrdersRequest</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">assetPairId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">Side</span> <span class="na">side</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">CancelOrderResponse</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="na">payload</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">hft.common.Error</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h2 id='cancel-orders-by-id'>Cancel orders by ID</h2>
 <p>Cancel a specific order by order ID.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
-<p><code>DELETE /api/orders/{orderId}</code></p>
+<h3 id='request-9'>Request</h3>
+<p><strong>gRPC:</strong> <code>hft.PrivateService.CancelAllOrders</code></p>
+
+<p><strong>RestAPI:</strong> <code>DELETE /api/orders/{orderId}</code></p>
 <h3 id='query-parameters-5'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -1860,14 +1962,28 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 </tbody></table>
 <h3 id='response-7'>Response</h3>
 <p>No content</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">DELETE</span><span class="w"> </span><span class="err">/api/orders/</span><span class="p">{</span><span class="err">orderId</span><span class="p">}</span><span class="w">
 
-<blockquote>
-<p>Response 200 (application/json) - success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
   </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='error-codes'>Error codes</h1>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kn">package</span> <span class="nn">hft</span><span class="p">;</span>
+
+<span class="kd">service</span> <span class="n">PrivateService</span> <span class="p">{</span>
+  <span class="k">rpc</span> <span class="n">CancelOrder</span> <span class="p">(</span><span class="n">CancelOrderRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">CancelOrderResponse</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">CancelOrderRequest</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">orderId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">CancelOrderResponse</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="na">payload</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">hft.common.Error</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h1 id='error-codes'>Error codes</h1>
 <table><thead>
 <tr>
 <th>Code</th>
