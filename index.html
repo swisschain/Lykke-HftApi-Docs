@@ -1213,22 +1213,23 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 <span class="p">}</span>
 
 <span class="kd">message</span> <span class="nc">TickersResponse</span> <span class="p">{</span>
-    <span class="k">repeated</span> <span class="n">Ticker</span> <span class="na">payload</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">repeated</span> <span class="n">TickerUpdate</span> <span class="na">payload</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
     <span class="n">hft.common.Error</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>    <span class="c1">// NULL</span>
 <span class="p">}</span>
 
-<span class="kd">message</span> <span class="nc">Ticker</span> <span class="p">{</span>
-    <span class="kt">string</span> <span class="na">assetPairId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>        <span class="c1">// "BTCUSD"</span>
-    <span class="kt">string</span> <span class="na">volumeBase</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>         <span class="c1">// "2.15139075"</span>
-    <span class="kt">string</span> <span class="na">volumeQuote</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>        <span class="c1">// "20649.0296"</span>
-    <span class="kt">string</span> <span class="na">priceChange</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>        <span class="c1">// "0.023048622404312356"</span>
-    <span class="kt">string</span> <span class="na">lastPrice</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>          <span class="c1">// "8620"</span>
-    <span class="kt">string</span> <span class="na">bid</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>                <span class="c1">// "9669.12"</span>
-    <span class="kt">string</span> <span class="na">ask</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>                <span class="c1">// "9673.61012"</span>
-    <span class="kt">string</span> <span class="na">high</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>               <span class="c1">// "9700"</span>
-    <span class="kt">string</span> <span class="na">low</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>                <span class="c1">// "9397.999"</span>
+<span class="kd">message</span> <span class="nc">TickerUpdate</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">assetPairId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">volumeBase</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">volumeQuote</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">priceChange</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">lastPrice</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">high</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">low</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+    <span class="n">google.protobuf.Timestamp</span> <span class="na">timestamp</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h1 id='private-apis'>Private APIs</h1>
+</code></pre></div>
+<p>TODO: ADD rpc GetPrices (PricesRequest) returns (PricesResponse);</p>
+<h1 id='private-apis'>Private APIs</h1>
 <p>This group method requires API Key Authentication.</p>
 <h2 id='get-the-current-balance'>Get the current balance</h2>
 <p>Get the current balance from the API Key account.</p>
