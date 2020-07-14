@@ -570,15 +570,13 @@ message BulkLimitOrderResponse {
 
     message BulkLimitOrderPayload {
         string assetPairId = 1;
-        repeated BulkOrderItemStatus statuses = 3;
+        repeated BulkOrderItemStatus statuses = 2;
     }
 }
 
 message BulkOrderItemStatus {
     string id = 1;
-    oneof optional_error {
-        error-codes error = 2;
-    }
+    hft.common.ErrorCode error = 2;
     string volume = 3;
     string price = 4;
 }
