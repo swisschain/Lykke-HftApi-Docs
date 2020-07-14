@@ -1232,8 +1232,10 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 <p>This group method requires API Key Authentication.</p>
 <h2 id='get-the-current-balance'>Get the current balance</h2>
 <p>Get the current balance from the API Key account.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /api/balance</code></p>
+<h3 id='request'>Request</h3>
+<p><strong>gRPC:</strong> <code>hft.PrivateService.GetBalances</code></p>
+
+<p><strong>RestAPI:</strong> <code>GET /api/balance</code></p>
 <h3 id='response'>Response</h3>
 <p>The array of balance by assets.</p>
 
@@ -1265,11 +1267,11 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 <td>Last balance update on current asset.</td>
 </tr>
 </tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/balance</span><span class="w">
 
-<blockquote>
-<p>Response 200 (application/json) - success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
   </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"assetId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
@@ -1285,9 +1287,26 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
     </span><span class="p">},</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='get-trade-history'>Get trade history</h2>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kn">package</span> <span class="nn">hft</span><span class="p">;</span>
+
+<span class="kd">service</span> <span class="n">PrivateService</span> <span class="p">{</span>
+  <span class="k">rpc</span> <span class="n">GetBalances</span> <span class="p">(</span><span class="n">google.protobuf.Empty</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">BalancesResponse</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">BalancesResponse</span> <span class="p">{</span>
+    <span class="k">repeated</span> <span class="n">Balance</span> <span class="na">payload</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">hft.common.Error</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">Balance</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">assetId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">available</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">reserved</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">google.protobuf.Timestamp</span> <span class="na">timestamp</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h2 id='get-trade-history'>Get trade history</h2>
 <p>Gets the trading history of an account. Also, with the use of parameters, it can returns a single order.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /api/trades</code></p>
 
 <p><code>GET /api/trades/order/{orderId}</code></p>
@@ -1475,7 +1494,7 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='get-active-or-closed-orders'>Get active or closed orders</h2>
 <p>Get active orders or closed orders from history.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /api/orders/active</code></p>
 
 <p><code>GET /api/orders/closed</code></p>
@@ -1596,9 +1615,9 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='place-a-limit-order'>Place a limit order</h2>
 <p>Place a limit order.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST /api/orders/limit</code></p>
-<h3 id='request'>Request</h3>
+<h3 id='request-2'>Request</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1670,9 +1689,9 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='place-a-market-order'>Place a market order</h2>
 <p>Place a <a href="https://en.wikipedia.org/wiki/Fill_or_kill">Fill-Or-Kill</a> market order.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST /api/orders/market</code></p>
-<h3 id='request-2'>Request</h3>
+<h3 id='request-3'>Request</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1742,7 +1761,7 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='mass-cancel-orders'>Mass cancel orders</h2>
 <p>Cancel all active orders or filter order to cancel by AssetPair or Side.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>DELETE /api/orders</code></p>
 <h3 id='query-parameters-4'>Query Parameters</h3>
 <table><thead>
@@ -1777,7 +1796,7 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='cancel-orders-by-id'>Cancel orders by ID</h2>
 <p>Cancel a specific order by order ID.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>DELETE /api/orders/{orderId}</code></p>
 <h3 id='query-parameters-5'>Query Parameters</h3>
 <table><thead>
