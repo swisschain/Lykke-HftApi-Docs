@@ -8,7 +8,7 @@ Get a list of supported assets with parameters.
 
 **gRPC:** `hft.PublicService.GetAssets`
 
-**RestAPI:** `GET /api/assets`
+**Rest API:** `GET /api/assets`
 
 ### Response
 
@@ -213,9 +213,9 @@ message AssetPair {
 }
 ```
 
-## Get a specific asset pair.
+## Get a specific asset pair
 
-Get a specific asset pair(symbol).
+Get a specific asset pair.
 
 ### Request
 
@@ -308,8 +308,8 @@ Get the order book by asset pair. The order books contain a list of Buy(Bid) and
 
 Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
-assetPairId | string | query | *(Optional)* Identificator of specific symbol. By default return all sumbols.
-depth | uint | query | *(Optional)* How many best levels need to include in order books. By default include all levels.
+assetPairId | string | query | *(Optional)* Identificator of specific symbol. By default return all symbols.
+depth | uint | query | *(Optional)* How many levels need to include in order books. By default include all levels.
 
 ### Response
 
@@ -413,7 +413,7 @@ message Orderbook {
 
 Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
-assetPairIds | array of strings | query | *(Optional)* Filter by symbols(returns all asset pair information by default).
+assetPairIds | string | query | *(Optional)* Filter by symbols. By default returns all asset pairs information.
 
 ### Response
 
@@ -422,12 +422,12 @@ Asset description:
 Property | Type | Description
 -------- | ---- | -----------
 assetPairId | string | Symbol unique identifier.
-volumeBase | [decimal](#decimal-type) | Trading volume for last 24h in base asset.
-volumeQuote | [decimal](#decimal-type) | Trading volume for last 24h in quote asset.
+volumeBase | [decimal](#decimal-type) | Trading volume for the last 24h in base asset.
+volumeQuote | [decimal](#decimal-type) | Trading volume for the last 24h in quote asset.
 priceChange | [decimal](#decimal-type) | Price changes(in %) in the last 24h.
 lastPrice | [decimal](#decimal-type) | The last trade price.
-high | [decimal](#decimal-type) | The maximum trade price from last 24h.
-low | [decimal](#decimal-type) | The minimum trade price from last 24h.
+high | [decimal](#decimal-type) | The maximum trade price from the last 24h.
+low | [decimal](#decimal-type) | The minimum trade price from the last 24h.
 timestamp | [TimeStamp](#timestamp-type) | Last update timestamp.
 
 
@@ -509,7 +509,7 @@ Get current prices by symbols.
 
 Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
-assetPairIds | array of string | query | *(Optional)* List of identificators of specific symbols. By default return all sumbols.
+assetPairIds | array of string | query | *(Optional)* List of identificators of specific symbols. By default return all symbols.
 
 ### Response
 
@@ -519,7 +519,7 @@ Property | Type | Description
 -------- | ---- | -----------
 assetPairId | string | Symbol unique identifier.
 timestamp | [TimeStamp](#timestamp-type) | Timestamp of last order book update.
-bid | [decimal](#decimal-type) | Bit price.
+bid | [decimal](#decimal-type) | Bid price.
 ask | [decimal](#decimal-type) | Ask price.
 
 ```json
