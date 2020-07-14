@@ -1,8 +1,6 @@
 # Protocol description
 
-Lykke HFT API allows users to use 2 kinds of protocol `gRPC API` and `Rest API`. 
-
-Both kinds of APIs support the same methods with the same data format. But only gRPC API supports receiving streaming data from the platform.
+Lykke HFT API allows users to use 2 kinds of protocol `gRPC API` and `Rest API`. Both kinds of APIs support the same methods with the same data format, but only gRPC API supports receiving streaming data from the platform.
 
 ## gRPC API
 
