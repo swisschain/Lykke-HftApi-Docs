@@ -280,7 +280,7 @@
                     <a href="#get-all-asset-pairs" class="toc-h2 toc-link" data-title="Get all asset pairs">Get all asset pairs</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-asset-pair" class="toc-h2 toc-link" data-title="Get a specific asset pair.">Get a specific asset pair.</a>
+                    <a href="#get-a-specific-asset-pair" class="toc-h2 toc-link" data-title="Get a specific asset pair">Get a specific asset pair</a>
                   </li>
                   <li>
                     <a href="#asset-pair-order-book-ticker" class="toc-h2 toc-link" data-title="Asset Pair Order Book Ticker">Asset Pair Order Book Ticker</a>
@@ -580,7 +580,7 @@ The contracts in the Rest API protocol have been updated as well. A new set of f
 <h3 id='request'>Request</h3>
 <p><strong>gRPC:</strong> <code>hft.PublicService.GetAssets</code></p>
 
-<p><strong>RestAPI:</strong> <code>GET /api/assets</code></p>
+<p><strong>Rest API:</strong> <code>GET /api/assets</code></p>
 <h3 id='response'>Response</h3>
 <p>Array of assets:</p>
 
@@ -849,8 +849,8 @@ The contracts in the Rest API protocol have been updated as well. A new set of f
     <span class="kt">string</span> <span class="na">minVolume</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>            <span class="c1">// 0.0001</span>
     <span class="kt">string</span> <span class="na">minOppositeVolume</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>    <span class="c1">// 4</span>
 <span class="p">}</span>
-</code></pre></div><h2 id='get-a-specific-asset-pair'>Get a specific asset pair.</h2>
-<p>Get a specific asset pair(symbol).</p>
+</code></pre></div><h2 id='get-a-specific-asset-pair'>Get a specific asset pair</h2>
+<p>Get a specific asset pair.</p>
 <h3 id='request-4'>Request</h3>
 <p><strong>gRPC:</strong> <code>hft.PublicService.GetAssetPair</code></p>
 
@@ -989,13 +989,13 @@ The contracts in the Rest API protocol have been updated as well. A new set of f
 <td>assetPairId</td>
 <td>string</td>
 <td>query</td>
-<td><em>(Optional)</em> Identificator of specific symbol. By default return all sumbols.</td>
+<td><em>(Optional)</em> Identificator of specific symbol. By default return all symbols.</td>
 </tr>
 <tr>
 <td>depth</td>
 <td>uint</td>
 <td>query</td>
-<td><em>(Optional)</em> How many best levels need to include in order books. By default include all levels.</td>
+<td><em>(Optional)</em> How many levels need to include in order books. By default include all levels.</td>
 </tr>
 </tbody></table>
 <h3 id='response-4'>Response</h3>
@@ -1130,9 +1130,9 @@ The contracts in the Rest API protocol have been updated as well. A new set of f
 </thead><tbody>
 <tr>
 <td>assetPairIds</td>
-<td>array of strings</td>
+<td>string</td>
 <td>query</td>
-<td><em>(Optional)</em> Filter by symbols(returns all asset pair information by default).</td>
+<td><em>(Optional)</em> Filter by symbols. By default returns all asset pairs information.</td>
 </tr>
 </tbody></table>
 <h3 id='response-5'>Response</h3>
@@ -1153,12 +1153,12 @@ The contracts in the Rest API protocol have been updated as well. A new set of f
 <tr>
 <td>volumeBase</td>
 <td><a href="#decimal-type">decimal</a></td>
-<td>Trading volume for last 24h in base asset.</td>
+<td>Trading volume for the last 24h in base asset.</td>
 </tr>
 <tr>
 <td>volumeQuote</td>
 <td><a href="#decimal-type">decimal</a></td>
-<td>Trading volume for last 24h in quote asset.</td>
+<td>Trading volume for the last 24h in quote asset.</td>
 </tr>
 <tr>
 <td>priceChange</td>
@@ -1173,12 +1173,12 @@ The contracts in the Rest API protocol have been updated as well. A new set of f
 <tr>
 <td>high</td>
 <td><a href="#decimal-type">decimal</a></td>
-<td>The maximum trade price from last 24h.</td>
+<td>The maximum trade price from the last 24h.</td>
 </tr>
 <tr>
 <td>low</td>
 <td><a href="#decimal-type">decimal</a></td>
-<td>The minimum trade price from last 24h.</td>
+<td>The minimum trade price from the last 24h.</td>
 </tr>
 <tr>
 <td>timestamp</td>
@@ -1263,7 +1263,7 @@ The contracts in the Rest API protocol have been updated as well. A new set of f
 <td>assetPairIds</td>
 <td>array of string</td>
 <td>query</td>
-<td><em>(Optional)</em> List of identificators of specific symbols. By default return all sumbols.</td>
+<td><em>(Optional)</em> List of identificators of specific symbols. By default return all symbols.</td>
 </tr>
 </tbody></table>
 <h3 id='response-6'>Response</h3>
@@ -1289,7 +1289,7 @@ The contracts in the Rest API protocol have been updated as well. A new set of f
 <tr>
 <td>bid</td>
 <td><a href="#decimal-type">decimal</a></td>
-<td>Bit price.</td>
+<td>Bid price.</td>
 </tr>
 <tr>
 <td>ask</td>
