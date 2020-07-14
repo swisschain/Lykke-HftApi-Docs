@@ -491,7 +491,7 @@ message TickerUpdate {
 }
 ```
 
-## Current prices
+## Get current prices
 
 Get current prices by symbols.
 
