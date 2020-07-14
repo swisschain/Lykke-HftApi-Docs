@@ -2,6 +2,8 @@
 
 This group method requires API Key Authentication.
 
+If you would like to create your API key, please sign up in [here](https://wallet.lykke.com/?utm_source=github&utm_medium=api_doc&utm_campaign=api_documentation) and start trading with Lykke!. If you need a step by step guide you may check our Help Center in [here](https://support.lykke.com/hc/en-us/articles/360000552605-How-do-I-create-an-API-Wallet-).
+
 ## Get the current balance
 
 Get the current balance from the API Key account.
@@ -10,7 +12,7 @@ Get the current balance from the API Key account.
 
 **gRPC:** `hft.PrivateService.GetBalances`
 
-**RestAPI:** `GET /api/balance`
+**Rest API:** `GET /api/balance`
 
 ### Response
 
@@ -75,7 +77,7 @@ Gets the trading history of an account. Also, with the use of parameters, it can
 
 **gRPC:** `hft.PrivateService.GetTrades`
 
-**RestAPI:**
+**Rest API:**
 
 `GET /api/trades`
 `GET /api/trades/order/{orderId}`
@@ -215,7 +217,7 @@ Get active orders or closed orders from history.
 `hft.PrivateService.GetActiveOrders`
 `hft.PrivateService.GetClosedOrders`
 
-**RestAPI:**
+**Rest API:**
 
 `GET /api/orders/active`
 `GET /api/orders/closed`
@@ -236,7 +238,7 @@ Asset description:
 
 Property | Type | Description
 -------- | ---- | -----------
-id | string | Unique Order ID
+id | string | Unique Order ID.
 timestamp |  [TimeStamp](#timestamp-type) | Timestamp for order creation.
 lastTradeTimestamp | [TimeStamp](#timestamp-type) | Timestamp for last trade by order.
 status | string | Order status. List of statuses [here](#order-statuses).
@@ -318,7 +320,7 @@ Place a limit order.
 
 **gRPC:** `hft.PrivateService.PlaceLimitOrder`
 
-**RestAPI:** `POST /api/orders/limit`
+**Rest API:** `POST /api/orders/limit`
 
 ### Request
 
@@ -394,7 +396,7 @@ Place a [Fill-Or-Kill](https://en.wikipedia.org/wiki/Fill_or_kill) market order.
 
 **gRPC:** `hft.PrivateService.PlaceLimitOrder`
 
-**RestAPI:** `POST /api/orders/market`
+**Rest API:** `POST /api/orders/market`
 
 ### Request
 
@@ -469,7 +471,7 @@ The method also allows you to replace orders in the order book. You can replace 
 
 **gRPC:** `hft.PrivateService.PlaceBulkLimitOrder`
 
-**RestAPI:** `POST /api/orders/bulk`
+**Rest API:** `POST /api/orders/bulk`
 
 ### Request
 
@@ -477,8 +479,8 @@ Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
 assetPairId | string | body | Symbol unique identifier.
 cancelPreviousOrders | bool | body | Cancel existing orders by AssetPair before placing new orders. Default: False.
-cancelMode | string | body | Strategy for canceling orders if the "cancelPreviousOrders" parameter is activated. `bothSides`, `sellSide`, `buySide`
-orders | array of BulkOrder | body | List of new orders to place
+cancelMode | string | body | Strategy for canceling orders if the "cancelPreviousOrders" parameter is activated. `bothSides`, `sellSide`, `buySide`.
+orders | array of BulkOrder | body | List of new orders to place.
 
 **BulkOrder:**
 
@@ -487,7 +489,7 @@ Parameter | Type | Place | Description
 orderAction | string | body | Order side: `Sell` or `Buy`.
 volume | [decimal](#decimal-type) | body | Order volume (in base asset).
 price | [decimal](#decimal-type) | body | Order price(in quote asset for one unit of base asset).
-oldId | string | body | Identifier of the replaced order. If the parameter is specified, the new order will replace the existing order with the specified ID. If there is no order with the specified ID, then a new order will not be placed.
+oldId | string | body | Identifier of the order to be replaced. If the parameter is specified, the new order will replace the existing order with the specified ID. If there is no order with the specified ID, then the new order will not be placed.
 
   
 ```json
@@ -514,15 +516,15 @@ Response description:
 
 Property | Type | Description
 -------- | ---- | -----------
-assetPairId | string | Symbol unique identifier
-statuses | array of BulkOrderItemStatus | Array with report about each new order
+assetPairId | string | Symbol unique identifier.
+statuses | array of BulkOrderItemStatus | Array with report about each new order.
 
 **BulkOrderItemStatus:**
 
 Property | Type | Description
 -------- | ---- | -----------
 id | string| Order ID
-error | [ErrorCode](#error-codes) | Order result
+error | [ErrorCode](#error-codes) | Order result.
 volume | [decimal](#decimal-type) | Order volume (in base asset).
 price | [decimal](#decimal-type) | body | Order price(in quote asset for one unit of base asset).
 
@@ -590,7 +592,7 @@ Cancel all active orders or filter order to cancel by AssetPair or Side.
 
 **gRPC:** `hft.PrivateService.CancelAllOrders`
 
-**RestAPI:** `DELETE /api/orders`
+**Rest API:** `DELETE /api/orders`
 
 ### Query Parameters
 
@@ -640,14 +642,14 @@ Cancel a specific order by order ID.
 
 **gRPC:** `hft.PrivateService.CancelAllOrders`
 
-**RestAPI:** `DELETE /api/orders/{orderId}`
+**Rest API:** `DELETE /api/orders/{orderId}`
 
 ### Query Parameters
 
 
 Parameter | Type | Place | Description
 --------- | ---- | ----- | -----------
-orderId | string | path | Unique Order ID
+orderId | string | path | Unique Order ID.
 
 ### Response
 
