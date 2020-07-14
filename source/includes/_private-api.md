@@ -522,7 +522,7 @@ statuses | array of BulkOrderItemStatus | Array with report about each new order
 Property | Type | Description
 -------- | ---- | -----------
 id | string| Order ID
-error | string | Order result
+error | [ErrorCode](#error-codes) | Order result
 volume | [decimal](#decimal-type) | Order volume (in base asset).
 price | [decimal](#decimal-type) | body | Order price(in quote asset for one unit of base asset).
 
@@ -577,7 +577,7 @@ message BulkLimitOrderResponse {
 message BulkOrderItemStatus {
     string id = 1;
     oneof optional_error {
-        int32 error = 2;
+        error-codes error = 2;
     }
     string volume = 3;
     string price = 4;
