@@ -71,10 +71,13 @@ message Balance {
 
 Gets the trading history of an account. Also, with the use of parameters, it can returns a single order.
 
-### HTTP Request
+### Request
+
+**gRPC:** `hft.PrivateService.GetTrades`
+
+**RestAPI:**
 
 `GET /api/trades`
-
 `GET /api/trades/order/{orderId}`
 
 ### Query Parameters
@@ -119,9 +122,14 @@ Property | Type | Description
 assetId | string | Asset ID
 size | [decimal](#decimal-type) | Fee size
 
-> Response 200 (application/json) - success response
+
 
 ```json
+GET /api/trades
+GET /api/trades/order/{orderId}
+
+> Response 200 (application/json) - success response
+
 {
   "payload": [
     {
@@ -150,6 +158,49 @@ size | [decimal](#decimal-type) | Fee size
       "quoteAssetId": "USD",
       "fee": null
     }]
+}
+```
+
+```protobuf
+package hft;
+
+service PrivateService {
+  rpc GetTrades (TradesRequest) returns (TradesResponse);
+}
+
+message TradesRequest {
+    string assetPairId = 1;
+    oneof optional_side {
+        Side side = 2;
+    }
+    int32 offset = 3;
+    int32 take = 4;
+    string from = 5;
+    string to = 6;
+}
+
+message TradesResponse {
+    repeated Trade payload = 1;
+    hft.common.Error error = 2;
+}
+
+message Trade {
+    string id = 1;
+    google.protobuf.Timestamp timestamp = 2;
+    string assetPairId = 3;
+    string orderId = 4;
+    string role = 5;
+    string price = 6;
+    string baseVolume = 7;
+    string quoteVolume = 8;
+    string baseAssetId = 9;
+    string quoteAssetId = 10;
+    TradeFee fee = 11;
+}
+
+message TradeFee {
+    string size = 1;
+    string assetId = 2;
 }
 ```
 
