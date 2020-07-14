@@ -564,8 +564,9 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 </tbody></table>
 <h1 id='group-public-apis'>Group Public APIs</h1><h2 id='get-all-assets'>Get all assets</h2>
 <p>Get a list of supported assets with parameters.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /api/assets</code></p>
+<h3 id='request'>Request</h3>
+<p><strong>gRPC:</strong> <code>hft.PublicService.GetAssets</code>
+<strong>RestAPI:</strong> <code>GET /api/assets</code></p>
 <h3 id='response'>Response</h3>
 <p>Array of assets:</p>
 
@@ -629,8 +630,9 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 <span class="p">}</span>
 </code></pre></div><h2 id='get-asset-by-id'>Get Asset by ID</h2>
 <p>Get inforomation about specific asset.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET /api/assets/{assetId}</code></p>
+<h3 id='request-2'>Request</h3>
+<p><strong>gRPC:</strong> <code>hft.PublicService.GetAsset</code>
+<strong>RestAPI:</strong> <code>GET /api/assets/{assetId}</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -678,36 +680,43 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 <td>Maximum number of digits after the decimal point which are supported by the asset.</td>
 </tr>
 </tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/assets/</span><span class="p">{</span><span class="err">assetId</span><span class="p">}</span><span class="w">
 
-<blockquote>
-<p>Response 200 (application/json) - success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
     </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"assetId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUD"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"blockchainId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUD"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUD"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUD"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"accuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+        </span><span class="nl">"assetId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"accuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<blockquote>
-<p>Response 200 (application/json) - error code</p>
-</blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>{
-  "Error": {
-    "Code": 1100,
-    "Message": "Asset not found",
-    "Fields": {
-      "assetId": "Asset not found"
-    }
-  }
-}
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kn">package</span> <span class="nn">hft</span><span class="p">;</span>
+<span class="kd">service</span> <span class="n">PublicService</span> <span class="p">{</span>
+  <span class="k">rpc</span> <span class="n">GetAsset</span> <span class="p">(</span><span class="n">AssetRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">AssetResponse</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">AssetRequest</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">assetId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>   <span class="c1">// BTC</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">AssetResponse</span> <span class="p">{</span>
+    <span class="n">Asset</span> <span class="na">payload</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">hft.common.Error</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>  <span class="c1">// NULL</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">Asset</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">assetId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">// BTC</span>
+    <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>     <span class="c1">// Bitcoin</span>
+    <span class="kt">string</span> <span class="na">symbol</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>   <span class="c1">// BTC</span>
+    <span class="kt">int32</span> <span class="na">accuracy</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>  <span class="c1">// 8</span>
+<span class="p">}</span>
 </code></pre></div><h2 id='get-all-asset-pairs'>Get all asset pairs</h2>
 <p>Get all supported asset pairs (symbols).</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET /api/assetpairs</code></p>
+<h3 id='request-3'>Request</h3>
+<p><strong>gRPC:</strong> <code>hft.PublicService.GetAssetPairs</code>
+<strong>RestAPI:</strong> <code>GET /api/assetpairs</code></p>
 <h3 id='response-3'>Response</h3>
 <p>Array of trading instruments.</p>
 
@@ -764,11 +773,11 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 <td>Minimum order volume in quote currency.</td>
 </tr>
 </tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/assetpairs</span><span class="w">
 
-<blockquote>
-<p>Response 200 (application/json) - success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
   </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"assetPairId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
@@ -794,10 +803,32 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='get-a-specific-asset-pair'>Get a specific asset pair.</h2>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kn">package</span> <span class="nn">hft</span><span class="p">;</span>
+<span class="kd">service</span> <span class="n">PublicService</span> <span class="p">{</span>
+  <span class="k">rpc</span> <span class="n">GetAssetPairs</span> <span class="p">(</span><span class="n">google.protobuf.Empty</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">AssetPairsResponse</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">AssetPairsResponse</span> <span class="p">{</span>
+    <span class="k">repeated</span> <span class="n">AssetPair</span> <span class="na">payload</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">hft.common.Error</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>      <span class="c1">// NULL</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">AssetPair</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">assetPairId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>          <span class="c1">// "BTCLKK1Y"</span>
+    <span class="kt">string</span> <span class="na">baseAssetId</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>          <span class="c1">// "BTC"</span>
+    <span class="kt">string</span> <span class="na">quoteAssetId</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>         <span class="c1">// "LKK1Y"</span>
+    <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                 <span class="c1">// "BTC/LKK1Y"</span>
+    <span class="kt">int32</span> <span class="na">priceAccuracy</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>         <span class="c1">// 2</span>
+    <span class="kt">int32</span> <span class="na">baseAssetAccuracy</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>     <span class="c1">// 8</span>
+    <span class="kt">int32</span> <span class="na">quoteAssetAccuracy</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>    <span class="c1">// 2</span>
+    <span class="kt">string</span> <span class="na">minVolume</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>            <span class="c1">// 0.0001</span>
+    <span class="kt">string</span> <span class="na">minOppositeVolume</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>    <span class="c1">// 4</span>
+<span class="p">}</span>
+</code></pre></div><h2 id='get-a-specific-asset-pair'>Get a specific asset pair.</h2>
 <p>Get a specific asset pair(symbol).</p>
-<h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET /api/assetpairs/{assetPairId}</code></p>
+<h3 id='request-4'>Request</h3>
+<p><strong>gRPC:</strong> <code>hft.PublicService.GetAssetPair</code>
+<strong>RestAPI:</strong> <code>GET /api/assetpairs/{assetPairId}</code></p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -890,7 +921,7 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='asset-pair-order-book-ticker'>Asset Pair Order Book Ticker</h2>
 <p>Get the order book by asset pair. The order books contain a list of Buy(Bid) and Sell(Ask) orders with their corresponding price and volume.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /api/orderbooks</code></p>
 
 <p><code>GET /api/orderbooks?assetPairId={assetPairId}&amp;depth={4}</code></p>
@@ -1002,7 +1033,7 @@ Communication uses the HTTP 2.0 standard, WebSocket, ProtoBuf, which helps to re
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='24hr-ticker-price-change-statistics'>24hr Ticker Price Change Statistics</h2>
 <p>24 hour rolling-window price change statistics.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /api/tickers</code></p>
 
 <p><code>GET /api/tickers?assetPairIds=BTCUSD&amp;assetPairIds=BTCEUR</code></p>
