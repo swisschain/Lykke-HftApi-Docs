@@ -475,21 +475,22 @@ message TickersRequest {
 }
 
 message TickersResponse {
-    repeated Ticker payload = 1;
+    repeated TickerUpdate payload = 1;
     hft.common.Error error = 2;    // NULL
 }
 
-message Ticker {
-    string assetPairId = 1;        // "BTCUSD"
-    string volumeBase = 2;         // "2.15139075"
-    string volumeQuote = 3;        // "20649.0296"
-    string priceChange = 4;        // "0.023048622404312356"
-    string lastPrice = 5;          // "8620"
-    string bid = 6;                // "9669.12"
-    string ask = 7;                // "9673.61012"
-    string high = 8;               // "9700"
-    string low = 9;                // "9397.999"
+message TickerUpdate {
+    string assetPairId = 1;
+    string volumeBase = 2;
+    string volumeQuote = 3;
+    string priceChange = 4;
+    string lastPrice = 5;
+    string high = 6;
+    string low = 7;
+    google.protobuf.Timestamp timestamp = 8;
 }
 ```
+
+TODO: ADD rpc GetPrices (PricesRequest) returns (PricesResponse);
 
 
