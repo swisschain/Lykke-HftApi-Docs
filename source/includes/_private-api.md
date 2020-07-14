@@ -6,9 +6,11 @@ This group method requires API Key Authentication.
 
 Get the current balance from the API Key account.
 
-### HTTP Request
+### Request
 
-`GET /api/balance`
+**gRPC:** `hft.PrivateService.GetBalances`
+
+**RestAPI:** `GET /api/balance`
 
 ### Response
 
@@ -22,9 +24,11 @@ reserved | [decimal](#decimal-type) | Amount reserved in active orders.
 timestamp | [TimeStamp](#timestamp-type) | Last balance update on current asset.
 
 
+```json
+GET /api/balance
+
 > Response 200 (application/json) - success response
 
-```json
 {
   "payload": [
     {
@@ -40,6 +44,26 @@ timestamp | [TimeStamp](#timestamp-type) | Last balance update on current asset.
       "timestamp": 1592928506187
     },
   ]
+}
+```
+
+```protobuf
+package hft;
+
+service PrivateService {
+  rpc GetBalances (google.protobuf.Empty) returns (BalancesResponse);
+}
+
+message BalancesResponse {
+    repeated Balance payload = 1;
+    hft.common.Error error = 2;
+}
+
+message Balance {
+    string assetId = 1;
+    string available = 2;
+    string reserved = 3;
+    google.protobuf.Timestamp timestamp = 4;
 }
 ```
 
