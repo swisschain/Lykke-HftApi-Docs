@@ -491,6 +491,82 @@ message TickerUpdate {
 }
 ```
 
-TODO: ADD rpc GetPrices (PricesRequest) returns (PricesResponse);
+## Current prices
+
+Get current prices by symbols.
+
+### Request
+
+**gRPC:** `hft.PublicService.GetPrices`
+
+**RestAPI:** 
+
+`GET /api/prices`
+`GET /api/prices?assetPairIds={AssetPairID-1}&assetPairIds={AssetPairID-2}&...`
+
+### Query Parameters
+
+Parameter | Type | Place | Description
+--------- | ---- | ----- | -----------
+assetPairIds | array of string | query | *(Optional)* List of identificators of specific symbols. By default return all sumbols.
+
+### Response
+
+Array of prices by symbols:
+
+Property | Type | Description
+-------- | ---- | -----------
+assetPairId | string | Symbol unique identifier.
+timestamp | [TimeStamp](#timestamp-type) | Timestamp of last order book update.
+bid | [decimal](#decimal-type) | Bit price.
+ask | [decimal](#decimal-type) | Ask price.
+
+```json
+GET /api/prices
+GET /api/prices?assetPairId={assetPairId}&depth={depth}
+
+> Response 200 (application/json) - success response
+
+{
+"payload": [
+    {
+      "assetPairId": "BTCEUR",
+      "bid": 8089.122,
+      "ask": 8149.614,
+      "timestamp": 1594750211438
+    },
+    {
+      "assetPairId": "BTCUSD",
+      "bid": 9243.277,
+      "ask": 9283.495,
+      "timestamp": 1594750214503
+    }
+  ]
+}
+```
+
+```protobuf
+package hft;
+
+service PublicService {
+  rpc GetPrices (PricesRequest) returns (PricesResponse);
+}
+
+message PricesRequest {
+    repeated string assetPairIds = 1;
+}
+
+message PricesResponse {
+    repeated PriceUpdate payload = 1;
+    hft.common.Error error = 2;
+}
+
+message PriceUpdate {
+    string assetPairId = 1;
+    string bid = 2;
+    string ask = 3;
+    google.protobuf.Timestamp timestamp = 4;
+}
+```
 
 
