@@ -2128,7 +2128,7 @@ The method also allows you to replace orders in the order book. You can replace 
 </tr>
 <tr>
 <td>error</td>
-<td>string</td>
+<td><a href="#error-codes">ErrorCode</a></td>
 <td>Order result</td>
 </tr>
 <tr>
@@ -2188,7 +2188,7 @@ The method also allows you to replace orders in the order book. You can replace 
 <span class="kd">message</span> <span class="nc">BulkOrderItemStatus</span> <span class="p">{</span>
     <span class="kt">string</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
     <span class="k">oneof</span> <span class="n">optional_error</span> <span class="p">{</span>
-        <span class="kt">int32</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="n">error</span><span class="o">-</span><span class="n">codes</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="kt">string</span> <span class="na">volume</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
     <span class="kt">string</span> <span class="na">price</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
