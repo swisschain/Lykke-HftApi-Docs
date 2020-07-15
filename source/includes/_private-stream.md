@@ -6,7 +6,7 @@
 
 Private **Streaming API** allows you to receive account data online.
 
-## Get the current balance
+## Follow the current balance
 
 Get the current balance from the account.
 
@@ -47,7 +47,7 @@ message Balance {
 }
 ```
 
-## Get trades
+## Follow trades
 
 Get the flow of trades on the account.
 
@@ -113,7 +113,7 @@ message TradeFee {
 }
 ```
 
-## Get updates by orders
+## Follow updates by orders
 
 Get the flow of orders updates on the account.
 
