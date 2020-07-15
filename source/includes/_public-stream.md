@@ -4,13 +4,13 @@
 
 **Streaming API** is available only when working with the **gRPC protocol**. In the RestAPI protocol, streaming APIs are not available.
 
-Public **Streaming API** allows you to receive market data online without authorisation.
+Public **Streaming API** allows you to receive live market data without authorization.
 
 ## Follow the current prices
 
 Get current prices online.
 
-After subscribing you will get a data stream. The first packet in the stream will always be a complete snapshot with current balances. The following packages in the data stream will come after an asset balance change.
+After subscribing you will get a data stream. The first packet in the stream will always contain a complete snapshot with the current prices. The following packages in the data stream will come after an asset price change.
 
 ### Request
 
@@ -20,9 +20,9 @@ After subscribing you will get a data stream. The first packet in the stream wil
 
 Parameter | Type | Description
 --------- | ---- | -----------
-assetPairIds | array of string | Filter by Symbol unique ID. If the array is empty then server return prices by all symbols.
+assetPairIds | array of string | Filter by Symbol unique ID. If the array is empty then the server return prices by all symbols.
 
-### Responce
+### Response
 
 Array of prices by symbols:
 
@@ -57,7 +57,7 @@ message PriceUpdate {
 
 Get current 24hr Ticker Price Change Statistics online.
 
-After subscribing you will get a data stream. The first packet in the stream will always be a complete snapshot with current 24hr Ticker Price Change Statistics. The following packages in the data stream will come after a data change.
+After subscribing you will get a data stream. The first packet in the stream will always contain a complete snapshot with the current 24hr Ticker Price Change Statistics. The following packages in the data stream will come after a data change.
 
 ### Request
 
@@ -101,9 +101,9 @@ message TickerUpdate {
 
 Get current asset pair order books online.
 
-After subscribing you will get a data stream. The first packet in the stream will always be a complete snapshot with current order bookss. The follow packages in data stream will only contain changed levels in the order book.
+After subscribing you will get a data stream. The first packet in the stream will always contain a complete snapshot with current order books. The follow packages in data stream will only contain changed levels in the order book.
 
-Please note that if a level is deleted at a specific price, a packet containing a level with a specified price and a volume of zero will be sent to the stream.
+Please note that if a level is deleted at a specific price, a packet containing the level with the specified price will be sent to the stream with zero volume.
 
 ### Query Parameters
 
