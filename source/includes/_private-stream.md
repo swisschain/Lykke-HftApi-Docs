@@ -4,13 +4,13 @@
 
 **Streaming API** is available only when working with the **gRPC protocol**. In the RestAPI protocol, streaming APIs are not available.
 
-Private **Streaming API** allows you to receive account data online.
+Private **Streaming API** allows you to receive your API account data live.
 
 ## Follow the current balance
 
 Get the current balance from the account.
 
-After subscribing you will get a data stream. The first packet in the stream will always be a complete snapshot with current balances. The following packages in the data stream will come after a asset balance change.
+After subscribing you will get a data stream. The first packet in the stream will always contain a complete snapshot with the current balances of your API account. The following packages in the data stream will come after a asset balance change.
 
 ### Request
 
@@ -51,7 +51,7 @@ message Balance {
 
 Get the flow of trades on the account.
 
-After subscribing you will get a data stream. The packages in the data stream will come after trade happen.
+After subscribing you will get a data stream. The packages in the data stream will come after the trade happen.
 
 ### Request
 
@@ -66,7 +66,7 @@ Property | Type | Description
 id | string | Trade ID.
 orderId | string | Order ID of this trade.
 assetPairId | string | Trade asset pair ID (symbol).
-timestamp | [TimeStamp](#timestamp-type) | Trade tamestamp.
+timestamp | [TimeStamp](#timestamp-type) | Trade timestamp.
 role | string | Trade role. `Maker` or `Taker`.
 price | [decimal](#decimal-type) | Trade price.
 baseVolume | [decimal](#decimal-type) | Trade volume in base asset.
@@ -115,7 +115,7 @@ message TradeFee {
 
 ## Follow updates by orders
 
-Get the flow of orders updates on the account.
+Get the flow of orders updates from your API account.
 
 After subscribing you will receive a data stream. Packets in the data stream will come after any changes with the active order - placing, matching, canceling, etc.
 
