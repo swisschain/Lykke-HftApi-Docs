@@ -4,7 +4,8 @@
 
 **Streaming API** is available only when working with the **gRPC protocol**. In the RestAPI protocol, streaming APIs are not available.
 
-Private **Streaming API** allows you to receive your API account data live.
+Private **Streaming API** allows you to receive your live API account data.
+
 
 ## Follow the current balance
 
