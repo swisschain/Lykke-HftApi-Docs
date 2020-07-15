@@ -417,7 +417,7 @@ The contracts in the Rest API protocol have been updated as well. A new set of f
 <h2 id='grpc-api'>gRPC API</h2>
 <p>The gRCP API utilizes a new generation of RPC framework that includes working with <code>HTTP 2</code>, <code>ProtoBuf</code>, and <code>WebSocket</code> for faster and more efficient interaction with the platform. The <code>gRPC framework</code> uses the declarative description of the contract in the <code>.proto</code> files. On the basis of which you can easily generate a client library in many <a href="https://grpc.io/docs/languages/">programming languages</a>. Also, the <code>gRPC framework</code> supports working with <code>stream</code>, which makes it easy to receive events from the server.</p>
 
-<p><strong>Lykke team strongly recommend using gRPC API protocol to communicate with the platform</strong></p>
+<p><strong>Lykke team strongly recommend using gRPC API protocol to communicate with the platform</strong> </p>
 
 <p>Read more about <code>gRPC framework</code>: <a href="https://grpc.io/">https://grpc.io/</a></p>
 
@@ -442,6 +442,9 @@ The contracts in the Rest API protocol have been updated as well. A new set of f
 <p>The rest API uses the classic HTTP based framework that includes working with <code>HTTP 1.1</code>, and <code>JSON</code>. Rest API allows users to just call RPC methods without streaming data from the server.</p>
 
 <blockquote>
+<p>[!WARNING]
+Rest API has been added for backward compatibility. <strong>The Lykke team recommends abandoning the use of Rest API protocol in favor of gRPC protocol.</strong></p>
+
 <p><strong>WARNING</strong>: Rest API has been added for backward compatibility. <strong>The Lykke team recommends abandoning the use of Rest API protocol in favor of gRPC protocol.</strong></p>
 </blockquote>
 
