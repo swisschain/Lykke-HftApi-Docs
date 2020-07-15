@@ -2565,11 +2565,11 @@ The method also allows you to replace orders in the order book. You can replace 
 
 <p><strong>Streaming API</strong> is available only when working with the <strong>gRPC protocol</strong>. In the RestAPI protocol, streaming APIs are not available.</p>
 
-<p>Private <strong>Streaming API</strong> allows you to receive account data online.</p>
+<p>Private <strong>Streaming API</strong> allows you to receive your API account data live.</p>
 <h2 id='follow-the-current-balance'>Follow the current balance</h2>
 <p>Get the current balance from the account.</p>
 
-<p>After subscribing you will get a data stream. The first packet in the stream will always be a complete snapshot with current balances. The following packages in the data stream will come after a asset balance change.</p>
+<p>After subscribing you will get a data stream. The first packet in the stream will always contain a complete snapshot with the current balances of your API account. The following packages in the data stream will come after a asset balance change.</p>
 <h3 id='request'>Request</h3>
 <p><strong>gRPC:</strong> <code>hft.PublicService.GetBalanceUpdates</code></p>
 <h3 id='response'>Response</h3>
@@ -2622,7 +2622,7 @@ The method also allows you to replace orders in the order book. You can replace 
 </code></pre></div><h2 id='follow-trades'>Follow trades</h2>
 <p>Get the flow of trades on the account.</p>
 
-<p>After subscribing you will get a data stream. The packages in the data stream will come after trade happen.</p>
+<p>After subscribing you will get a data stream. The packages in the data stream will come after the trade happen.</p>
 <h3 id='request-2'>Request</h3>
 <p><strong>gRPC:</strong> <code>hft.PublicService.GetTradeUpdates</code></p>
 <h3 id='response-2'>Response</h3>
@@ -2653,7 +2653,7 @@ The method also allows you to replace orders in the order book. You can replace 
 <tr>
 <td>timestamp</td>
 <td><a href="#timestamp-type">TimeStamp</a></td>
-<td>Trade tamestamp.</td>
+<td>Trade timestamp.</td>
 </tr>
 <tr>
 <td>role</td>
@@ -2741,7 +2741,7 @@ The method also allows you to replace orders in the order book. You can replace 
     <span class="kt">string</span> <span class="na">assetId</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div><h2 id='follow-updates-by-orders'>Follow updates by orders</h2>
-<p>Get the flow of orders updates on the account.</p>
+<p>Get the flow of orders updates from your API account.</p>
 
 <p>After subscribing you will receive a data stream. Packets in the data stream will come after any changes with the active order - placing, matching, canceling, etc.</p>
 <h3 id='request-3'>Request</h3>
