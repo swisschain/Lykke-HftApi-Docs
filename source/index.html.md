@@ -12,6 +12,8 @@ includes:
   - api_usage.md
   - public-api.md
   - private-api.md
+  - public-stream.md
+  - private-stream.md
   - errors  
 
 search: true
