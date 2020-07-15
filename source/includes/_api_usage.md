@@ -30,6 +30,9 @@ The rest API uses the classic HTTP based framework that includes working with `H
 
 **Disclamer:** Rest API has been added for backward compatibility. **The Lykke team recommends do not to use Rest API protocol in favor of gRPC protocol.**
 
+<div class="warning'>
+<b>Disclamer:</b> Rest API has been added for backward compatibility. <b>The Lykke team recommends do not to use Rest API protocol in favor of gRPC protocol.</b>
+</div>
 
 A useful tool for manual rest API requests: [HFT API Swagger](https://hft-apiv2.lykke.com/swagger/ui/index.html)
 
