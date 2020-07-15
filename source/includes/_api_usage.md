@@ -6,7 +6,7 @@ Lykke HFT API allows users to use 2 kinds of protocol `gRPC API` and `Rest API`.
 
 The gRCP API utilizes a new generation of RPC framework that includes working with `HTTP 2`, `ProtoBuf`, and `WebSocket` for faster and more efficient interaction with the platform. The `gRPC framework` uses the declarative description of the contract in the `.proto` files. On the basis of which you can easily generate a client library in many [programming languages](https://grpc.io/docs/languages/). Also, the `gRPC framework` supports working with `stream`, which makes it easy to receive events from the server.
 
-**Lykke team strongly recommend using gRPC API protocol to communicate with the platform**
+ **Lykke team strongly recommend using gRPC API protocol to communicate with the platform** 
 
 Read more about `gRPC framework`: [https://grpc.io/](https://grpc.io/)
 
@@ -27,6 +27,9 @@ A useful tool for manual gRPC API requests: [BloomRPC](https://github.com/uw-lab
 ## Rest API
 
 The rest API uses the classic HTTP based framework that includes working with `HTTP 1.1`, and `JSON`. Rest API allows users to just call RPC methods without streaming data from the server.
+
+>[!WARNING]
+>Rest API has been added for backward compatibility. **The Lykke team recommends abandoning the use of Rest API protocol in favor of gRPC protocol.**
 
 > **WARNING**: Rest API has been added for backward compatibility. **The Lykke team recommends abandoning the use of Rest API protocol in favor of gRPC protocol.**
 
