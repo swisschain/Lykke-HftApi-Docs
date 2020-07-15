@@ -11,7 +11,7 @@ Private **Streaming API** allows you to receive your live API account data.
 
 Get the current balance from the account.
 
-After subscribing you will get a data stream. The first packet in the stream will always contain a complete snapshot with the current balances of your API account. The following packages in the data stream will come after a asset balance change.
+After subscribing you will get a data stream. The first packet in the stream will always contain a complete snapshot with the current balances of your API account. The following packages in the data stream will come after an asset balance change.
 
 ### Request
 
