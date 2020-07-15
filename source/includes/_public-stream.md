@@ -53,7 +53,7 @@ message PriceUpdate {
 ```
 
 
-## Follow current 24hr Ticker Price Change Statistics
+## Follow current 24hr Statistics
 
 Get current 24hr Ticker Price Change Statistics online.
 
@@ -97,7 +97,7 @@ message TickerUpdate {
 }
 ```
 
-## Follow Asset Pair Order Book Ticker
+## Follow Order Book Ticker
 
 Get current asset pair order books online.
 
