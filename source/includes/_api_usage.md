@@ -53,7 +53,7 @@ A useful tool for manual rest API requests: [HFT API Swagger](https://hft-apiv2.
 
 ## Response structure
 
-Every response contains two fields - `payload` and `error`. A successful response will contain the response data in the `payload` field and the *null* in the `error` field, and vise versa for the error response.
+Every response contains two fields - `payload` and `error`. A successful response will contain the response data in the `payload` field and the *null* in the `error` field, and vice versa for the error response.
 
 Here you have a list of errors you might encounter in the paragraph **Error codes** at the end of the document.
 
