@@ -329,10 +329,10 @@
                     <a href="#follow-the-current-prices" class="toc-h2 toc-link" data-title="Follow the current prices">Follow the current prices</a>
                   </li>
                   <li>
-                    <a href="#follow-current-24hr-ticker-price-change-statistics" class="toc-h2 toc-link" data-title="Follow current 24hr Ticker Price Change Statistics">Follow current 24hr Ticker Price Change Statistics</a>
+                    <a href="#follow-current-24hr-statistics" class="toc-h2 toc-link" data-title="Follow current 24hr Statistics">Follow current 24hr Statistics</a>
                   </li>
                   <li>
-                    <a href="#follow-asset-pair-order-book-ticker" class="toc-h2 toc-link" data-title="Follow Asset Pair Order Book Ticker">Follow Asset Pair Order Book Ticker</a>
+                    <a href="#follow-order-book-ticker" class="toc-h2 toc-link" data-title="Follow Order Book Ticker">Follow Order Book Ticker</a>
                   </li>
               </ul>
           </li>
@@ -2390,7 +2390,7 @@ The method also allows you to replace orders in the order book. You can replace 
     <span class="kt">string</span> <span class="na">ask</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
     <span class="n">google.protobuf.Timestamp</span> <span class="na">timestamp</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h2 id='follow-current-24hr-ticker-price-change-statistics'>Follow current 24hr Ticker Price Change Statistics</h2>
+</code></pre></div><h2 id='follow-current-24hr-statistics'>Follow current 24hr Statistics</h2>
 <p>Get current 24hr Ticker Price Change Statistics online.</p>
 
 <p>After subscribing you will get a data stream. The first packet in the stream will always be a complete snapshot with current 24hr Ticker Price Change Statistics. The following packages in the data stream will come after a data change.</p>
@@ -2463,7 +2463,7 @@ The method also allows you to replace orders in the order book. You can replace 
     <span class="kt">string</span> <span class="na">low</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
     <span class="n">google.protobuf.Timestamp</span> <span class="na">timestamp</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h2 id='follow-asset-pair-order-book-ticker'>Follow Asset Pair Order Book Ticker</h2>
+</code></pre></div><h2 id='follow-order-book-ticker'>Follow Order Book Ticker</h2>
 <p>Get current asset pair order books online.</p>
 
 <p>After subscribing you will get a data stream. The first packet in the stream will always be a complete snapshot with current order bookss. The follow packages in data stream will only contain changed levels in the order book.</p>
