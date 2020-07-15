@@ -4,13 +4,13 @@
 
 **Streaming API** is available only when working with the **gRPC protocol**. In the RestAPI protocol, streaming APIs are not available.
 
-Publicly **Streaming API** allows you to receive market data online without authorisation.
+Public **Streaming API** allows you to receive market data online without authorisation.
 
-## Get current prices
+## Follow the current prices
 
 Get current prices online.
 
-After subscribing you will get a data stream. The first packet in the stream will always be a complete snapshot with current prices. The following packages in the data stream will come after a price change.
+After subscribing you will get a data stream. The first packet in the stream will always be a complete snapshot with current balances. The following packages in the data stream will come after an asset balance change.
 
 ### Request
 
@@ -53,7 +53,7 @@ message PriceUpdate {
 ```
 
 
-## Get current 24hr Ticker Price Change Statistics
+## Follow current 24hr Ticker Price Change Statistics
 
 Get current 24hr Ticker Price Change Statistics online.
 
@@ -97,7 +97,7 @@ message TickerUpdate {
 }
 ```
 
-## Get Asset Pair Order Book Ticker
+## Follow Asset Pair Order Book Ticker
 
 Get current asset pair order books online.
 
