@@ -66,7 +66,7 @@ message Asset {
 
 ## Get Asset by ID
 
-Get inforomation about specific asset.
+Get information about specific asset.
 
 ### Request
 
