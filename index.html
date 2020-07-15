@@ -2324,11 +2324,11 @@ The method also allows you to replace orders in the order book. You can replace 
 
 <p><strong>Streaming API</strong> is available only when working with the <strong>gRPC protocol</strong>. In the RestAPI protocol, streaming APIs are not available.</p>
 
-<p>Public <strong>Streaming API</strong> allows you to receive market data online without authorisation.</p>
+<p>Public <strong>Streaming API</strong> allows you to receive live market data without authorization.</p>
 <h2 id='follow-the-current-prices'>Follow the current prices</h2>
 <p>Get current prices online.</p>
 
-<p>After subscribing you will get a data stream. The first packet in the stream will always be a complete snapshot with current balances. The following packages in the data stream will come after an asset balance change.</p>
+<p>After subscribing you will get a data stream. The first packet in the stream will always contain a complete snapshot with the current prices. The following packages in the data stream will come after an asset price change.</p>
 <h3 id='request'>Request</h3>
 <p><strong>gRPC:</strong> <code>hft.PublicService.GetPriceUpdates</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -2342,10 +2342,10 @@ The method also allows you to replace orders in the order book. You can replace 
 <tr>
 <td>assetPairIds</td>
 <td>array of string</td>
-<td>Filter by Symbol unique ID. If the array is empty then server return prices by all symbols.</td>
+<td>Filter by Symbol unique ID. If the array is empty then the server return prices by all symbols.</td>
 </tr>
 </tbody></table>
-<h3 id='responce'>Responce</h3>
+<h3 id='response'>Response</h3>
 <p>Array of prices by symbols:</p>
 
 <table><thead>
@@ -2395,10 +2395,10 @@ The method also allows you to replace orders in the order book. You can replace 
 </code></pre></div><h2 id='follow-current-24hr-statistics'>Follow current 24hr Statistics</h2>
 <p>Get current 24hr Ticker Price Change Statistics online.</p>
 
-<p>After subscribing you will get a data stream. The first packet in the stream will always be a complete snapshot with current 24hr Ticker Price Change Statistics. The following packages in the data stream will come after a data change.</p>
+<p>After subscribing you will get a data stream. The first packet in the stream will always contain a complete snapshot with the current 24hr Ticker Price Change Statistics. The following packages in the data stream will come after a data change.</p>
 <h3 id='request-2'>Request</h3>
 <p><strong>gRPC:</strong> <code>hft.PublicService.GetTickerUpdates</code></p>
-<h3 id='response'>Response</h3>
+<h3 id='response-2'>Response</h3>
 <p>Array with asset description:</p>
 
 <table><thead>
@@ -2468,9 +2468,9 @@ The method also allows you to replace orders in the order book. You can replace 
 </code></pre></div><h2 id='follow-order-book-ticker'>Follow Order Book Ticker</h2>
 <p>Get current asset pair order books online.</p>
 
-<p>After subscribing you will get a data stream. The first packet in the stream will always be a complete snapshot with current order bookss. The follow packages in data stream will only contain changed levels in the order book.</p>
+<p>After subscribing you will get a data stream. The first packet in the stream will always contain a complete snapshot with current order books. The follow packages in data stream will only contain changed levels in the order book.</p>
 
-<p>Please note that if a level is deleted at a specific price, a packet containing a level with a specified price and a volume of zero will be sent to the stream.</p>
+<p>Please note that if a level is deleted at a specific price, a packet containing the level with the specified price will be sent to the stream with zero volume.</p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -2487,7 +2487,7 @@ The method also allows you to replace orders in the order book. You can replace 
 </tbody></table>
 <h3 id='request-3'>Request</h3>
 <p><strong>gRPC:</strong> <code>hft.PublicService.GetOrderbookUpdates</code></p>
-<h3 id='response-2'>Response</h3>
+<h3 id='response-3'>Response</h3>
 <p>Array with order books:</p>
 
 <table><thead>
