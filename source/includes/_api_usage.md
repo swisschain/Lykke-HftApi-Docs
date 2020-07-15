@@ -28,7 +28,7 @@ A useful tool for manual gRPC API requests: [BloomRPC](https://github.com/uw-lab
 
 The rest API uses the classic HTTP based framework that includes working with `HTTP 1.1`, and `JSON`. Rest API allows users to just call RPC methods without streaming data from the server.
 
-**Disclamer:** Rest API has been added for backward compatibility. **The Lykke team recommends do not to use Rest API protocol in favor of gRPC protocol.**
+**Disclaimer:** Rest API has been added for backward compatibility. **The Lykke team recommends doing not to use Rest API protocol in favor of gRPC protocol.**
 
 A useful tool for manual rest API requests: [HFT API Swagger](https://hft-apiv2.lykke.com/swagger/ui/index.html)
 
