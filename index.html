@@ -324,6 +324,17 @@
           </li>
           <li>
             <a href="#public-stream-apis" class="toc-h1 toc-link" data-title="Public Stream APIs">Public Stream APIs</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-current-prices" class="toc-h2 toc-link" data-title="Get current prices">Get current prices</a>
+                  </li>
+                  <li>
+                    <a href="#get-current-24hr-ticker-price-change-statistics" class="toc-h2 toc-link" data-title="Get current 24hr Ticker Price Change Statistics">Get current 24hr Ticker Price Change Statistics</a>
+                  </li>
+                  <li>
+                    <a href="#get-asset-pair-order-book-ticker" class="toc-h2 toc-link" data-title="Get Asset Pair Order Book Ticker">Get Asset Pair Order Book Ticker</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#private-stream-apis" class="toc-h1 toc-link" data-title="Private Stream APIs">Private Stream APIs</a>
@@ -2295,7 +2306,250 @@ The method also allows you to replace orders in the order book. You can replace 
     <span class="kt">bool</span> <span class="na">payload</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
     <span class="n">hft.common.Error</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h1 id='public-stream-apis'>Public Stream APIs</h1><h1 id='private-stream-apis'>Private Stream APIs</h1><h1 id='error-codes'>Error codes</h1>
+</code></pre></div><h1 id='public-stream-apis'>Public Stream APIs</h1>
+<p><strong>Streaming API</strong> allows you to subscribe to events from the server and receive them in streaming mode upon the occurrence of the event.</p>
+
+<p><strong>Streaming API</strong> is available only when working with the <strong>gRPC protocol</strong>. In the RestAPI protocol, streaming APIs are not available.</p>
+
+<p>Publicly <strong>Streaming API</strong> allows you to receive market data online without authorisation.</p>
+<h2 id='get-current-prices'>Get current prices</h2>
+<p>Get current prices online.</p>
+
+<p>After subscribing you will get a data stream. The first packet in the stream will always be a complete snapshot with current prices. The following packages in the data stream will come after a price change.</p>
+<h3 id='request'>Request</h3>
+<p><strong>gRPC:</strong> <code>hft.PublicService.GetPriceUpdates</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>assetPairIds</td>
+<td>array of string</td>
+<td>Filter by Symbol unique ID. If the array is empty then server return prices by all symbols.</td>
+</tr>
+</tbody></table>
+<h3 id='responce'>Responce</h3>
+<p>Array of prices by symbols:</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>assetPairId</td>
+<td>string</td>
+<td>Symbol unique identifier.</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td><a href="#timestamp-type">TimeStamp</a></td>
+<td>Timestamp of last order book update.</td>
+</tr>
+<tr>
+<td>bid</td>
+<td><a href="#decimal-type">decimal</a></td>
+<td>Bid price.</td>
+</tr>
+<tr>
+<td>ask</td>
+<td><a href="#decimal-type">decimal</a></td>
+<td>Ask price.</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kn">package</span> <span class="nn">hft</span><span class="p">;</span>
+
+<span class="kd">service</span> <span class="n">PublicService</span> <span class="p">{</span>
+  <span class="k">rpc</span> <span class="n">GetPriceUpdates</span> <span class="p">(</span><span class="n">PriceUpdatesRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">stream</span> <span class="n">PriceUpdate</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">PriceUpdatesRequest</span> <span class="p">{</span>
+    <span class="k">repeated</span> <span class="kt">string</span> <span class="na">assetPairIds</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">PriceUpdate</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">assetPairId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">bid</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">ask</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">google.protobuf.Timestamp</span> <span class="na">timestamp</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h2 id='get-current-24hr-ticker-price-change-statistics'>Get current 24hr Ticker Price Change Statistics</h2>
+<p>Get current 24hr Ticker Price Change Statistics online.</p>
+
+<p>After subscribing you will get a data stream. The first packet in the stream will always be a complete snapshot with current 24hr Ticker Price Change Statistics. The following packages in the data stream will come after a data change.</p>
+<h3 id='request-2'>Request</h3>
+<p><strong>gRPC:</strong> <code>hft.PublicService.GetTickerUpdates</code></p>
+<h3 id='response'>Response</h3>
+<p>Array with asset description:</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>assetPairId</td>
+<td>string</td>
+<td>Symbol unique identifier.</td>
+</tr>
+<tr>
+<td>volumeBase</td>
+<td><a href="#decimal-type">decimal</a></td>
+<td>Trading volume for the last 24h in base asset.</td>
+</tr>
+<tr>
+<td>volumeQuote</td>
+<td><a href="#decimal-type">decimal</a></td>
+<td>Trading volume for the last 24h in quote asset.</td>
+</tr>
+<tr>
+<td>priceChange</td>
+<td><a href="#decimal-type">decimal</a></td>
+<td>Price changes(in %) in the last 24h.</td>
+</tr>
+<tr>
+<td>lastPrice</td>
+<td><a href="#decimal-type">decimal</a></td>
+<td>The last trade price.</td>
+</tr>
+<tr>
+<td>high</td>
+<td><a href="#decimal-type">decimal</a></td>
+<td>The maximum trade price from the last 24h.</td>
+</tr>
+<tr>
+<td>low</td>
+<td><a href="#decimal-type">decimal</a></td>
+<td>The minimum trade price from the last 24h.</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td><a href="#timestamp-type">TimeStamp</a></td>
+<td>Last update timestamp.</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kn">package</span> <span class="nn">hft</span><span class="p">;</span>
+
+<span class="kd">service</span> <span class="n">PublicService</span> <span class="p">{</span>
+  <span class="k">rpc</span> <span class="n">GetTickerUpdates</span> <span class="p">(</span><span class="n">google.protobuf.Empty</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">stream</span> <span class="n">TickerUpdate</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">TickerUpdate</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">assetPairId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">volumeBase</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">volumeQuote</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">priceChange</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">lastPrice</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">high</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">low</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+    <span class="n">google.protobuf.Timestamp</span> <span class="na">timestamp</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h2 id='get-asset-pair-order-book-ticker'>Get Asset Pair Order Book Ticker</h2>
+<p>Get current asset pair order books online.</p>
+
+<p>After subscribing you will get a data stream. The first packet in the stream will always be a complete snapshot with current order bookss. The follow packages in data stream will only contain changed levels in the order book.</p>
+
+<p>Please note that if a level is deleted at a specific price, a packet containing a level with a specified price and a volume of zero will be sent to the stream.</p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Place</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>assetPairId</td>
+<td>string</td>
+<td>query</td>
+<td><em>(Optional)</em> Identificator of specific symbol. By default return all symbols.</td>
+</tr>
+</tbody></table>
+<h3 id='request-3'>Request</h3>
+<p><strong>gRPC:</strong> <code>hft.PublicService.GetOrderbookUpdates</code></p>
+<h3 id='response-2'>Response</h3>
+<p>Array with order books:</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>assetPairId</td>
+<td>string</td>
+<td>Symbol unique identifier.</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td><a href="#timestamp-type">TimeStamp</a></td>
+<td>Timestamp of last order book update.</td>
+</tr>
+<tr>
+<td>bids</td>
+<td>Array of PriceLevel</td>
+<td>List of changed buy orders.</td>
+</tr>
+<tr>
+<td>asks</td>
+<td>Array of PriceLevel</td>
+<td>List of changed sell orders.</td>
+</tr>
+</tbody></table>
+
+<p><strong>PriceLevel</strong>:</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>p</td>
+<td><a href="#decimal-type">decimal</a></td>
+<td>Order price indicated in quoted asset per unit of base asset.</td>
+</tr>
+<tr>
+<td>v</td>
+<td><a href="#decimal-type">decimal</a></td>
+<td>Order volume indicated in base asset.</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kn">package</span> <span class="nn">hft</span><span class="p">;</span>
+
+<span class="kd">service</span> <span class="n">PublicService</span> <span class="p">{</span>
+  <span class="k">rpc</span> <span class="n">GetOrderbookUpdates</span> <span class="p">(</span><span class="n">OrderbookUpdatesRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">stream</span> <span class="n">Orderbook</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">OrderbookUpdatesRequest</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">assetPairId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">Orderbook</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">assetPairId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">google.protobuf.Timestamp</span> <span class="na">timestamp</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">repeated</span> <span class="n">PriceVolume</span> <span class="na">bids</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="k">repeated</span> <span class="n">PriceVolume</span> <span class="na">asks</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+
+    <span class="kd">message</span> <span class="nc">PriceVolume</span> <span class="p">{</span>
+        <span class="kt">string</span> <span class="na">p</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="kt">string</span> <span class="na">v</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h1 id='private-stream-apis'>Private Stream APIs</h1><h1 id='error-codes'>Error codes</h1>
 <table><thead>
 <tr>
 <th>Code</th>
